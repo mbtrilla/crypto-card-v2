@@ -1,0 +1,119 @@
+import fs from 'fs';
+import path from 'path';
+import Papa from 'papaparse';
+
+export interface Card {
+  name: string;
+  slug: string;
+  logo: string;
+  cardType: string;
+  custody: string;
+  network: string;
+  issuanceFee: string;
+  annualFee: string;
+  cashback: string;
+  regions: string;
+  fxFee: string;
+  topUpMethods: string;
+  spendLimit: string;
+  atmLimit: string;
+  pros: string;
+  cons: string;
+  description: string;
+  mainPageCashback: string;
+  countries: string;
+}
+
+export const FIELDS = {
+  name: 'Card Service',
+  logo: 'IMG',
+  cardType: 'Card Type',
+  custody: 'Custody',
+  network: 'Visa or Mastercard',
+  issuanceFee: 'Card Issuance Fee',
+  annualFee: 'Annual Fee',
+  cashback: 'Cashback',
+  regions: 'Regions KYC Available',
+  fxFee: 'FX Fee',
+  topUpMethods: 'Top-up Methods',
+  spendLimit: 'Daily Spending Limit',
+  atmLimit: 'ATM Withdrawal Limit',
+  pros: 'Pros',
+  cons: 'Cons',
+  description: 'Marketing Description',
+  mainPageCashback: 'Main Page Cashback',
+  countries: ['P Countries Available', 'Counties Available', 'Countries Available']
+};
+
+export const getSlug = (text: string) => {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+};
+
+const stripParens = (str: string) => str ? str.replace(/\s*\([^)]*\)/g, '').trim() : '';
+
+const transformGDriveUrl = (url: string) => {
+  if (!url || typeof url !== 'string') return url;
+  // Match both drive.google.com/.../d/[ID] and lh3.googleusercontent.com/d/[ID]
+  const idMatch = url.match(/(?:\/d\/|id=)([a-zA-Z0-9_-]{25,})/);
+  if (idMatch && idMatch[1]) {
+    const directUrl = `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w800`;
+    return `/api/image-proxy?url=${encodeURIComponent(directUrl)}`;
+  }
+  return url;
+};
+
+export async function getAllCards(): Promise<Card[]> {
+  const filePath = path.join(process.cwd(), 'data.csv');
+  const csvFile = fs.readFileSync(filePath, 'utf8');
+  
+  const { data } = Papa.parse(csvFile, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  return (data as any[])
+    .filter(item => item[FIELDS.name] && item[FIELDS.name].trim() !== '')
+    .map((item: any) => {
+      const name = item[FIELDS.name];
+      const rawLogo = item[FIELDS.logo] || '';
+      const fallbackImage = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=18181b&color=fff&size=400`;
+      
+      let logo = rawLogo;
+      if (rawLogo.includes('drive.google.com') || rawLogo.includes('googleusercontent.com')) {
+        logo = transformGDriveUrl(rawLogo);
+      } else if (!rawLogo.startsWith('http')) {
+        logo = fallbackImage;
+      }
+
+      const countriesRaw = FIELDS.countries
+        .map(field => item[field])
+        .find(val => val && val !== '#NAME?') || '';
+
+      return {
+        name: name,
+        slug: getSlug(name),
+        logo: logo,
+        cardType: stripParens(item[FIELDS.cardType] || ''),
+        custody: stripParens(item[FIELDS.custody] || ''),
+        network: stripParens(item[FIELDS.network] || ''),
+        issuanceFee: item[FIELDS.issuanceFee] || 'N/A',
+        annualFee: item[FIELDS.annualFee] || 'N/A',
+        cashback: item[FIELDS.cashback] || 'N/A',
+        regions: stripParens(item[FIELDS.regions] || ''),
+        fxFee: item[FIELDS.fxFee] || 'N/A',
+        topUpMethods: item[FIELDS.topUpMethods] || 'N/A',
+        spendLimit: item[FIELDS.spendLimit] || 'N/A',
+        atmLimit: item[FIELDS.atmLimit] || 'N/A',
+        pros: item[FIELDS.pros] || '',
+        cons: item[FIELDS.cons] || '',
+        description: item[FIELDS.description] || '',
+        mainPageCashback: item[FIELDS.mainPageCashback] || item[FIELDS.cashback] || '',
+        countries: countriesRaw
+      };
+    });
+}

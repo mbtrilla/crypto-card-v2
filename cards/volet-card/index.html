@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Volet Card — Standard Visa/Mastercard FX rates, available in 150+ countries. Read our 2026 review!">
+    <meta property="og:title" content="Volet Card Review 2026: 150+ Countries & Custodial Fee">
+    <meta property="og:description" content="Volet Card — Standard Visa/Mastercard FX rates, available in 150+ countries. Read our 2026 review!">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://sweepbase.com/cards/volet-card">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volet Card Review 2026: 150+ Countries & Custodial Fee</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/index.css?v=8">
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Volet Card",
+      "description": "Volet Card — Standard Visa/Mastercard FX rates, available in 150+ countries. Read our 2026 review!",
+      "brand": {
+        "@type": "Brand",
+        "name": "Volet Card"
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="Sweepbase Logo" class="brand-logo">
+            </a>
+            <nav class="nav-links">
+                <a href="#discover" class="active">Discover</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-content">
+                <h1 class="hero-title">Review Volet Card</h1>
+                <p class="hero-subtitle">Compare the world's best crypto debit and credit cards with Sweepbase. Find
+                    the perfect match
+                    for your lifestyle, maximize your rewards, and spend your digital assets anywhere.</p>
+            </div>
+        </section>
+
+        <section id="discover" class="filter-section">
+            <div class="container">
+                <div class="filter-glass-panel">
+                    <div class="search-box">
+                        <i class="fa-solid fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Search by card name, crypto, or feature..."
+                            aria-label="Search cards">
+                    </div>
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label for="custodyFilter">Custody</label>
+                            <div class="custom-select">
+                                <select id="custodyFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="Custodial">Custodial</option>
+                                    <option value="Self-custody">Self-Custody</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="networkFilter">Network</label>
+                            <div class="custom-select">
+                                <select id="networkFilter">
+                                    <option value="all">All Networks</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="typeFilter">Card Type</label>
+                            <div class="custom-select">
+                                <select id="typeFilter">
+                                    <option value="all">Any Type</option>
+                                    <option value="Virtual">Virtual</option>
+                                    <option value="Physical">Physical</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="regionFilter">Region</label>
+                            <div class="custom-select">
+                                <select id="regionFilter">
+                                    <option value="all">All Regions</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="countryFilter">Country</label>
+                            <div class="custom-select">
+                                <select id="countryFilter">
+                                    <option value="all">All Countries</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="container">
+                <div class="results-header">
+                    <h2 class="results-title">Available Cards <span id="resultsCount" class="badge">0</span></h2>
+                </div>
+
+                <div id="loadingIndicator" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Fetching the latest card data...</p>
+                </div>
+
+                <div id="noResults" class="no-results hidden">
+                    <div class="no-results-icon"><i class="fa-solid fa-ghost"></i></div>
+                    <h3>No cards found</h3>
+                    <p>Try adjusting your search or filters to find what you're looking for.</p>
+                    <button id="resetFiltersBtn" class="btn btn-primary">Reset Filters</button>
+                </div>
+
+                <div id="cardsGrid" class="cards-grid">
+                    <!-- Cards will be dynamically injected here -->
+                </div>
+
+                <div id="loadMoreContainer" class="load-more-container" style="display: none;">
+                    <button id="loadMoreBtn" class="load-more-btn">
+                        Load More <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Compare Bar Floating at the Bottom -->
+    <div id="compareBar" class="compare-bar hidden">
+        <div class="container compare-bar-content">
+            <div class="compare-info">
+                <span class="compare-title">Compare Cards (<span id="compareCount">0</span>/4)</span>
+                <div id="compareSlots" class="compare-slots">
+                    <!-- Dynamic selected cards thumbnail inserted here -->
+                </div>
+            </div>
+            <div class="compare-actions">
+                <button id="clearCompareBtn" class="btn btn-outline">Clear All</button>
+                <button id="compareNowBtn" class="btn btn-primary" disabled>Compare Now</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="/logo.png" alt="Sweepbase Logo" class="brand-logo footer-logo-img">
+            </div>
+            <p class="footer-text">Empowering your digital wealth. Data provided for informational purposes.</p>
+            <p class="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Card Detail Modal -->
+    <div id="cardModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <button class="modal-close" id="cardModalClose" aria-label="Close modal"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="modal-content" id="modalContent">
+                <!-- Modal content dynamically injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Table Modal -->
+    <div id="compareModal" class="modal-overlay hidden">
+        <div class="modal-container modal-compare-container">
+            <button class="modal-close" id="compareModalClose" aria-label="Close modal"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="modal-content">
+                <h2 class="compare-modal-title">Card Comparison</h2>
+                <div class="compare-table-wrapper">
+                    <table id="compareTable" class="compare-table">
+                        <!-- Head and body dynamically injected -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="/script.js?v=3"></script>
+</body>
+
+</html>
