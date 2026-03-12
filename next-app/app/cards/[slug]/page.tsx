@@ -77,7 +77,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
-    description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
+    description: card.description.length > 155
+      ? card.description.substring(0, 155) + '...'
+      : card.description,
     keywords,
     alternates: {
       canonical: `https://sweepbase.com/cards/${card.slug}`,
