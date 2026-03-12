@@ -1,12 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { SITE_URL } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "Sweepbase | Find Your Perfect Crypto Card",
   description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
   alternates: {
     canonical: "https://sweepbase.com",
+  },
+  openGraph: {
+    images: [
+      {
+        url: `${SITE_URL}/logo.png`,
+        width: 800,
+        height: 600,
+        alt: "Sweepbase — Find Your Perfect Crypto Card",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [`${SITE_URL}/logo.png`],
   },
 };
 

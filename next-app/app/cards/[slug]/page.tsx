@@ -2,6 +2,7 @@ import { getAllCards, getSlug } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { Card } from "@/lib/data";
+import { absoluteUrl } from "@/lib/siteConfig";
 
 // Все страницы карточек генерируются статически при билде
 export const dynamic = 'force-static';
@@ -38,6 +39,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!card) return {};
 
+  const ogImage = absoluteUrl(card.logo);
+
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
     description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
@@ -49,7 +52,19 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: card.description,
       type: 'website',
       url: `https://sweepbase.com/cards/${card.slug}`,
-    }
+      images: [
+        {
+          url: ogImage,
+          width: 800,
+          height: 600,
+          alt: `${card.name} crypto card`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [ogImage],
+    },
   };
 }
 
