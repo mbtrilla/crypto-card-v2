@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
     url: "https://sweepbase.com",
     siteName: "Sweepbase",
-    locale: "en_US",
     type: "website",
     images: [
       {
@@ -49,6 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* og:locale задаётся здесь напрямую — глобально для всех страниц,
+            т.к. дочерние generateMetadata перезаписывают openGraph целиком */}
+        <meta property="og:locale" content="en_US" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
