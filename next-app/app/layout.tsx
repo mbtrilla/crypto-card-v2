@@ -6,6 +6,16 @@ import { SITE_URL } from "@/lib/siteConfig";
 export const metadata: Metadata = {
   title: "Sweepbase | Find Your Perfect Crypto Card",
   description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
+  keywords: [
+    "crypto debit card",
+    "crypto card comparison",
+    "best crypto card 2026",
+    "bitcoin debit card",
+    "crypto cashback card",
+    "Visa crypto card",
+    "Mastercard crypto card",
+    "crypto spending card",
+  ],
   alternates: {
     canonical: "https://sweepbase.com",
   },

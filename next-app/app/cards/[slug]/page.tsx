@@ -26,6 +26,39 @@ function getSimilarCards(current: Card, all: Card[]): Card[] {
   return [...sameNetwork, ...sameCustody, ...rest].slice(0, 3);
 }
 
+// Генерирует 5–7 релевантных keywords из полей карточки.
+function buildCardKeywords(card: Card): string[] {
+  const kw: string[] = [];
+
+  // Имя карточки — самый специфичный сигнал
+  kw.push(card.name);
+  kw.push(`${card.name} review`);
+
+  // Сеть (Visa / Mastercard / смешанная)
+  const networks = card.network.split(/[,+;/]/).map(n => n.trim()).filter(Boolean);
+  networks.slice(0, 2).forEach(n => kw.push(`${n} crypto card`));
+
+  // Cashback — если есть явное значение
+  const cashback = (card.mainPageCashback || card.cashback || '').toLowerCase();
+  if (cashback && cashback !== 'none' && cashback !== 'n/a') {
+    kw.push(`crypto cashback card`);
+  }
+
+  // Тип custody
+  const custody = card.custody.toLowerCase();
+  if (custody.includes('self')) kw.push('self-custody crypto card');
+  else if (custody.includes('custodial')) kw.push('custodial crypto card');
+
+  // Первый регион / страна
+  const firstRegion = card.regions.split(/[,/]/).map(r => r.trim())[0];
+  if (firstRegion && firstRegion.toLowerCase() !== 'worldwide') {
+    kw.push(`${firstRegion} crypto card`);
+  }
+
+  // Дедупликация и обрезка до 7
+  return [...new Set(kw)].slice(0, 7);
+}
+
 export async function generateStaticParams() {
   const cards = await getAllCards();
   return cards.map((card) => ({
@@ -40,10 +73,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!card) return {};
 
   const ogImage = absoluteUrl(card.logo);
+  const keywords = buildCardKeywords(card);
 
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
     description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
+    keywords,
     alternates: {
       canonical: `https://sweepbase.com/cards/${card.slug}`,
     },
