@@ -557,10 +557,11 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     margin-bottom: 1rem;
     width: 100%;
+    overflow: hidden;
 }
 
 .blue-pill {

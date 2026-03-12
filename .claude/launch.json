@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "next-app",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["C:\\Users\\Ms\\.gemini\\antigravity\\scratch\\crypto-card-aggregator\\.claude\\worktrees\\exciting-lederberg\\next-app\\node_modules\\next\\dist\\bin\\next", "dev"],
+      "port": 3000,
+      "cwd": "C:\\Users\\Ms\\.gemini\\antigravity\\scratch\\crypto-card-aggregator\\.claude\\worktrees\\exciting-lederberg\\next-app"
+    }
+  ]
+}
