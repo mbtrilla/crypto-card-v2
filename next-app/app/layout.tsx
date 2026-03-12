@@ -10,6 +10,12 @@ export const metadata: Metadata = {
     canonical: "https://sweepbase.com",
   },
   openGraph: {
+    title: "Sweepbase | Find Your Perfect Crypto Card",
+    description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
+    url: "https://sweepbase.com",
+    siteName: "Sweepbase",
+    locale: "en_US",
+    type: "website",
     images: [
       {
         url: `${SITE_URL}/logo.png`,
