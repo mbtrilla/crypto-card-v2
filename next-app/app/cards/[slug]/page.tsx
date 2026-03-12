@@ -1,6 +1,29 @@
 import { getAllCards, getSlug } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { Card } from "@/lib/data";
+
+// Все страницы карточек генерируются статически при билде
+export const dynamic = 'force-static';
+
+// Детерминированный выбор похожих карточек на основе slug.
+// Math.random() ломает SSG — каждый revalidate менял бы HTML страницы.
+function getSimilarCards(current: Card, all: Card[]): Card[] {
+  const others = all.filter(c => c.slug !== current.slug);
+
+  // Приоритет 1: карточки с тем же network
+  const sameNetwork = others.filter(c => c.network === current.network);
+  // Приоритет 2: карточки с тем же типом custody
+  const sameCustody = others.filter(
+    c => c.network !== current.network && c.custody === current.custody
+  );
+  // Приоритет 3: оставшиеся (отсортированы по имени для стабильности)
+  const rest = others
+    .filter(c => c.network !== current.network && c.custody !== current.custody)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return [...sameNetwork, ...sameCustody, ...rest].slice(0, 3);
+}
 
 export async function generateStaticParams() {
   const cards = await getAllCards();
@@ -33,8 +56,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
 
   if (!card) notFound();
 
-  const others = cards.filter(c => c.slug !== card.slug);
-  const similar = others.sort(() => 0.5 - Math.random()).slice(0, 3);
+  const similar = getSimilarCards(card, cards);
 
   const productJsonLd = {
     "@context": "https://schema.org/",

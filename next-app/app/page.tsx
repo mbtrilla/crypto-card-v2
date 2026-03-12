@@ -1,5 +1,6 @@
 import { getAllCards } from "@/lib/data";
 import CardsGridClient from "@/components/CardsGridClient";
+import Link from "next/link";
 
 export const revalidate = 3600; // ISR: Update every hour
 
@@ -34,6 +35,30 @@ export default async function Home() {
       </section>
 
       <CardsGridClient initialCards={allCards} />
+
+      {/*
+        SEO: Server Component рендерит полный список всех карточек прямо в HTML.
+        Поисковые боты видят все ссылки без выполнения JavaScript.
+        CardsGridClient выше показывает только первые 12 (с пагинацией),
+        эта секция закрывает «слепую зону» для краулеров.
+      */}
+      <section className="seo-card-index" aria-label="All crypto cards directory">
+        <div className="container">
+          <h2 className="seo-index-title">Browse All Crypto Cards</h2>
+          <ul className="seo-card-list">
+            {allCards.map((card) => (
+              <li key={card.slug}>
+                <Link href={`/cards/${card.slug}`} className="seo-card-link">
+                  <span className="seo-card-name">{card.name}</span>
+                  <span className="seo-card-meta">
+                    {card.network} · {card.custody} · Cashback: {card.mainPageCashback || card.cashback}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </main>
   );
 }
