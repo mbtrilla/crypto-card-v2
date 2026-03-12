@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Sweepbase | Find Your Perfect Crypto Card",
   description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
+  alternates: {
+    canonical: "https://sweepbase.com",
+  },
 };
 
 export default function RootLayout({

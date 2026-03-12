@@ -41,6 +41,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
     description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
+    alternates: {
+      canonical: `https://sweepbase.com/cards/${card.slug}`,
+    },
     openGraph: {
       title: `${card.name} Review 2026`,
       description: card.description,
