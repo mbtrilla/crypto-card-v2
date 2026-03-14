@@ -1,7 +1,14 @@
 import { getAllCards } from "@/lib/data";
 import CardsGridClient from "@/components/CardsGridClient";
+import { Metadata } from "next";
 
 export const revalidate = 3600; // ISR: Update every hour
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://sweepbase.com",
+  },
+};
 
 export default async function Home() {
   const allCards = await getAllCards();
