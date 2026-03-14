@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     canonical: "https://sweepbase.com",
   },
   openGraph: {
+    url: "https://sweepbase.com",
+    type: "website",
     images: [
       {
         url: "https://sweepbase.com/og-image.png",

@@ -66,6 +66,31 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
     }
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://sweepbase.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cards",
+        "item": "https://sweepbase.com/cards"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": card.name,
+        "item": `https://sweepbase.com/cards/${card.slug}`
+      }
+    ]
+  };
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -88,6 +113,10 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"
