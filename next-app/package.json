@@ -6,20 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
     "papaparse": "^5.4.1",
-    "lucide-react": "^0.378.0"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.6",
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/papaparse": "^5.3.14",
     "typescript": "^5"
   }
 }

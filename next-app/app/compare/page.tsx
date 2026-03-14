@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAllCards } from '@/lib/data';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const revalidate = 3600;
 
@@ -51,7 +52,7 @@ export default async function ComparePage({
               {selectedCards.map(card => (
                 <th key={card.slug}>
                   <div className="compare-card-header">
-                    <img src={card.logo} alt={card.name} />
+                    <Image src={card.logo} alt={card.name} width={80} height={50} priority />
                     <h3>{card.name}</h3>
                   </div>
                 </th>

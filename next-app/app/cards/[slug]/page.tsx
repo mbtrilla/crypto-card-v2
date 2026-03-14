@@ -1,6 +1,7 @@
 import { getAllCards, getSlug } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const cards = await getAllCards();
@@ -15,6 +16,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!card) return {};
 
+  const ogImageUrl = card.logo.startsWith('http')
+    ? card.logo
+    : `https://sweepbase.com${card.logo}`;
+
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
     description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
@@ -26,6 +31,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: card.description,
       type: 'website',
       url: `https://sweepbase.com/cards/${card.slug}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+        },
+      ],
     }
   };
 }
@@ -99,7 +111,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
 
         <div className="card-detail-hero">
           <div className="card-hero-image">
-            <img src={card.logo} alt={card.name} className="detail-main-img" />
+            <Image src={card.logo} alt={card.name} className="detail-main-img" width={400} height={250} priority />
           </div>
           <div className="card-hero-content">
             <h1 className="detail-title">{card.name} Review 2026</h1>
@@ -176,7 +188,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               {similar.map(s => (
                 <a key={s.slug} href={`/cards/${s.slug}`} className="similar-card-tile">
                   <div className="similar-tile-img">
-                    <img src={s.logo} alt={s.name} />
+                    <Image src={s.logo} alt={s.name} width={80} height={50} />
                   </div>
                   <div className="similar-tile-info">
                     <span className="similar-tile-name">{s.name}</span>

@@ -8,6 +8,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://sweepbase.com",
   },
+  openGraph: {
+    images: [
+      {
+        url: "https://sweepbase.com/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default async function Home() {
@@ -41,6 +50,43 @@ export default async function Home() {
       </section>
 
       <CardsGridClient initialCards={allCards} />
+
+      <section id="about" className="about-section">
+        <div className="container">
+          <div className="about-panel">
+            <h2 className="about-heading">About <span className="text-gradient">Sweepbase</span></h2>
+            <p className="about-lead">
+              Sweepbase is an independent aggregator that helps you find, compare, and evaluate
+              crypto debit and credit cards from around the world. We surface fees, cashback rates,
+              supported networks, and regional availability in one place — so you can make confident
+              decisions without bouncing between dozens of card issuer websites.
+            </p>
+            <div className="about-features">
+              <div className="about-feature-card">
+                <div className="about-feature-icon">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3>Discover</h3>
+                <p>Browse a curated database of crypto cards updated regularly. Filter by network, custody type, region, and more.</p>
+              </div>
+              <div className="about-feature-card">
+                <div className="about-feature-icon">
+                  <i className="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3>Compare</h3>
+                <p>Select up to 4 cards side-by-side to compare fees, limits, cashback rewards, and accepted top-up methods.</p>
+              </div>
+              <div className="about-feature-card">
+                <div className="about-feature-icon">
+                  <i className="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Trusted Data</h3>
+                <p>All card details are sourced directly from issuers and kept current. No hidden affiliate bias in our listings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

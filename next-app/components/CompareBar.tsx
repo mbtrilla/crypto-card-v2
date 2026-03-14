@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '@/lib/data';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Props {
   list: Card[];
@@ -20,7 +21,7 @@ export default function CompareBar({ list, onRemove, onClear }: Props) {
           <div className="compare-slots">
             {list.map(card => (
               <div key={card.slug} className="compare-slot">
-                <img src={card.logo} alt={card.name} />
+                <Image src={card.logo} alt={card.name} width={40} height={40} />
                 <button className="remove-slot" onClick={() => onRemove(card.slug)}>&times;</button>
               </div>
             ))}

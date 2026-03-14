@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({
         <header className="navbar">
           <div className="container nav-content">
             <Link href="/" className="logo">
-              <img src="/logo.png" alt="Sweepbase Logo" className="brand-logo" />
+              <Image src="/logo.png" alt="Sweepbase Logo" className="brand-logo" width={160} height={40} priority />
             </Link>
             <nav className="nav-links">
               <Link href="/#discover" className="active">Discover</Link>
@@ -43,7 +44,7 @@ export default function RootLayout({
         <footer className="footer">
           <div className="container footer-content">
             <div className="footer-logo">
-              <img src="/logo.png" alt="Sweepbase Logo" className="brand-logo footer-logo-img" />
+              <Image src="/logo.png" alt="Sweepbase Logo" className="brand-logo footer-logo-img" width={160} height={40} />
             </div>
             <p className="footer-text">Empowering your digital wealth. Data provided for informational purposes.</p>
             <p className="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>

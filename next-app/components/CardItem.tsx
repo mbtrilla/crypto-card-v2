@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '@/lib/data';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Props {
   card: Card;
@@ -22,7 +23,7 @@ export default function CardItem({ card, onCompare, isCompared }: Props) {
     <div className="crypto-card">
       <Link href={`/cards/${card.slug}`} className="card-link-overlay">
         <div className="card-image-wrapper">
-          <img src={logo} alt={`${name} — ${network} crypto debit card`} className="card-full-image" />
+          <Image src={logo} alt={`${name} — ${network} crypto debit card`} className="card-full-image" width={400} height={250} />
         </div>
         
         <div className="card-content-bottom">
