@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
+import SiteNav from "@/components/SiteNav";
+import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,29 +27,11 @@ export default function RootLayout({
           <div className="globe globe-2"></div>
         </div>
 
-        <header className="navbar">
-          <div className="container nav-content">
-            <Link href="/" className="logo">
-              <Image src="/logo.png" alt="Sweepbase Logo" className="brand-logo" width={160} height={40} priority />
-            </Link>
-            <nav className="nav-links">
-              <Link href="/#discover" className="active">Discover</Link>
-              <Link href="/#about">About</Link>
-            </nav>
-          </div>
-        </header>
+        <SiteNav />
 
         {children}
 
-        <footer className="footer">
-          <div className="container footer-content">
-            <div className="footer-logo">
-              <Image src="/logo.png" alt="Sweepbase Logo" className="brand-logo footer-logo-img" width={160} height={40} />
-            </div>
-            <p className="footer-text">Empowering your digital wealth. Data provided for informational purposes.</p>
-            <p className="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

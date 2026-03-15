@@ -1,4 +1,5 @@
 import { getAllCards, getSlug } from "@/lib/data";
+import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback } from "@/lib/filters";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -85,6 +86,26 @@ function getHowToGetParagraphs(card: Card, cardIssuer: string): string[] {
     : `Your physical card will be shipped to your registered address and can be activated directly through the app once it arrives.`;
 
   return [step1, step2, step3, step4];
+}
+
+/** Returns up to 3 category page links most relevant to this card. */
+function getRelatedCategories(card: Card): Array<{ href: string; label: string; icon: string }> {
+  const categories: Array<{ href: string; label: string; icon: string }> = [];
+
+  if (isVisaCard(card))
+    categories.push({ href: '/visa-crypto-cards',          label: 'Visa Crypto Cards',        icon: 'fa-credit-card' });
+  if (isMastercardCard(card))
+    categories.push({ href: '/mastercard-crypto-cards',    label: 'Mastercard Crypto Cards',  icon: 'fa-circle-dot' });
+  if (isSelfCustodyCard(card))
+    categories.push({ href: '/self-custody-crypto-cards',  label: 'Self-Custody Cards',       icon: 'fa-key' });
+  if (hasCashback(card))
+    categories.push({ href: '/crypto-cards-with-cashback', label: 'Cards With Cashback',      icon: 'fa-percent' });
+  if (isUSACard(card))
+    categories.push({ href: '/best-crypto-cards-usa',      label: 'Best Cards in the USA',    icon: 'fa-flag-usa' });
+  if (isEuropeCard(card))
+    categories.push({ href: '/best-crypto-cards-europe',   label: 'Best Cards in Europe',     icon: 'fa-earth-europe' });
+
+  return categories.slice(0, 3);
 }
 
 export default async function CardDetailPage({ params }: { params: { slug: string } }) {
@@ -315,6 +336,24 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               ))}
             </div>
           </div>
+
+          {/* ── Browse by Category ── */}
+          {(() => {
+            const relatedCats = getRelatedCategories(card);
+            return relatedCats.length > 0 ? (
+              <div className="card-browse-cats">
+                <p className="card-browse-cats-title">Browse by Category</p>
+                <div className="card-browse-cats-grid">
+                  {relatedCats.map(({ href, label, icon }) => (
+                    <a key={href} href={href} className="card-browse-cat-link">
+                      <i className={`fa-solid ${icon}`}></i>
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null;
+          })()}
 
         </div>
       </div>
