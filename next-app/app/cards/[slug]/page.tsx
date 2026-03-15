@@ -2,6 +2,7 @@ import { getAllCards, getSlug } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
+import type { Card } from "@/lib/data";
 
 export const revalidate = 3600; // ISR: regenerate every hour
 
@@ -23,8 +24,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     : `https://sweepbase.com${card.logo}`;
 
   return {
-    title: `${card.name} Review 2026 — Fees, Cashback & Availability`,
+    title: `${card.name} Review 2026 — Fees, Cashback & Availability | Sweepbase`,
     description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `https://sweepbase.com/cards/${card.slug}`,
     },
@@ -44,6 +46,47 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+// --- Content helpers ---
+
+function getBestForParagraphs(card: Card, cardIssuer: string): string[] {
+  const isSelfCustody = card.custody.toLowerCase().includes('self');
+  const hasCashback = card.cashback && card.cashback !== 'N/A' && card.cashback !== '0%';
+  const hasRegions = card.regions && card.regions !== 'N/A';
+
+  const audience = isSelfCustody
+    ? `DeFi enthusiasts and privacy-conscious users who want to maintain control of their private keys right up to the point of purchase`
+    : `everyday crypto holders looking for a simple, convenient way to spend digital assets without managing wallets manually`;
+
+  const cashbackLine = hasCashback
+    ? `With ${card.cashback} cashback on eligible purchases, the ${card.name} rewards active spenders who use the card as their daily driver.`
+    : `It is a solid option for anyone looking to bridge their crypto holdings with day-to-day payments at millions of merchants worldwide.`;
+
+  const regionLine = hasRegions
+    ? `The card is currently available in ${card.regions} — ideal for residents and frequent travellers in those areas.`
+    : `It serves users across multiple regions globally, making it broadly accessible.`;
+
+  return [
+    `The ${card.name} is best suited for ${audience}.`,
+    cashbackLine,
+    regionLine,
+  ];
+}
+
+function getHowToGetParagraphs(card: Card, cardIssuer: string): string[] {
+  const isVirtual = card.cardType.toLowerCase().includes('virtual');
+  const isPhysical = card.cardType.toLowerCase().includes('physical');
+  const topUp = card.topUpMethods !== 'N/A' ? card.topUpMethods : 'supported cryptocurrencies';
+
+  const step1 = `To get the ${card.name}, visit the official ${cardIssuer} website or download their mobile app and create an account.`;
+  const step2 = `Complete the KYC identity verification process by submitting a government-issued ID and a selfie — approval typically takes 1–3 business days depending on your region.`;
+  const step3 = `Once approved, fund your card balance using ${topUp} via the platform's top-up interface.`;
+  const step4 = isVirtual && !isPhysical
+    ? `Your virtual ${card.name} will be available instantly in the app, ready to use for online purchases and contactless payments via Apple Pay or Google Pay.`
+    : `Your physical card will be shipped to your registered address and can be activated directly through the app once it arrives.`;
+
+  return [step1, step2, step3, step4];
+}
+
 export default async function CardDetailPage({ params }: { params: { slug: string } }) {
   const cards = await getAllCards();
   const card = cards.find((c) => c.slug === params.slug);
@@ -60,6 +103,9 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
     .replace(/\s+(visa|mastercard)\s*$/i, '')
     .replace(/\s+(debit|credit|prepaid)\s*$/i, '')
     .trim() || card.name;
+
+  const bestForParagraphs = getBestForParagraphs(card, cardIssuer);
+  const howToGetParagraphs = getHowToGetParagraphs(card, cardIssuer);
 
   const productJsonLd = {
     "@context": "https://schema.org/",
@@ -135,7 +181,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      
+
       <div className="container">
         <div className="back-link-container">
           <a href="/" className="back-link">
@@ -146,7 +192,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
         <nav className="breadcrumb-nav">
           <a href="/">Home</a>
           <span className="breadcrumb-separator">/</span>
-          <a href="/">Cards</a>
+          <a href="/cards">Cards</a>
           <span className="breadcrumb-separator">/</span>
           <span className="breadcrumb-current">{card.name}</span>
         </nav>
@@ -182,11 +228,14 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
         </div>
 
         <div className="static-card-wrapper">
+
+          {/* ── Section 1: Card Overview ── */}
           <div className="detail-section-intro">
             <h2>Card Overview</h2>
             <p className="static-desc">{card.description}</p>
           </div>
-          
+
+          {/* ── Fees & Features grid ── */}
           <div className="static-grid">
             <div className="static-table-container">
               <h3><i className="fa-solid fa-money-bill-transfer"></i> Fees & Limits</h3>
@@ -202,7 +251,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
                 </table>
               </div>
             </div>
-            
+
             <div className="static-features">
               <h3><i className="fa-solid fa-star"></i> Core Features</h3>
               <ul className="feature-list">
@@ -212,34 +261,61 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               </ul>
             </div>
           </div>
-          
+
+          {/* ── Section 2: Who Is This Card Best For? ── */}
+          <div className="detail-section-intro">
+            <h2>Who Is the {card.name} Best For?</h2>
+            {bestForParagraphs.map((para, i) => (
+              <p key={i} className="static-desc">{para}</p>
+            ))}
+          </div>
+
+          {/* ── Section 3: Key Strengths & Considerations ── */}
+          <div className="detail-section-intro">
+            <h2>Key Strengths &amp; Considerations</h2>
+          </div>
           <div className="static-pros-cons redesign">
             <div className="static-pro detail-block-pros">
-              <h4><i className="fa-solid fa-circle-check"></i> Key Strengths</h4>
+              <h3><i className="fa-solid fa-circle-check"></i> Key Strengths</h3>
               <div dangerouslySetInnerHTML={{ __html: card.pros }} />
             </div>
             <div className="static-con detail-block-cons">
-              <h4><i className="fa-solid fa-triangle-exclamation"></i> Considerations</h4>
+              <h3><i className="fa-solid fa-triangle-exclamation"></i> Considerations</h3>
               <div dangerouslySetInnerHTML={{ __html: card.cons }} />
             </div>
           </div>
 
+          {/* ── Section 4: How to Get the Card ── */}
+          <div className="detail-section-intro">
+            <h2>How to Get the {card.name}</h2>
+            {howToGetParagraphs.map((para, i) => (
+              <p key={i} className="static-desc">{para}</p>
+            ))}
+          </div>
+
+          {/* ── Similar Cards ── */}
           <div className="static-similar redesign">
             <h3>Similar Cards You Might Like</h3>
             <div className="similar-cards-grid">
               {similar.map(s => (
-                <a key={s.slug} href={`/cards/${s.slug}`} className="similar-card-tile">
+                <a
+                  key={s.slug}
+                  href={`/cards/${s.slug}`}
+                  className="similar-card-tile"
+                  aria-label={`Compare ${s.name}`}
+                >
                   <div className="similar-tile-img">
                     <Image src={s.logo} alt={s.name} width={80} height={50} />
                   </div>
                   <div className="similar-tile-info">
-                    <span className="similar-tile-name">{s.name}</span>
+                    <span className="similar-tile-name">Compare {s.name} →</span>
                     <span className="similar-tile-network">{s.network}</span>
                   </div>
                 </a>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </article>
