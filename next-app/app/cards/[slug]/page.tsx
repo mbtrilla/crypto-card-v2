@@ -53,12 +53,23 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
   const others = cards.filter(c => c.slug !== card.slug);
   const similar = others.sort(() => 0.5 - Math.random()).slice(0, 3);
 
+  // Derive the card issuer/brand by stripping generic card-type suffixes from the name.
+  // e.g. "Binance Card" → "Binance", "1inch Debit Card" → "1inch", "Crypto.com Visa Card" → "Crypto.com"
+  const cardIssuer = card.name
+    .replace(/\s+(debit\s+|credit\s+|prepaid\s+)?(visa\s+|mastercard\s+)?card\s*$/i, '')
+    .replace(/\s+(visa|mastercard)\s*$/i, '')
+    .replace(/\s+(debit|credit|prepaid)\s*$/i, '')
+    .trim() || card.name;
+
   const productJsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": card.name,
     "description": card.description,
-    "brand": { "@type": "Brand", "name": "Sweepbase" },
+    "brand": { "@type": "Brand", "name": cardIssuer },
+    // TODO: Add aggregateRating once a ratings system is implemented, e.g.:
+    // "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "reviewCount": "120" }
+    "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
     "offers": {
       "@type": "Offer",
       "url": `https://sweepbase.com/cards/${card.slug}`,

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const allCards = await getAllCards();
 
-  const jsonLd = {
+  const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": allCards.map((card, index) => ({
@@ -46,11 +46,44 @@ export default async function Home() {
     }))
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Sweepbase",
+    "url": "https://sweepbase.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://sweepbase.com/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sweepbase",
+    "url": "https://sweepbase.com",
+    "logo": "https://sweepbase.com/og-image.png",
+    "description": "Independent aggregator for comparing crypto debit and credit cards worldwide.",
+    "sameAs": []
+  };
+
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <section className="hero-section">
         <div className="container hero-content">
