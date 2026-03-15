@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
 
+export const revalidate = 3600; // ISR: regenerate every hour
+
 export async function generateStaticParams() {
   const cards = await getAllCards();
   return cards.map((card) => ({

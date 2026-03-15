@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
+import { cache } from 'react';
 
 export interface Card {
   name: string;
@@ -67,7 +68,7 @@ const transformGDriveUrl = (url: string) => {
   return url;
 };
 
-export async function getAllCards(): Promise<Card[]> {
+export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
   // When launched from a parent directory (e.g. `next dev next-app`), process.cwd()
   // points to the parent, so data.csv lives at <cwd>/next-app/data.csv.
   // When launched from within next-app/ directly, it lives at <cwd>/data.csv.
@@ -120,7 +121,7 @@ export async function getAllCards(): Promise<Card[]> {
         cons: item[FIELDS.cons] || '',
         description: item[FIELDS.description] || '',
         mainPageCashback: item[FIELDS.mainPageCashback] || item[FIELDS.cashback] || '',
-        countries: countriesRaw
+        countries: countriesRaw,
       };
     });
-}
+}); // end cache()
