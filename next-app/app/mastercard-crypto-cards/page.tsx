@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       'Compare every Mastercard crypto debit card available in 2026.',
     images: ['https://sweepbase.com/og-image.png'],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function MastercardCryptoCards() {

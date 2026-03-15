@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       'Compare the best self-custody and non-custodial crypto debit cards in 2026.',
     images: ['https://sweepbase.com/og-image.png'],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function SelfCustodyCryptoCards() {

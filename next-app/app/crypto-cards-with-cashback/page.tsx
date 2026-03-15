@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       'Compare the best crypto cashback cards in 2026. Earn Bitcoin, stablecoin, or token rewards on every purchase.',
     images: ['https://sweepbase.com/og-image.png'],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function CryptoCardsWithCashback() {

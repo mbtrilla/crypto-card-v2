@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       'Compare the best crypto debit and credit cards available in Europe and the EEA in 2026.',
     images: ['https://sweepbase.com/og-image.png'],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function BestCryptoCardsEurope() {

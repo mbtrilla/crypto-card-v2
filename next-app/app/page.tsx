@@ -30,6 +30,7 @@ export const metadata: Metadata = {
       "Compare 114 crypto debit & credit cards by fees, cashback, supported networks and country availability. Find the best Bitcoin, USDT and DeFi card for your region. Updated 2026.",
     images: ["https://sweepbase.com/og-image.png"],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function Home() {

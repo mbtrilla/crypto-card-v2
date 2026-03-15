@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       'Compare all Visa crypto debit and credit cards in 2026. Find the best Bitcoin, USDC, and altcoin Visa cards.',
     images: ['https://sweepbase.com/og-image.png'],
   },
+  robots: { index: true, follow: true },
 };
 
 export default async function VisaCryptoCards() {
