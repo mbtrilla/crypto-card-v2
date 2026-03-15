@@ -15,6 +15,23 @@ const nextConfig = {
     // Add any future heavy packages here so only used exports are bundled.
     optimizePackageImports: ['lucide-react'],
   },
+  async redirects() {
+    return [
+      // Slug was generated from a Cyrillic "С" in the original card name,
+      // producing "kripi-ard". Fixed to "kripi-card" (Latin C).
+      {
+        source: '/cards/kripi-ard',
+        destination: '/cards/kripi-card',
+        permanent: true, // 301
+      },
+      // Card was named "Plutus" (no suffix). Renamed to "Plutus Card".
+      {
+        source: '/cards/plutus',
+        destination: '/cards/plutus-card',
+        permanent: true, // 301
+      },
+    ];
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);
