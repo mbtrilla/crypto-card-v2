@@ -68,7 +68,14 @@ const transformGDriveUrl = (url: string) => {
 };
 
 export async function getAllCards(): Promise<Card[]> {
-  const filePath = path.join(process.cwd(), 'data.csv');
+  // When launched from a parent directory (e.g. `next dev next-app`), process.cwd()
+  // points to the parent, so data.csv lives at <cwd>/next-app/data.csv.
+  // When launched from within next-app/ directly, it lives at <cwd>/data.csv.
+  const candidates = [
+    path.join(process.cwd(), 'next-app', 'data.csv'),
+    path.join(process.cwd(), 'data.csv'),
+  ];
+  const filePath = candidates.find(p => fs.existsSync(p)) ?? candidates[1];
   const csvFile = fs.readFileSync(filePath, 'utf8');
   
   const { data } = Papa.parse(csvFile, {
