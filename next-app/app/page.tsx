@@ -133,6 +133,30 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/*
+        Server-rendered index of all card pages.
+        Visible in the HTML delivered to Googlebot so all 114 /cards/[slug]
+        pages receive internal links and can be crawled without JS execution.
+        The sitemap.xml also lists every URL, but direct <a> links provide
+        additional link-equity flow from the homepage.
+      */}
+      <nav className="card-index-section" aria-label="Card index">
+        <div className="container">
+          <h2 className="card-index-heading">Browse All Crypto Cards</h2>
+          <ul className="card-index-list">
+            {[...allCards]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map(card => (
+                <li key={card.slug}>
+                  <a href={`/cards/${card.slug}`} className="card-index-link">
+                    {card.name}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </nav>
     </main>
   );
 }

@@ -1915,4 +1915,41 @@ select {
     line-height: 1.6;
     margin: 0;
 }
+
+/* --- Card Index (server-rendered crawlable link list) --- */
+.card-index-section {
+    padding: 3rem 0 4rem;
+    border-top: 1px solid var(--border-glass);
+}
+
+.card-index-heading {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-index-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+.card-index-link {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.card-index-link:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
 
