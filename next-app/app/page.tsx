@@ -97,6 +97,74 @@ export default async function Home() {
 
       <CardsGridClient initialCards={allCards} />
 
+      {/* ── Browse by Category ── */}
+      <section className="browse-categories-section">
+        <div className="container">
+          <h2 className="browse-categories-heading">
+            Browse by <span className="text-gradient">Category</span>
+          </h2>
+          <p className="browse-categories-subheading">
+            Find the right card for your region, network, or reward preference.
+          </p>
+          <div className="browse-categories-grid">
+            <a href="/best-crypto-cards-usa" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-flag-usa"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in the USA</span>
+                <span className="browse-category-desc">Cards available to US residents</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-europe" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-earth-europe"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in Europe</span>
+                <span className="browse-category-desc">EEA &amp; EU-available cards</span>
+              </div>
+            </a>
+            <a href="/visa-crypto-cards" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-credit-card"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Visa Crypto Cards</span>
+                <span className="browse-category-desc">All Visa network cards compared</span>
+              </div>
+            </a>
+            <a href="/mastercard-crypto-cards" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-circle-dot"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Mastercard Crypto Cards</span>
+                <span className="browse-category-desc">All Mastercard network cards compared</span>
+              </div>
+            </a>
+            <a href="/self-custody-crypto-cards" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-key"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Self-Custody Cards</span>
+                <span className="browse-category-desc">Keep control of your private keys</span>
+              </div>
+            </a>
+            <a href="/crypto-cards-with-cashback" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-percent"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Cards With Cashback</span>
+                <span className="browse-category-desc">Earn BTC, tokens, or stablecoins</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="about" className="about-section">
         <div className="container">
           <div className="about-panel">

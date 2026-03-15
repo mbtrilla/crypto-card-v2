@@ -11,6 +11,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  const categoryEntries: MetadataRoute.Sitemap = [
+    'best-crypto-cards-usa',
+    'best-crypto-cards-europe',
+    'visa-crypto-cards',
+    'mastercard-crypto-cards',
+    'self-custody-crypto-cards',
+    'crypto-cards-with-cashback',
+  ].map((slug) => ({
+    url: `https://sweepbase.com/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }));
+
   return [
     {
       url: 'https://sweepbase.com',
@@ -18,6 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 1.0,
     },
+    ...categoryEntries,
     ...cardEntries,
   ];
 }
