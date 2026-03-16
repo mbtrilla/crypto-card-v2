@@ -3,6 +3,7 @@ import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCar
 import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
+import FAQAccordion from "@/components/FAQAccordion";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -697,19 +698,13 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           </div>
 
           {/* ── 8. FAQ (7 questions) ── */}
+          {/*
+            The visible accordion text and the FAQPage JSON-LD schema both derive
+            from the same `faqItems` array, guaranteeing content/schema parity.
+          */}
           <div className="detail-section-intro cd-faq-section">
             <h2><i className="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
-            <div className="cd-faq-list">
-              {faqItems.map(({ q, a }, i) => (
-                <details key={i} className="cd-faq-item" {...(i === 0 ? { open: true } : {})}>
-                  <summary className="cd-faq-q">{q}</summary>
-                  <div
-                    className="cd-faq-a"
-                    dangerouslySetInnerHTML={{ __html: a.replace(/\n/g, '<br>') }}
-                  />
-                </details>
-              ))}
-            </div>
+            <FAQAccordion items={faqItems} ns={card.slug} />
           </div>
 
           {/* ── Similar Cards ── */}
