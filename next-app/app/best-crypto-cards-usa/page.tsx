@@ -58,7 +58,7 @@ export default async function BestCryptoCardsUSA() {
       />
 
       <div className="container">
-        <nav className="breadcrumb-nav">
+        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span className="breadcrumb-separator">/</span>
           <span className="breadcrumb-current">Best Crypto Cards in the USA</span>

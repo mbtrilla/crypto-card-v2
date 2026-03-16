@@ -436,7 +436,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           <a href="/" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to all cards</a>
         </div>
 
-        <nav className="breadcrumb-nav">
+        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span className="breadcrumb-separator">/</span>
           <a href="/cards">Cards</a>
@@ -712,7 +712,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
 
           {/* ── Similar Cards ── */}
           <div className="static-similar redesign">
-            <h3>Similar Cards You Might Like</h3>
+            <h2>Similar Cards You Might Like</h2>
             <div className="similar-cards-grid">
               {similar.map(s => (
                 <a key={s.slug} href={`/cards/${s.slug}`} className="similar-card-tile" aria-label={`Compare ${s.name}`}>

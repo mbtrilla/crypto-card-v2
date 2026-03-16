@@ -97,7 +97,7 @@ export default function CardsGridClient({ initialCards }: Props) {
 
   return (
     <>
-      <section id="discover" className="filter-section">
+      <section id="discover" className="filter-section" aria-label="Card filters">
         <div className="container">
           <div className="filter-glass-panel">
             <div className="search-box">

@@ -41,7 +41,7 @@ export default function SiteFooter() {
 
           {/* Browse column */}
           <div className="footer-col">
-            <h3 className="footer-col-heading">Browse</h3>
+            <p className="footer-col-heading">Browse</p>
             <ul className="footer-col-links">
               {BROWSE_LINKS.map(({ href, label }) => (
                 <li key={href}>
@@ -53,7 +53,7 @@ export default function SiteFooter() {
 
           {/* Popular Cards column */}
           <div className="footer-col">
-            <h3 className="footer-col-heading">Popular Cards</h3>
+            <p className="footer-col-heading">Popular Cards</p>
             <ul className="footer-col-links">
               {POPULAR_CARDS.map(({ href, label }) => (
                 <li key={href}>
@@ -65,7 +65,7 @@ export default function SiteFooter() {
 
           {/* Company column */}
           <div className="footer-col">
-            <h3 className="footer-col-heading">Company</h3>
+            <p className="footer-col-heading">Company</p>
             <ul className="footer-col-links">
               <li><a href="/#about">About Sweepbase</a></li>
               <li><a href="/sitemap.xml">Sitemap</a></li>
@@ -74,7 +74,7 @@ export default function SiteFooter() {
 
           {/* Legal column */}
           <div className="footer-col">
-            <h3 className="footer-col-heading">Legal</h3>
+            <p className="footer-col-heading">Legal</p>
             <ul className="footer-col-links">
               <li><a href="/privacy-policy">Privacy Policy</a></li>
               <li><a href="/terms">Terms of Service</a></li>

@@ -58,7 +58,7 @@ export default async function SelfCustodyCryptoCards() {
       />
 
       <div className="container">
-        <nav className="breadcrumb-nav">
+        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span className="breadcrumb-separator">/</span>
           <span className="breadcrumb-current">Self-Custody Crypto Cards</span>
