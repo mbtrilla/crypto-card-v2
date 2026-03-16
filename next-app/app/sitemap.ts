@@ -14,6 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categoryEntries: MetadataRoute.Sitemap = [
     'best-crypto-cards-usa',
     'best-crypto-cards-europe',
+    'best-crypto-cards-asia',
+    'best-crypto-cards-australia',
     'visa-crypto-cards',
     'mastercard-crypto-cards',
     'self-custody-crypto-cards',

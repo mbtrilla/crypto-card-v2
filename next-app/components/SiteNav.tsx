@@ -5,12 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const BROWSE_LINKS = [
-  { href: '/best-crypto-cards-usa',       label: 'Best Cards in the USA',       icon: 'fa-flag-usa' },
-  { href: '/best-crypto-cards-europe',    label: 'Best Cards in Europe',        icon: 'fa-earth-europe' },
-  { href: '/visa-crypto-cards',           label: 'Visa Crypto Cards',           icon: 'fa-credit-card' },
-  { href: '/mastercard-crypto-cards',     label: 'Mastercard Crypto Cards',     icon: 'fa-circle-dot' },
-  { href: '/self-custody-crypto-cards',   label: 'Self-Custody Cards',          icon: 'fa-key' },
-  { href: '/crypto-cards-with-cashback',  label: 'Cards With Cashback',         icon: 'fa-percent' },
+  { href: '/best-crypto-cards-usa',        label: 'Best Cards in the USA',        icon: 'fa-flag-usa' },
+  { href: '/best-crypto-cards-europe',     label: 'Best Cards in Europe',         icon: 'fa-earth-europe' },
+  { href: '/best-crypto-cards-asia',       label: 'Best Cards in Asia',           icon: 'fa-earth-asia' },
+  { href: '/best-crypto-cards-australia',  label: 'Best Cards in Australia',      icon: 'fa-earth-oceania' },
+  { href: '/visa-crypto-cards',            label: 'Visa Crypto Cards',            icon: 'fa-credit-card' },
+  { href: '/mastercard-crypto-cards',      label: 'Mastercard Crypto Cards',      icon: 'fa-circle-dot' },
+  { href: '/self-custody-crypto-cards',    label: 'Self-Custody Cards',           icon: 'fa-key' },
+  { href: '/crypto-cards-with-cashback',   label: 'Cards With Cashback',          icon: 'fa-percent' },
 ];
 
 export default function SiteNav() {

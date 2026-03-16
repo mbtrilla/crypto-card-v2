@@ -88,3 +88,75 @@ export function hasCashback(card: Card): boolean {
     !cb.startsWith('no ')
   );
 }
+
+// ─── Regional filters — Asia & Australia ────────────────────────────────────
+
+/**
+ * Asian country names used for country-level matching when a card's regions
+ * field does not explicitly mention "Asia" or "APAC".
+ */
+const ASIA_COUNTRIES = [
+  'japan', 'south korea', 'korea', 'singapore', 'hong kong', 'thailand',
+  'vietnam', 'indonesia', 'malaysia', 'philippines', 'india', 'taiwan',
+  'china', 'bangladesh', 'myanmar', 'cambodia', 'laos', 'nepal', 'sri lanka',
+  'pakistan', 'uae', 'united arab emirates', 'saudi arabia', 'bahrain',
+];
+
+/**
+ * Returns true if the card is available in at least one Asian country.
+ * First checks whether the regions string mentions "Asia" or "APAC";
+ * falls back to scanning the countries list against known Asian names.
+ */
+export function isAsiaCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+
+  if (r.includes('asia') || r.includes('apac')) return true;
+
+  return ASIA_COUNTRIES.some(country => c.includes(country));
+}
+
+/**
+ * Returns true if the card is available in Australia.
+ * Matches any explicit mention of "Australia" in regions or countries,
+ * as well as broader APAC designations.
+ */
+export function isAustraliaCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+
+  return (
+    c.includes('australia') ||
+    r.includes('australia') ||
+    r.includes('anzac') ||
+    r.includes('apac')
+  );
+}
+
+// ─── Generic category dispatcher ────────────────────────────────────────────
+
+/**
+ * Filters a cards array to the subset matching a named category.
+ * Provides a single dispatch point so page components and API routes
+ * can resolve a URL slug to the correct filter without importing each
+ * individual predicate directly.
+ *
+ * Supported category keys:
+ *   'usa' | 'europe' | 'visa' | 'mastercard' | 'self-custody' |
+ *   'cashback' | 'asia' | 'australia'
+ *
+ * Returns the original array unchanged for unknown category values.
+ */
+export function filterCardsByCategory(cards: Card[], category: string): Card[] {
+  switch (category) {
+    case 'usa':          return cards.filter(isUSACard);
+    case 'europe':       return cards.filter(isEuropeCard);
+    case 'visa':         return cards.filter(isVisaCard);
+    case 'mastercard':   return cards.filter(isMastercardCard);
+    case 'self-custody': return cards.filter(isSelfCustodyCard);
+    case 'cashback':     return cards.filter(hasCashback);
+    case 'asia':         return cards.filter(isAsiaCard);
+    case 'australia':    return cards.filter(isAustraliaCard);
+    default:             return cards;
+  }
+}

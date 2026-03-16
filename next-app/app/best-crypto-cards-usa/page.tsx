@@ -88,6 +88,22 @@ export default async function BestCryptoCardsUSA() {
             for the best Bitcoin or crypto card for your US spending needs.
           </p>
         </section>
+
+        <div className="category-also-see">
+          <span className="category-also-see__label">Also see:</span>
+          <a href="/best-crypto-cards-europe" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
+            Best Cards in Europe
+          </a>
+          <a href="/best-crypto-cards-asia" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-asia" aria-hidden="true"></i>
+            Best Cards in Asia
+          </a>
+          <a href="/best-crypto-cards-australia" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-oceania" aria-hidden="true"></i>
+            Best Cards in Australia
+          </a>
+        </div>
       </div>
 
       <CategoryCardsGrid cards={cards} />

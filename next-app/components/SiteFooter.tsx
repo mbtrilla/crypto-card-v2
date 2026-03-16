@@ -1,13 +1,15 @@
 import Image from 'next/image';
 
 const BROWSE_LINKS = [
-  { href: '/cards',                       label: 'All Crypto Cards' },
-  { href: '/best-crypto-cards-usa',       label: 'Best Cards in the USA' },
-  { href: '/best-crypto-cards-europe',    label: 'Best Cards in Europe' },
-  { href: '/visa-crypto-cards',           label: 'Visa Crypto Cards' },
-  { href: '/mastercard-crypto-cards',     label: 'Mastercard Crypto Cards' },
-  { href: '/self-custody-crypto-cards',   label: 'Self-Custody Cards' },
-  { href: '/crypto-cards-with-cashback',  label: 'Cards With Cashback' },
+  { href: '/cards',                        label: 'All Crypto Cards' },
+  { href: '/best-crypto-cards-usa',        label: 'Best Cards in the USA' },
+  { href: '/best-crypto-cards-europe',     label: 'Best Cards in Europe' },
+  { href: '/best-crypto-cards-asia',       label: 'Best Cards in Asia' },
+  { href: '/best-crypto-cards-australia',  label: 'Best Cards in Australia' },
+  { href: '/visa-crypto-cards',            label: 'Visa Crypto Cards' },
+  { href: '/mastercard-crypto-cards',      label: 'Mastercard Crypto Cards' },
+  { href: '/self-custody-crypto-cards',    label: 'Self-Custody Cards' },
+  { href: '/crypto-cards-with-cashback',   label: 'Cards With Cashback' },
 ];
 
 const POPULAR_CARDS = [

@@ -139,6 +139,14 @@ const CATEGORY_FACTS: Record<string, { label: string; tagline: string }> = {
     label: 'crypto cards with cashback',
     tagline: 'Earn BTC, stablecoins or token rewards',
   },
+  'best-crypto-cards-asia': {
+    label: 'crypto cards available in Asia',
+    tagline: 'Covers JP, SG, HK, IN, KR, TH & more',
+  },
+  'best-crypto-cards-australia': {
+    label: 'crypto cards available in Australia',
+    tagline: 'Filtered for Australian resident eligibility',
+  },
 };
 
 /**
