@@ -23,6 +23,8 @@ export interface Card {
   description: string;
   mainPageCashback: string;
   countries: string;
+  /** Review month displayed on card detail pages, e.g. "March 2026" */
+  lastReviewed: string;
 }
 
 export const FIELDS = {
@@ -128,6 +130,8 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
         description: item[FIELDS.description] || '',
         mainPageCashback: item[FIELDS.mainPageCashback] || item[FIELDS.cashback] || '',
         countries: countriesRaw,
+        // Static review date — update this string when the database is next audited
+        lastReviewed: 'March 2026',
       };
     });
 }); // end cache()

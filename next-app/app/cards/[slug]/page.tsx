@@ -396,6 +396,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
       "worstRating": "1",
     },
     "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
+    "dateModified": "2026-03-16",
     "offers": {
       "@type": "Offer",
       "url": `https://sweepbase.com/cards/${card.slug}`,
@@ -453,7 +454,8 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
             <h1 className="detail-title">{card.name} Review 2026</h1>
             <StarRating rating={ratingValue} reviewCount={reviewCount} uid={card.slug} />
             <p className="detail-last-updated">
-              <i className="fa-regular fa-clock"></i> Review updated March 2026
+              <i className="fa-regular fa-clock"></i> Last reviewed: {card.lastReviewed} by the{' '}
+              <a href="/about" className="detail-reviewed-by">Sweepbase Editorial Team</a>
             </p>
             <div className="detail-meta-grid">
               <div className="detail-meta-item">

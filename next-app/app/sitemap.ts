@@ -49,6 +49,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
+    {
+      url: 'https://sweepbase.com/about',
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
     ...categoryEntries,
     ...cardEntries,
     ...legalEntries,

@@ -83,7 +83,7 @@ export default function SiteNav() {
             )}
           </div>
 
-          <Link href="/#about">About</Link>
+          <Link href="/about">About</Link>
         </nav>
       </div>
     </header>

@@ -72,9 +72,18 @@ export default async function Home() {
     "@type": "Organization",
     "name": "Sweepbase",
     "url": "https://sweepbase.com",
-    "logo": "https://sweepbase.com/og-image.png",
+    "logo": "https://sweepbase.com/logo.png",
     "description": "Independent aggregator for comparing crypto debit and credit cards worldwide.",
-    "sameAs": []
+    "foundingDate": "2024",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "contact@sweepbase.com",
+      "contactType": "editorial"
+    },
+    "sameAs": [
+      "https://twitter.com/sweepbase",
+      "https://www.linkedin.com/company/sweepbase"
+    ]
   };
 
   return (
