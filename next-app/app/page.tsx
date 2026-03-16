@@ -1,5 +1,6 @@
 import { getAllCards } from "@/lib/data";
 import { generateHomeMetaDescription } from "@/lib/meta";
+import { generateHomeItemListSchema } from "@/lib/schemas";
 import CardsGridClient from "@/components/CardsGridClient";
 import { Metadata } from "next";
 
@@ -41,16 +42,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const allCards = await getAllCards();
 
-  const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": allCards.map((card, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "url": `https://sweepbase.com/cards/${card.slug}`,
-      "name": card.name
-    }))
-  };
+  // Top-12 ItemList with FinancialProduct + AggregateRating for rich results
+  const itemListJsonLd = generateHomeItemListSchema(allCards);
 
   const websiteJsonLd = {
     "@context": "https://schema.org",

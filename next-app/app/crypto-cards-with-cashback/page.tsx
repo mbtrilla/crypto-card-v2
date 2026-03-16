@@ -1,6 +1,7 @@
 import { getAllCards } from '@/lib/data';
 import { hasCashback } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
@@ -36,25 +37,30 @@ export default async function CryptoCardsWithCashback() {
   const allCards = await getAllCards();
   const cards = allCards.filter(hasCashback);
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sweepbase.com' },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Crypto Cards With Cashback',
-        item: 'https://sweepbase.com/crypto-cards-with-cashback',
-      },
+  const webPageJsonLd = generateCategoryWebPageSchema(
+    'Best Crypto Cards With Cashback 2026',
+    'https://sweepbase.com/crypto-cards-with-cashback',
+    [
+      { name: 'Home', item: 'https://sweepbase.com' },
+      { name: 'Crypto Cards With Cashback', item: 'https://sweepbase.com/crypto-cards-with-cashback' },
     ],
-  };
+  );
+
+  const itemListJsonLd = generateCategoryItemListSchema(
+    cards,
+    'https://sweepbase.com/crypto-cards-with-cashback',
+    'Best Crypto Cards With Cashback 2026',
+  );
 
   return (
     <main className="category-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
       <div className="container">

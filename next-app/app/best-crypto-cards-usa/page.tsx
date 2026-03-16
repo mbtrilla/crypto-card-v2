@@ -1,6 +1,7 @@
 import { getAllCards } from '@/lib/data';
 import { isUSACard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
@@ -36,25 +37,30 @@ export default async function BestCryptoCardsUSA() {
   const allCards = await getAllCards();
   const cards = allCards.filter(isUSACard);
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sweepbase.com' },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Best Crypto Cards in the USA',
-        item: 'https://sweepbase.com/best-crypto-cards-usa',
-      },
+  const webPageJsonLd = generateCategoryWebPageSchema(
+    'Best Crypto Cards in the USA 2026',
+    'https://sweepbase.com/best-crypto-cards-usa',
+    [
+      { name: 'Home', item: 'https://sweepbase.com' },
+      { name: 'Best Crypto Cards in the USA', item: 'https://sweepbase.com/best-crypto-cards-usa' },
     ],
-  };
+  );
+
+  const itemListJsonLd = generateCategoryItemListSchema(
+    cards,
+    'https://sweepbase.com/best-crypto-cards-usa',
+    'Best Crypto Cards in the USA 2026',
+  );
 
   return (
     <main className="category-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
       <div className="container">
