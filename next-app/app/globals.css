@@ -2473,4 +2473,481 @@ select {
         font-size: 1.05rem;
     }
 }
+
+/* ─── Card detail: Last updated ──────────────────────────────────────────────── */
+.detail-last-updated {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ─── Card detail: Supported Cryptocurrencies ───────────────────────────────── */
+.cd-crypto-section h2 i {
+    color: var(--warning);
+    margin-right: 0.4rem;
+}
+
+.cd-crypto-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.cd-crypto-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    transition: background var(--transition-fast);
+    cursor: default;
+}
+
+.cd-crypto-badge:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.cd-crypto-symbol {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.cd-crypto-name {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.cd-topup-raw {
+    margin-top: 0.5rem;
+}
+
+/* ─── Card detail: Is [Name] Right For You? ─────────────────────────────────── */
+.cd-rfy-section h2 {
+    margin-bottom: 1.25rem;
+}
+
+.cd-rfy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.cd-rfy-col {
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-md);
+}
+
+.cd-rfy-best {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.18);
+}
+
+.cd-rfy-avoid {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.18);
+}
+
+.cd-rfy-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cd-rfy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cd-rfy-list li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 0.1rem;
+}
+
+.cd-rfy-compare {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.cd-rfy-compare i {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--accent-primary);
+}
+
+.cd-rfy-compare a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+    .cd-rfy-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Card detail: Pros & Cons (parsed visual) ──────────────────────────────── */
+.cd-pros-cons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.cd-pros-col,
+.cd-cons-col {
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+}
+
+.cd-pros-col {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.cd-cons-col {
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.cd-pcol-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.cd-pros-heading { color: var(--success); }
+.cd-cons-heading { color: var(--danger); }
+
+.cd-pc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.cd-pro-item,
+.cd-con-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.cd-pc-icon {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: 1.2rem;
+    text-align: center;
+    margin-top: 0.05rem;
+}
+
+.cd-pro-icon { color: var(--success); }
+.cd-con-icon { color: var(--danger); }
+
+@media (max-width: 640px) {
+    .cd-pros-cons-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Card detail: How-to steps ─────────────────────────────────────────────── */
+.cd-how-to-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.cd-how-to-steps::before {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    top: 2.5rem;
+    bottom: 2.5rem;
+    width: 2px;
+    background: var(--border-glass);
+}
+
+.cd-how-to-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    position: relative;
+}
+
+.cd-step-num {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: var(--shadow-sm);
+}
+
+.cd-step-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 0.25rem;
+}
+
+.cd-step-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.cd-step-icon {
+    color: var(--accent-primary);
+    font-size: 0.9rem;
+}
+
+.cd-step-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+}
+
+.cd-step-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.55rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.cd-step-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ─── Card detail: Requirements ─────────────────────────────────────────────── */
+.cd-requirements {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.cd-req-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.cd-req-heading i {
+    color: var(--accent-primary);
+}
+
+.cd-req-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1.5rem;
+}
+
+.cd-req-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.cd-req-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cd-req-value {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+@media (max-width: 560px) {
+    .cd-req-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Card detail: Regional Availability ────────────────────────────────────── */
+.cd-regional-section h2 i {
+    margin-right: 0.45rem;
+    color: var(--accent-primary);
+}
+
+.cd-region-headline {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+.cd-highlights-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 1rem 0 0.6rem;
+}
+
+.cd-region-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.cd-region-pill {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.65rem;
+    white-space: nowrap;
+}
+
+/* ─── Card detail: FAQ ───────────────────────────────────────────────────────── */
+.cd-faq-section h2 i {
+    margin-right: 0.45rem;
+    color: var(--accent-primary);
+}
+
+.cd-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cd-faq-item {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+}
+
+.cd-faq-item[open] {
+    border-color: var(--border-glass-hover);
+}
+
+.cd-faq-item[open] .cd-faq-q {
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.cd-faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    gap: 1rem;
+}
+
+.cd-faq-q::-webkit-details-marker { display: none; }
+
+.cd-faq-q::after {
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: transform var(--transition-fast);
+    line-height: 1;
+}
+
+details[open] .cd-faq-q::after {
+    transform: rotate(45deg);
+}
+
+.cd-faq-a {
+    padding: 0.85rem 1.25rem 1.1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.cd-faq-a a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+    .cd-faq-q {
+        font-size: 0.88rem;
+        padding: 0.875rem 1rem;
+    }
+
+    .cd-how-to-steps::before {
+        display: none;
+    }
+}
 
