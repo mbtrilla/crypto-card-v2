@@ -71,12 +71,24 @@ export default function SiteFooter() {
               <li><a href="/sitemap.xml">Sitemap</a></li>
             </ul>
           </div>
+
+          {/* Legal column */}
+          <div className="footer-col">
+            <h3 className="footer-col-heading">Legal</h3>
+            <ul className="footer-col-links">
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/disclosure">Affiliate Disclosure</a></li>
+            </ul>
+          </div>
         </div>
 
         <div className="footer-bottom">
           <p className="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>
           <nav className="footer-bottom-links">
-            <a href="/#about">About</a>
+            <a href="/privacy-policy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/disclosure">Disclosure</a>
             <a href="/sitemap.xml">Sitemap</a>
           </nav>
         </div>

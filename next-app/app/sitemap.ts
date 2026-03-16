@@ -25,6 +25,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
+  const legalEntries: MetadataRoute.Sitemap = [
+    'privacy-policy',
+    'terms',
+    'disclosure',
+  ].map((slug) => ({
+    url: `https://sweepbase.com/${slug}`,
+    lastModified: new Date('2026-03-16'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.3,
+  }));
+
   return [
     {
       url: 'https://sweepbase.com',
@@ -40,5 +51,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...categoryEntries,
     ...cardEntries,
+    ...legalEntries,
   ];
 }
