@@ -1,5 +1,7 @@
 import { getAllCards, getSlug } from "@/lib/data";
 import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback } from "@/lib/filters";
+import { getCardRatingData } from "@/lib/ratings";
+import StarRating from "@/components/StarRating";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -128,14 +130,21 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
   const bestForParagraphs = getBestForParagraphs(card, cardIssuer);
   const howToGetParagraphs = getHowToGetParagraphs(card, cardIssuer);
 
+  const { ratingValue, reviewCount } = getCardRatingData(card);
+
   const productJsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": card.name,
     "description": card.description,
     "brand": { "@type": "Brand", "name": cardIssuer },
-    // TODO: Add aggregateRating once a ratings system is implemented, e.g.:
-    // "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "reviewCount": "120" }
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": ratingValue.toFixed(1),
+      "reviewCount": String(reviewCount),
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
     "offers": {
       "@type": "Offer",
@@ -224,6 +233,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           </div>
           <div className="card-hero-content">
             <h1 className="detail-title">{card.name} Review 2026</h1>
+            <StarRating rating={ratingValue} reviewCount={reviewCount} uid={card.slug} />
             <div className="detail-meta-grid">
               <div className="detail-meta-item">
                 <span className="meta-label">Custody</span>
