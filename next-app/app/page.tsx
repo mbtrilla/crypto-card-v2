@@ -75,7 +75,8 @@ export default async function Home() {
     },
     "sameAs": [
       "https://twitter.com/sweepbase",
-      "https://www.linkedin.com/company/sweepbase"
+      "https://www.linkedin.com/company/sweepbase",
+      "https://t.me/sweepbase"
     ]
   };
 

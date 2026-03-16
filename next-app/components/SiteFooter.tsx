@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import SocialLinks from '@/components/SocialLinks';
 
 const BROWSE_LINKS = [
   { href: '/cards',                        label: 'All Crypto Cards' },
@@ -87,6 +88,7 @@ export default function SiteFooter() {
 
         <div className="footer-bottom">
           <p className="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>
+          <SocialLinks />
           <nav className="footer-bottom-links">
             <a href="/privacy-policy">Privacy</a>
             <a href="/terms">Terms</a>

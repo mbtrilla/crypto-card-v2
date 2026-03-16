@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     title: 'About Sweepbase — Our Mission & Editorial Standards',
     description:
       'Sweepbase independently researches and rates crypto debit cards. Learn about our editorial methodology, data sources, and team of fintech analysts.',
+    site: '@sweepbase',
+    creator: '@sweepbase',
   },
   robots: { index: true, follow: true },
 };
@@ -71,6 +73,7 @@ export default function AboutPage() {
       'sameAs': [
         'https://twitter.com/sweepbase',
         'https://www.linkedin.com/company/sweepbase',
+        'https://t.me/sweepbase',
       ],
     },
   };

@@ -4,6 +4,7 @@ import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
 import FAQAccordion from "@/components/FAQAccordion";
+import ShareButtons from "@/components/ShareButtons";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const cards = await getAllCards();
   const card = cards.find((c) => c.slug === params.slug);
   if (!card) return {};
-  const ogImageUrl = card.logo.startsWith('http') ? card.logo : `https://sweepbase.com${card.logo}`;
+  const title = `${card.name} Review 2026 — Fees, Cashback & Availability | Sweepbase`;
+  const description = generateCardMetaDescription(card);
   return {
-    title: `${card.name} Review 2026 — Fees, Cashback & Availability | Sweepbase`,
-    description: generateCardMetaDescription(card),
+    title,
+    description,
     robots: { index: true, follow: true },
     alternates: { canonical: `https://sweepbase.com/cards/${card.slug}` },
     openGraph: {
@@ -31,7 +33,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: card.description,
       type: 'website',
       url: `https://sweepbase.com/cards/${card.slug}`,
-      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+      // openGraph.images is intentionally omitted here so that the
+      // co-located opengraph-image.tsx (dynamic branded OG image) is used.
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      site: '@sweepbase',
+      creator: '@sweepbase',
+      // twitter:image is also auto-generated from opengraph-image.tsx
     },
   };
 }
@@ -454,6 +465,10 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           <div className="card-hero-content">
             <h1 className="detail-title">{card.name} Review 2026</h1>
             <StarRating rating={ratingValue} reviewCount={reviewCount} uid={card.slug} />
+            <ShareButtons
+              cardName={card.name}
+              cardUrl={`https://sweepbase.com/cards/${card.slug}`}
+            />
             <p className="detail-last-updated">
               <i className="fa-regular fa-clock"></i> Last reviewed: {card.lastReviewed} by the{' '}
               <a href="/about" className="detail-reviewed-by">Sweepbase Editorial Team</a>
