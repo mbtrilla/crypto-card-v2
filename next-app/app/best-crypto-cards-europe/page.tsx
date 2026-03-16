@@ -3,6 +3,7 @@ import { isEuropeCard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
 import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -64,11 +65,10 @@ export default async function BestCryptoCardsEurope() {
       />
 
       <div className="container">
-        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Best Crypto Cards in Europe</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Best Crypto Cards in Europe' },
+        ]} />
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards for European Users</h1>

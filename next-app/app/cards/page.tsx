@@ -1,5 +1,6 @@
 import { getAllCards } from '@/lib/data';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -49,11 +50,10 @@ export default async function AllCardsPage() {
       />
 
       <div className="container">
-        <nav className="breadcrumb-nav">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">All Cards</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'All Cards' },
+        ]} />
 
         <section className="category-hero">
           <h1 className="category-h1">All Crypto Debit &amp; Credit Cards</h1>

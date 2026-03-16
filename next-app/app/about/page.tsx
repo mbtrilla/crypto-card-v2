@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const revalidate = 86400; // Cache for 24 h — static editorial content
 
@@ -87,11 +88,10 @@ export default function AboutPage() {
 
       <div className="container">
         {/* ── Breadcrumb ── */}
-        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">About</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'About' },
+        ]} />
 
         {/* ── H1 Hero ── */}
         <section className="about-page-section about-page-hero-section">

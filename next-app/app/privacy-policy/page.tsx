@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Sweepbase',
@@ -20,11 +21,10 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="legal-page">
       <div className="container">
-        <nav className="breadcrumb-nav">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Privacy Policy</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Privacy Policy' },
+        ]} />
 
         <h1 className="legal-h1">Privacy Policy</h1>
         <p className="legal-meta">Last updated: March 16, 2026</p>

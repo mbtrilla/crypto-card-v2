@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
   title: 'Affiliate Disclosure | Sweepbase',
@@ -21,11 +22,10 @@ export default function DisclosurePage() {
   return (
     <main className="legal-page">
       <div className="container">
-        <nav className="breadcrumb-nav">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Affiliate Disclosure</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Affiliate Disclosure' },
+        ]} />
 
         <h1 className="legal-h1">Affiliate Disclosure</h1>
         <p className="legal-meta">Last updated: March 16, 2026</p>

@@ -5,6 +5,7 @@ import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
 import FAQAccordion from "@/components/FAQAccordion";
 import ShareButtons from "@/components/ShareButtons";
+import Breadcrumb from "@/components/Breadcrumb";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -449,13 +450,11 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           <a href="/" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to all cards</a>
         </div>
 
-        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <a href="/cards">Cards</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">{card.name}</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Cards', href: '/cards' },
+          { label: card.name },
+        ]} />
 
         {/* ── Hero ── */}
         <div className="card-detail-hero">

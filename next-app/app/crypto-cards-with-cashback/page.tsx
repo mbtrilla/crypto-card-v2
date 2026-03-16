@@ -3,6 +3,7 @@ import { hasCashback } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
 import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -64,11 +65,10 @@ export default async function CryptoCardsWithCashback() {
       />
 
       <div className="container">
-        <nav className="breadcrumb-nav" aria-label="Breadcrumb">
-          <a href="/">Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Crypto Cards With Cashback</span>
-        </nav>
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Crypto Cards With Cashback' },
+        ]} />
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Cards With Cashback Rewards</h1>
