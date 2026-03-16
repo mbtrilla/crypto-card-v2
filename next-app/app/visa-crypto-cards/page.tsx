@@ -1,34 +1,36 @@
 import { getAllCards } from '@/lib/data';
 import { isVisaCard } from '@/lib/filters';
+import { generateCategoryMetaDescription } from '@/lib/meta';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Best Visa Crypto Cards 2026 — Compare All Visa Cards | Sweepbase',
-  description:
-    'Compare all Visa crypto debit and credit cards in 2026. Find the best Bitcoin, USDC, and altcoin Visa cards by cashback, fees, and global availability.',
-  alternates: {
-    canonical: 'https://sweepbase.com/visa-crypto-cards',
-  },
-  openGraph: {
-    title: 'Best Visa Crypto Cards 2026 — Compare All Visa Cards | Sweepbase',
-    description:
-      'Compare all Visa crypto debit and credit cards in 2026. Find the best Bitcoin, USDC, and altcoin Visa cards by cashback, fees, and global availability.',
-    url: 'https://sweepbase.com/visa-crypto-cards',
-    type: 'website',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Visa Crypto Cards 2026 — Compare All Visa Cards | Sweepbase',
-    description:
-      'Compare all Visa crypto debit and credit cards in 2026. Find the best Bitcoin, USDC, and altcoin Visa cards.',
-    images: ['https://sweepbase.com/og-image.png'],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const allCards = await getAllCards();
+  const cards = allCards.filter(isVisaCard);
+  const title = 'Best Visa Crypto Cards 2026 — Compare All Visa Cards | Sweepbase';
+  const description = generateCategoryMetaDescription('visa-crypto-cards', cards.length);
+  return {
+    title,
+    description,
+    alternates: { canonical: 'https://sweepbase.com/visa-crypto-cards' },
+    openGraph: {
+      title,
+      description,
+      url: 'https://sweepbase.com/visa-crypto-cards',
+      type: 'website',
+      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://sweepbase.com/og-image.png'],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function VisaCryptoCards() {
   const allCards = await getAllCards();

@@ -1,34 +1,36 @@
 import { getAllCards } from '@/lib/data';
 import { isMastercardCard } from '@/lib/filters';
+import { generateCategoryMetaDescription } from '@/lib/meta';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Best Mastercard Crypto Cards 2026 | Sweepbase',
-  description:
-    'Compare every Mastercard crypto debit card available in 2026. Find the best Bitcoin and stablecoin Mastercard cards by cashback rate, fees, and country availability.',
-  alternates: {
-    canonical: 'https://sweepbase.com/mastercard-crypto-cards',
-  },
-  openGraph: {
-    title: 'Best Mastercard Crypto Cards 2026 | Sweepbase',
-    description:
-      'Compare every Mastercard crypto debit card available in 2026. Find the best Bitcoin and stablecoin Mastercard cards by cashback rate, fees, and country availability.',
-    url: 'https://sweepbase.com/mastercard-crypto-cards',
-    type: 'website',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Mastercard Crypto Cards 2026 | Sweepbase',
-    description:
-      'Compare every Mastercard crypto debit card available in 2026.',
-    images: ['https://sweepbase.com/og-image.png'],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const allCards = await getAllCards();
+  const cards = allCards.filter(isMastercardCard);
+  const title = 'Best Mastercard Crypto Cards 2026 | Sweepbase';
+  const description = generateCategoryMetaDescription('mastercard-crypto-cards', cards.length);
+  return {
+    title,
+    description,
+    alternates: { canonical: 'https://sweepbase.com/mastercard-crypto-cards' },
+    openGraph: {
+      title,
+      description,
+      url: 'https://sweepbase.com/mastercard-crypto-cards',
+      type: 'website',
+      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://sweepbase.com/og-image.png'],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function MastercardCryptoCards() {
   const allCards = await getAllCards();

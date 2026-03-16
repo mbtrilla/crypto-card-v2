@@ -1,37 +1,42 @@
 import { getAllCards } from "@/lib/data";
+import { generateHomeMetaDescription } from "@/lib/meta";
 import CardsGridClient from "@/components/CardsGridClient";
 import { Metadata } from "next";
 
 export const revalidate = 3600; // ISR: Update every hour
 
-export const metadata: Metadata = {
-  title: "Best Crypto Debit & Credit Cards 2026 — Compare 114 Cards | Sweepbase",
-  description:
-    "Compare 114 crypto debit & credit cards by fees, cashback, supported networks and country availability. Find the best Bitcoin, USDT and DeFi card for your region. Updated 2026.",
-  alternates: {
-    canonical: "https://sweepbase.com",
-  },
-  openGraph: {
-    title: "Best Crypto Debit & Credit Cards 2026 — Compare 114 Cards | Sweepbase",
-    url: "https://sweepbase.com",
-    type: "website",
-    images: [
-      {
-        url: "https://sweepbase.com/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Best Crypto Debit & Credit Cards 2026 — Compare 114 Cards | Sweepbase",
-    description:
-      "Compare 114 crypto debit & credit cards by fees, cashback, supported networks and country availability. Find the best Bitcoin, USDT and DeFi card for your region. Updated 2026.",
-    images: ["https://sweepbase.com/og-image.png"],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cards = await getAllCards();
+  const count = cards.length;
+  const title = `Best Crypto Debit & Credit Cards 2026 — Compare ${count} Cards | Sweepbase`;
+  const description = generateHomeMetaDescription(count);
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: "https://sweepbase.com",
+    },
+    openGraph: {
+      title,
+      url: "https://sweepbase.com",
+      type: "website",
+      images: [
+        {
+          url: "https://sweepbase.com/og-image.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://sweepbase.com/og-image.png"],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function Home() {
   const allCards = await getAllCards();

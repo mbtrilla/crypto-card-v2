@@ -1,6 +1,7 @@
 import { getAllCards } from "@/lib/data";
 import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback as hasCashbackFilter } from "@/lib/filters";
 import { getCardRatingData } from "@/lib/ratings";
+import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const ogImageUrl = card.logo.startsWith('http') ? card.logo : `https://sweepbase.com${card.logo}`;
   return {
     title: `${card.name} Review 2026 — Fees, Cashback & Availability | Sweepbase`,
-    description: `${card.name} crypto card review: ${card.description.substring(0, 160)}...`,
+    description: generateCardMetaDescription(card),
     robots: { index: true, follow: true },
     alternates: { canonical: `https://sweepbase.com/cards/${card.slug}` },
     openGraph: {

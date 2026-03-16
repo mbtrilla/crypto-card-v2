@@ -1,34 +1,36 @@
 import { getAllCards } from '@/lib/data';
 import { isUSACard } from '@/lib/filters';
+import { generateCategoryMetaDescription } from '@/lib/meta';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Best Crypto Cards in the USA 2026 — Top Picks | Sweepbase',
-  description:
-    'Compare the best crypto debit and credit cards available to US residents in 2026. Filter by Bitcoin, USDC, Visa/Mastercard, cashback, and more. Updated monthly.',
-  alternates: {
-    canonical: 'https://sweepbase.com/best-crypto-cards-usa',
-  },
-  openGraph: {
-    title: 'Best Crypto Cards in the USA 2026 — Top Picks | Sweepbase',
-    description:
-      'Compare the best crypto debit and credit cards available to US residents in 2026. Filter by Bitcoin, USDC, Visa/Mastercard, cashback, and more.',
-    url: 'https://sweepbase.com/best-crypto-cards-usa',
-    type: 'website',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Crypto Cards in the USA 2026 — Top Picks | Sweepbase',
-    description:
-      'Compare the best crypto debit and credit cards available to US residents in 2026.',
-    images: ['https://sweepbase.com/og-image.png'],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const allCards = await getAllCards();
+  const cards = allCards.filter(isUSACard);
+  const title = 'Best Crypto Cards in the USA 2026 — Top Picks | Sweepbase';
+  const description = generateCategoryMetaDescription('best-crypto-cards-usa', cards.length);
+  return {
+    title,
+    description,
+    alternates: { canonical: 'https://sweepbase.com/best-crypto-cards-usa' },
+    openGraph: {
+      title,
+      description,
+      url: 'https://sweepbase.com/best-crypto-cards-usa',
+      type: 'website',
+      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://sweepbase.com/og-image.png'],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function BestCryptoCardsUSA() {
   const allCards = await getAllCards();

@@ -1,34 +1,36 @@
 import { getAllCards } from '@/lib/data';
 import { hasCashback } from '@/lib/filters';
+import { generateCategoryMetaDescription } from '@/lib/meta';
 import CategoryCardsGrid from '@/components/CategoryCardsGrid';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Best Crypto Cards With Cashback 2026 | Sweepbase',
-  description:
-    'Compare the best crypto cashback cards in 2026. Earn Bitcoin, stablecoins, or platform token rewards on every purchase. Find top rates from 1% to 8% cashback.',
-  alternates: {
-    canonical: 'https://sweepbase.com/crypto-cards-with-cashback',
-  },
-  openGraph: {
-    title: 'Best Crypto Cards With Cashback 2026 | Sweepbase',
-    description:
-      'Compare the best crypto cashback cards in 2026. Earn Bitcoin, stablecoins, or platform token rewards on every purchase. Find top rates from 1% to 8% cashback.',
-    url: 'https://sweepbase.com/crypto-cards-with-cashback',
-    type: 'website',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Crypto Cards With Cashback 2026 | Sweepbase',
-    description:
-      'Compare the best crypto cashback cards in 2026. Earn Bitcoin, stablecoin, or token rewards on every purchase.',
-    images: ['https://sweepbase.com/og-image.png'],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const allCards = await getAllCards();
+  const cards = allCards.filter(hasCashback);
+  const title = 'Best Crypto Cards With Cashback 2026 | Sweepbase';
+  const description = generateCategoryMetaDescription('crypto-cards-with-cashback', cards.length);
+  return {
+    title,
+    description,
+    alternates: { canonical: 'https://sweepbase.com/crypto-cards-with-cashback' },
+    openGraph: {
+      title,
+      description,
+      url: 'https://sweepbase.com/crypto-cards-with-cashback',
+      type: 'website',
+      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://sweepbase.com/og-image.png'],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function CryptoCardsWithCashback() {
   const allCards = await getAllCards();
