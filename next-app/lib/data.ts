@@ -89,12 +89,18 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
     .map((item: any) => {
       const name = item[FIELDS.name];
       const rawLogo = item[FIELDS.logo] || '';
-      const fallbackImage = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=18181b&color=fff&size=400`;
-      
-      let logo = rawLogo;
+      const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=18181b&color=fff&size=400`;
+      const fallbackImage = `/api/image-proxy?url=${encodeURIComponent(fallbackUrl)}`;
+
+      let logo: string;
       if (rawLogo.includes('drive.google.com') || rawLogo.includes('googleusercontent.com')) {
+        // transformGDriveUrl already returns /api/image-proxy?url=...
         logo = transformGDriveUrl(rawLogo);
-      } else if (!rawLogo.startsWith('http')) {
+      } else if (rawLogo.startsWith('http')) {
+        // Route all other external URLs through the image proxy so Next.js
+        // Image Optimisation can serve WebP/AVIF without needing remotePatterns.
+        logo = `/api/image-proxy?url=${encodeURIComponent(rawLogo)}`;
+      } else {
         logo = fallbackImage;
       }
 

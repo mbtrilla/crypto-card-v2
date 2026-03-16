@@ -23,7 +23,14 @@ export default function CardItem({ card, onCompare, isCompared }: Props) {
     <div className="crypto-card">
       <Link href={`/cards/${card.slug}`} className="card-link-overlay">
         <div className="card-image-wrapper">
-          <Image src={logo} alt={`${name} — ${network} crypto debit card`} className="card-full-image" width={400} height={250} />
+          <Image
+              src={logo}
+              alt={`${name} — ${network} crypto debit card`}
+              className="card-full-image"
+              width={400}
+              height={250}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
         </div>
         
         <div className="card-content-bottom">

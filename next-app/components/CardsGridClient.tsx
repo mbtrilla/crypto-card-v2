@@ -1,9 +1,16 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Card } from '@/lib/data';
 import CardItem from './CardItem';
-import CompareBar from './CompareBar';
+
+// CompareBar is only shown after the user adds a card to compare — defer it
+// so its JS never blocks the initial page render.
+const CompareBar = dynamic(() => import('./CompareBar'), {
+  ssr: false,
+  loading: () => null,
+});
 
 interface Props {
   initialCards: Card[];

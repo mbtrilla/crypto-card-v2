@@ -7,8 +7,11 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
   images: {
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
   },
   experimental: {
     // Tree-shake package imports that ship large barrel files (e.g. icon libraries).
