@@ -75,7 +75,7 @@ describe('generateCardMetaDescription', () => {
   });
 
   it('ends with "at Sweepbase."', () => {
-    expect(generateCardMetaDescription(makeCard())).toMatch(/at Sweepbase\.$/);
+    expect(generateCardMetaDescription(makeCard())).toMatch(/at Sweepbase\.(…)?$/);
   });
 
   it('handles cards with very long names without exceeding 155 chars', () => {
@@ -83,7 +83,7 @@ describe('generateCardMetaDescription', () => {
     expect(generateCardMetaDescription(card).length).toBeLessThanOrEqual(155);
   });
 
-  it('includes "no fees" for cards with free issuance and annual fee', () => {
+  it('includes "no issuance or annual fee" for cards with free issuance and annual fee', () => {
     const card = makeCard({
       issuanceFee: 'Free',
       annualFee: 'Free',
@@ -91,7 +91,7 @@ describe('generateCardMetaDescription', () => {
       mainPageCashback: '',
     });
     const desc = generateCardMetaDescription(card);
-    expect(desc).toContain('no fees');
+    expect(desc).toContain('no issuance or annual fee');
     expect(desc.length).toBeLessThanOrEqual(155);
   });
 

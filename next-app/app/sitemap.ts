@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { getAllCards } from '@/lib/data';
+import { getAllCards, isEmptyCard } from '@/lib/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cards = await getAllCards();
   
-  const cardEntries: MetadataRoute.Sitemap = cards.map((card) => ({
+  const cardEntries: MetadataRoute.Sitemap = cards.filter((card) => !isEmptyCard(card)).map((card) => ({
     url: `https://sweepbase.com/cards/${card.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
@@ -59,6 +59,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: 'https://sweepbase.com/about',
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: 'https://sweepbase.com/editorial-team',
       lastModified: new Date('2026-03-16'),
       changeFrequency: 'monthly' as const,
       priority: 0.6,

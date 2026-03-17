@@ -59,12 +59,13 @@ function geoPhrase(card: Card): string {
 
 /**
  * Generates an SEO meta description for a card page.
- * Strict 155-character limit.
- * Formula: "[Name] review 2026: [cashback], [fees], [network], [geo]. Compare fees & eligibility at Sweepbase."
+ * Targets 140-155 characters for optimal Google SERP display.
+ * Formula: "[Name] review 2026: [cashback] cashback, [fee detail], [network] card
+ *           available in [region]. Full fees, limits & eligibility at Sweepbase."
  */
 export function generateCardMetaDescription(card: Card): string {
   const base = `${card.name} review ${YEAR}: `;
-  const suffix = ' Compare fees & eligibility at Sweepbase.';
+  const suffix = ' Full fees, limits & eligibility at Sweepbase.';
   const budget = MAX_LEN - base.length - suffix.length;
 
   const parts: string[] = [];
@@ -78,37 +79,51 @@ export function generateCardMetaDescription(card: Card): string {
     return false;
   };
 
-  // Priority 1: cashback (prefer mainPageCashback for brevity)
+  // Priority 1: cashback
   const cbSource = card.mainPageCashback || card.cashback;
   if (hasMeaningfulCashback(cbSource)) {
     tryAdd(shortCashback(cbSource) + ' cashback');
   }
 
-  // Priority 2: zero fees
+  // Priority 2: fee detail — prefer specific amounts over generic "no fees"
   if (isFreeVal(card.issuanceFee) && isFreeVal(card.annualFee)) {
-    tryAdd('no fees');
+    tryAdd('no issuance or annual fee');
+  } else if (!isDNA(card.issuanceFee) && isFreeVal(card.issuanceFee)) {
+    tryAdd('free to issue');
   } else if (!isDNA(card.annualFee) && isFreeVal(card.annualFee)) {
     tryAdd('no annual fee');
+  } else if (!isDNA(card.issuanceFee) && !isFreeVal(card.issuanceFee)) {
+    tryAdd(card.issuanceFee + ' issuance');
   }
 
-  // Priority 3: Visa / Mastercard network
+  // Priority 3: network + "card" for context
   const net = card.network.toLowerCase();
   const netStr = net.includes('visa')
-    ? 'Visa'
+    ? 'Visa card'
     : net.includes('mastercard')
     ? 'Mastercard'
     : '';
   if (netStr) tryAdd(netStr);
 
-  // Priority 4: geographic availability
+  // Priority 4: custody model
+  if (card.custody.toLowerCase().includes('self')) {
+    tryAdd('self-custody');
+  }
+
+  // Priority 5: geographic availability with richer phrasing
   const geo = geoPhrase(card);
-  if (geo) tryAdd('available ' + geo);
+  if (geo) tryAdd('available in ' + geo);
+
+  // Priority 6: FX fee if space remains
+  if (!isDNA(card.fxFee) && /^0%|free|no/i.test(card.fxFee.trim())) {
+    tryAdd('0% FX fee');
+  }
 
   const middle =
-    parts.length > 0 ? parts.join(', ') + '.' : 'full fees & details compared.';
+    parts.length > 0 ? parts.join(', ') + '.' : 'fees, cashback & limits compared.';
   const result = base + middle + suffix;
 
-  // Hard safety clamp (should not normally trigger)
+  // Hard safety clamp
   return result.length <= MAX_LEN ? result : result.substring(0, MAX_LEN - 1) + '…';
 }
 

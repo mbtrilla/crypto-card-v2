@@ -39,7 +39,7 @@ export default function CardItem({ card, onCompare, isCompared }: Props) {
             {network && <span className="badge badge-network">{network.toUpperCase()}</span>}
           </div>
 
-          <h3 className="card-title-large">{name.toUpperCase()}</h3>
+          <h3 className="card-title-large">{name}</h3>
 
           <div className="outline-pill" title={cardType}>{cardType.split(',')[0].toUpperCase()}</div>
           <div className="outline-pill">CASHBACK: {cashback.toUpperCase()}</div>

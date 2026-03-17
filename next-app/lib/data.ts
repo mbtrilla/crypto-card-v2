@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
 import { cache } from 'react';
+import { normalizeCountriesString } from './countries';
 
 export interface Card {
   name: string;
@@ -52,6 +53,28 @@ export type CardListItem = Pick<
   | 'description'
   | 'topUpMethods'
 >;
+
+/**
+ * A card is considered "empty" (thin/placeholder) when its description is the
+ * stock placeholder text OR when multiple key fields are missing / set to
+ * generic N/A values.  Empty cards should be noindexed and excluded from the
+ * sitemap to avoid polluting search results with low-value pages.
+ */
+export function isEmptyCard(card: Card): boolean {
+  if (card.description.includes('No verified information available')) return true;
+
+  const dna = (v: string) => !v || /^(n\/a|dna|-)$/i.test(v.trim());
+  const emptyKeyFields = [
+    dna(card.network),
+    dna(card.regions),
+    dna(card.cashback),
+    dna(card.cardType),
+    dna(card.custody),
+  ].filter(Boolean).length;
+
+  // 3+ missing key fields → treat as empty
+  return emptyKeyFields >= 3;
+}
 
 /** Project a full Card to the slim listing shape. */
 export function toCardListItem(card: Card): CardListItem {
@@ -173,7 +196,7 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
         cons: item[FIELDS.cons] || '',
         description: item[FIELDS.description] || '',
         mainPageCashback: item[FIELDS.mainPageCashback] || item[FIELDS.cashback] || '',
-        countries: countriesRaw,
+        countries: normalizeCountriesString(countriesRaw),
         // Static review date — update this string when the database is next audited
         lastReviewed: 'March 2026',
       };

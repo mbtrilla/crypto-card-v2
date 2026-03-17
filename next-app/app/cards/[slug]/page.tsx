@@ -1,4 +1,4 @@
-import { getAllCards } from "@/lib/data";
+import { getAllCards, isEmptyCard } from "@/lib/data";
 import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback as hasCashbackFilter } from "@/lib/filters";
 import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title,
     description,
-    robots: { index: true, follow: true },
+    robots: isEmptyCard(card) ? { index: false, follow: true } : { index: true, follow: true },
     alternates: { canonical: `https://sweepbase.com/cards/${card.slug}` },
     openGraph: {
       title: `${card.name} Review 2026`,
@@ -489,7 +489,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
             />
             <p className="detail-last-updated">
               <i className="fa-regular fa-clock"></i> Last reviewed: {card.lastReviewed} by the{' '}
-              <a href="/about" className="detail-reviewed-by">Sweepbase Editorial Team</a>
+              <a href="/editorial-team" className="detail-reviewed-by">Sweepbase Editorial Team</a>
             </p>
             <div className="detail-meta-grid">
               <div className="detail-meta-item">

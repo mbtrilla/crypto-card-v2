@@ -71,6 +71,7 @@ export default function SiteFooter() {
             <p className="footer-col-heading">Company</p>
             <ul className="footer-col-links">
               <li><a href="/#about">About Sweepbase</a></li>
+              <li><a href="/editorial-team">Editorial Team</a></li>
               <li><a href="/sitemap.xml">Sitemap</a></li>
             </ul>
           </div>
