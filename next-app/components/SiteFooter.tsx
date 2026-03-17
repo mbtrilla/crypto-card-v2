@@ -90,9 +90,6 @@ export default function SiteFooter() {
           <p className="footer-copyright">&copy; 2026 Sweepbase. All rights reserved.</p>
           <SocialLinks />
           <nav className="footer-bottom-links">
-            <a href="/privacy-policy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/disclosure">Disclosure</a>
             <a href="/sitemap.xml">Sitemap</a>
           </nav>
         </div>

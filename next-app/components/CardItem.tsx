@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card } from '@/lib/data';
+import { CardListItem } from '@/lib/data';
 import Link from 'next/link';
 import Image from 'next/image';
 
 interface Props {
-  card: Card;
+  card: CardListItem;
   onCompare: () => void;
   isCompared: boolean;
 }

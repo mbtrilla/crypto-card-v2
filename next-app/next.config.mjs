@@ -14,6 +14,9 @@ const nextConfig = {
     minimumCacheTTL: 86400,
   },
   experimental: {
+    // Inline critical CSS and defer the rest — improves FCP by removing
+    // render-blocking stylesheet requests on the initial page load.
+    optimizeCss: true,
     // Tree-shake package imports that ship large barrel files (e.g. icon libraries).
     // Add any future heavy packages here so only used exports are bundled.
     optimizePackageImports: ['lucide-react'],

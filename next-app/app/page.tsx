@@ -1,8 +1,26 @@
-import { getAllCards } from "@/lib/data";
+import { getAllCards, toCardListItem } from "@/lib/data";
 import { generateHomeMetaDescription } from "@/lib/meta";
 import { generateHomeItemListSchema } from "@/lib/schemas";
-import CardsGridClient from "@/components/CardsGridClient";
+import CardSkeleton from "@/components/CardSkeleton";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+// CardsGridClient owns all filter/search/compare state — defer its JS so the
+// hero HTML and static card-index reach the browser before the filter chunk.
+const CardsGridClient = dynamic(() => import("@/components/CardsGridClient"), {
+  loading: () => (
+    <section className="results-section" aria-busy="true">
+      <div className="container">
+        <div className="results-header">
+          <h2 className="results-title">Available Cards</h2>
+        </div>
+        <div className="cards-grid">
+          {Array.from({ length: 12 }).map((_, i) => <CardSkeleton key={i} />)}
+        </div>
+      </div>
+    </section>
+  ),
+});
 
 export const revalidate = 3600; // ISR: Update every hour
 
@@ -104,7 +122,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <CardsGridClient initialCards={allCards} />
+      <CardsGridClient initialCards={allCards.map(toCardListItem)} />
 
       {/* ── Browse by Category ── */}
       <section className="browse-categories-section">

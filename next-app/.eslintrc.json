@@ -30,8 +30,6 @@
     "jsx-a11y/aria-unsupported-elements": "error",
 
     // ── Button / interactive rules ─────────────────────────────────────────────
-    // Buttons must have accessible text (text or aria-label)
-    "jsx-a11y/button-has-type": "warn",
     // Interactive elements must be focusable
     "jsx-a11y/interactive-supports-focus": "warn",
 

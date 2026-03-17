@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Card } from '@/lib/data';
+import { CardListItem } from '@/lib/data';
 import CardItem from './CardItem';
 
 // CompareBar is only shown after the user adds a card to compare — defer it
@@ -13,16 +13,16 @@ const CompareBar = dynamic(() => import('./CompareBar'), {
 });
 
 interface Props {
-  cards: Card[];
+  cards: CardListItem[];
 }
 
 const CARDS_PER_PAGE = 12;
 
 export default function CategoryCardsGrid({ cards }: Props) {
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
-  const [compareList, setCompareList] = useState<Card[]>([]);
+  const [compareList, setCompareList] = useState<CardListItem[]>([]);
 
-  const toggleCompare = (card: Card) => {
+  const toggleCompare = (card: CardListItem) => {
     setCompareList(prev => {
       const exists = prev.find(c => c.slug === card.slug);
       if (exists) return prev.filter(c => c.slug !== card.slug);

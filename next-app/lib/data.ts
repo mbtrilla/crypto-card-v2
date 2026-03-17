@@ -27,6 +27,50 @@ export interface Card {
   lastReviewed: string;
 }
 
+/**
+ * Minimal card shape passed to client grid components (CardsGridClient,
+ * CategoryCardsGrid, CardItem, CompareBar).  Heavy detail-only fields
+ * (pros, cons, issuanceFee, annualFee, fxFee, spendLimit, atmLimit,
+ *  lastReviewed) are intentionally excluded so they never appear in the
+ * serialised __NEXT_DATA__ / RSC payload for listing pages.
+ *
+ * Reducing 114-card × ~800 chars of detail fields ≈ 90 kB off every
+ * listing-page HTML payload.
+ */
+export type CardListItem = Pick<
+  Card,
+  | 'name'
+  | 'slug'
+  | 'logo'
+  | 'cardType'
+  | 'custody'
+  | 'network'
+  | 'cashback'
+  | 'mainPageCashback'
+  | 'regions'
+  | 'countries'
+  | 'description'
+  | 'topUpMethods'
+>;
+
+/** Project a full Card to the slim listing shape. */
+export function toCardListItem(card: Card): CardListItem {
+  return {
+    name: card.name,
+    slug: card.slug,
+    logo: card.logo,
+    cardType: card.cardType,
+    custody: card.custody,
+    network: card.network,
+    cashback: card.cashback,
+    mainPageCashback: card.mainPageCashback,
+    regions: card.regions,
+    countries: card.countries,
+    description: card.description,
+    topUpMethods: card.topUpMethods,
+  };
+}
+
 export const FIELDS = {
   name: 'Card Service',
   logo: 'IMG',

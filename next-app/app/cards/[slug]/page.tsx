@@ -3,13 +3,32 @@ import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCar
 import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
-import FAQAccordion from "@/components/FAQAccordion";
-import ShareButtons from "@/components/ShareButtons";
 import Breadcrumb from "@/components/Breadcrumb";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import type { Card } from "@/lib/data";
+
+// ── Deferred client components ─────────────────────────────────────────────────
+// FAQAccordion: server-rendered for SEO / FAQPage schema parity, but its
+// interactive JS is split into a separate chunk that only loads on card pages.
+const FAQAccordion = dynamic(() => import("@/components/FAQAccordion"), {
+  loading: () => (
+    <div className="faq-accordion" aria-hidden="true">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className="skeleton-block"
+          style={{ height: '52px', marginBottom: '0.5rem', borderRadius: '0.5rem' }} />
+      ))}
+    </div>
+  ),
+});
+
+// ShareButtons: clipboard + tweet intent — no SSR value, safe to render client-only.
+const ShareButtons = dynamic(() => import("@/components/ShareButtons"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export const revalidate = 3600;
 
@@ -99,7 +118,7 @@ function buildProsItems(card: Card, cardIssuer: string): string[] {
   if (card.cardType.toLowerCase().includes('virtual'))
     items.push('Virtual card available instantly — no shipping required');
 
-  return [...new Set(items)].slice(0, 6);
+  return Array.from(new Set(items)).slice(0, 6);
 }
 
 function buildConsItems(card: Card, cardIssuer: string): string[] {
@@ -121,7 +140,7 @@ function buildConsItems(card: Card, cardIssuer: string): string[] {
   if (!parsed.some(p => p.toLowerCase().includes('kyc')))
     items.push('KYC identity verification required to activate');
 
-  return [...new Set(items)].slice(0, 6);
+  return Array.from(new Set(items)).slice(0, 6);
 }
 
 // ─── Crypto token badges ──────────────────────────────────────────────────────
@@ -490,7 +509,10 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
                 <span className="meta-value">{card.regions}</span>
               </div>
             </div>
-            <a href="#" className="btn-get-card btn-gradient">
+            <a
+              href="/cards"
+              className="btn-get-card btn-gradient"
+            >
               Get This Card <i className="fa-solid fa-external-link"></i>
             </a>
           </div>

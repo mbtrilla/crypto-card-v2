@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Card } from '@/lib/data';
+import { CardListItem } from '@/lib/data';
 import CardItem from './CardItem';
 
 // CompareBar is only shown after the user adds a card to compare — defer it
@@ -13,7 +13,7 @@ const CompareBar = dynamic(() => import('./CompareBar'), {
 });
 
 interface Props {
-  initialCards: Card[];
+  initialCards: CardListItem[];
 }
 
 const CARDS_PER_PAGE = 12;
@@ -28,7 +28,7 @@ export default function CardsGridClient({ initialCards }: Props) {
     country: 'all',
   });
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
-  const [compareList, setCompareList] = useState<Card[]>([]);
+  const [compareList, setCompareList] = useState<CardListItem[]>([]);
 
   // Filtering Logic
   const filteredCards = useMemo(() => {
@@ -72,7 +72,7 @@ export default function CardsGridClient({ initialCards }: Props) {
     setFilters({ custody: 'all', network: 'all', type: 'all', region: 'all', country: 'all' });
   };
 
-  const toggleCompare = (card: Card) => {
+  const toggleCompare = (card: CardListItem) => {
     setCompareList(prev => {
       const exists = prev.find(c => c.slug === card.slug);
       if (exists) return prev.filter(c => c.slug !== card.slug);
@@ -111,9 +111,9 @@ export default function CardsGridClient({ initialCards }: Props) {
             </div>
             <div className="filters-grid">
               <div className="filter-group">
-                <label>Custody</label>
+                <label htmlFor="filter-custody">Custody</label>
                 <div className="custom-select">
-                  <select value={filters.custody} onChange={(e) => handleFilterChange('custody', e.target.value)}>
+                  <select id="filter-custody" value={filters.custody} onChange={(e) => handleFilterChange('custody', e.target.value)}>
                     <option value="all">All Types</option>
                     <option value="Custodial">Custodial</option>
                     <option value="Self-custody">Self-Custody</option>
@@ -123,9 +123,9 @@ export default function CardsGridClient({ initialCards }: Props) {
                 </div>
               </div>
               <div className="filter-group">
-                <label>Network</label>
+                <label htmlFor="filter-network">Network</label>
                 <div className="custom-select">
-                  <select value={filters.network} onChange={(e) => handleFilterChange('network', e.target.value)}>
+                  <select id="filter-network" value={filters.network} onChange={(e) => handleFilterChange('network', e.target.value)}>
                     <option value="all">All Networks</option>
                     <option value="Visa">Visa</option>
                     <option value="Mastercard">Mastercard</option>
@@ -134,9 +134,9 @@ export default function CardsGridClient({ initialCards }: Props) {
                 </div>
               </div>
               <div className="filter-group">
-                <label>Card Type</label>
+                <label htmlFor="filter-type">Card Type</label>
                 <div className="custom-select">
-                  <select value={filters.type} onChange={(e) => handleFilterChange('type', e.target.value)}>
+                  <select id="filter-type" value={filters.type} onChange={(e) => handleFilterChange('type', e.target.value)}>
                     <option value="all">Any Type</option>
                     <option value="Virtual">Virtual</option>
                     <option value="Physical">Physical</option>
@@ -145,9 +145,9 @@ export default function CardsGridClient({ initialCards }: Props) {
                 </div>
               </div>
               <div className="filter-group">
-                <label>Region</label>
+                <label htmlFor="filter-region">Region</label>
                 <div className="custom-select">
-                  <select value={filters.region} onChange={(e) => handleFilterChange('region', e.target.value)}>
+                  <select id="filter-region" value={filters.region} onChange={(e) => handleFilterChange('region', e.target.value)}>
                     <option value="all">All Regions</option>
                     <option value="usa">USA</option>
                     <option value="europe">Europe</option>
@@ -157,9 +157,9 @@ export default function CardsGridClient({ initialCards }: Props) {
                 </div>
               </div>
               <div className="filter-group">
-                <label>Country</label>
+                <label htmlFor="filter-country">Country</label>
                 <div className="custom-select">
-                  <select value={filters.country} onChange={(e) => handleFilterChange('country', e.target.value)}>
+                  <select id="filter-country" value={filters.country} onChange={(e) => handleFilterChange('country', e.target.value)}>
                     <option value="all">All Countries</option>
                     {countries.map(c => (
                       <option key={c} value={c}>{c}</option>
@@ -168,7 +168,7 @@ export default function CardsGridClient({ initialCards }: Props) {
                   <i className="fa-solid fa-chevron-down select-icon"></i>
                 </div>
               </div>
-              <button className="btn btn-outline reset-btn" onClick={resetFilters}>Reset</button>
+              <button type="button" className="btn btn-outline reset-btn" onClick={resetFilters}>Reset</button>
             </div>
           </div>
         </div>

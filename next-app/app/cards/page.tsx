@@ -1,7 +1,22 @@
-import { getAllCards } from '@/lib/data';
-import CategoryCardsGrid from '@/components/CategoryCardsGrid';
+import { getAllCards, toCardListItem } from '@/lib/data';
 import Breadcrumb from '@/components/Breadcrumb';
+import CardSkeleton from '@/components/CardSkeleton';
+import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+
+// CategoryCardsGrid holds client-side compare/load-more state — deferred so
+// the static hero + breadcrumb HTML renders before the interactive chunk loads.
+const CategoryCardsGrid = dynamic(() => import('@/components/CategoryCardsGrid'), {
+  loading: () => (
+    <section className="results-section" aria-busy="true">
+      <div className="container">
+        <div className="cards-grid">
+          {Array.from({ length: 12 }).map((_, i) => <CardSkeleton key={i} />)}
+        </div>
+      </div>
+    </section>
+  ),
+});
 
 export const revalidate = 3600;
 
@@ -68,7 +83,7 @@ export default async function AllCardsPage() {
         </section>
       </div>
 
-      <CategoryCardsGrid cards={cards} />
+      <CategoryCardsGrid cards={cards.map(toCardListItem)} />
     </main>
   );
 }

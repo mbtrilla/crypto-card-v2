@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card } from '@/lib/data';
+import { CardListItem } from '@/lib/data';
 import Link from 'next/link';
 import Image from 'next/image';
 
 interface Props {
-  list: Card[];
+  list: CardListItem[];
   onRemove: (slug: string) => void;
   onClear: () => void;
 }
