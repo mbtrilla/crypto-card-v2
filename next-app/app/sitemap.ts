@@ -52,6 +52,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: 'https://sweepbase.com/compare',
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
       url: 'https://sweepbase.com/about',
       lastModified: new Date('2026-03-16'),
       changeFrequency: 'monthly' as const,
