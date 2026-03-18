@@ -255,6 +255,10 @@ select:focus:not(:focus-visible) {
     color: var(--text-secondary);
     transition: color var(--transition-fast);
     position: relative;
+    padding: 10px 4px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-links a:hover,
@@ -289,6 +293,8 @@ select:focus:not(:focus-visible) {
     transition: color var(--transition-fast);
     display: flex;
     align-items: center;
+    min-height: 44px;
+    padding: 10px 4px;
     gap: 0.3rem;
     padding: 0;
     line-height: inherit;
@@ -329,6 +335,7 @@ select:focus:not(:focus-visible) {
     align-items: center;
     gap: 0.7rem;
     padding: 0.55rem 0.875rem;
+    min-height: 44px;
     border-radius: var(--radius-sm);
     font-size: 0.9rem;
     font-weight: 500;
@@ -444,6 +451,7 @@ select:focus:not(:focus-visible) {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 8px !important;
     padding: 0.8rem 1rem;
+    min-height: 44px;
     color: #ffffff;
     font-size: 0.9rem;
     transition: all 0.2s ease;
@@ -489,7 +497,7 @@ select:focus:not(:focus-visible) {
 
 .reset-btn {
     grid-column: span 2;
-    height: 42px;
+    min-height: 44px;
 }
 
 @media (min-width: 1024px) {
@@ -612,6 +620,7 @@ select:focus:not(:focus-visible) {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
+    min-height: 44px;
     border-radius: var(--radius-md);
     font-weight: 500;
     cursor: pointer;
@@ -794,6 +803,7 @@ select:focus:not(:focus-visible) {
     justify-content: center;
     width: 100%;
     padding: 0.8rem 1rem;
+    min-height: 44px;
     background: linear-gradient(135deg, #3b82f6 0%, #9333ea 90%, #d8b4fe 100%);
     color: #ffffff;
     font-weight: 700;
@@ -1162,6 +1172,10 @@ select:focus:not(:focus-visible) {
     color: var(--text-muted);
     text-decoration: none;
     transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
 }
 
 .footer-col-links a:hover {
@@ -1236,7 +1250,8 @@ select:focus:not(:focus-visible) {
 .compare-btn {
     margin-top: 1rem;
     width: 100%;
-    padding: 0.6rem 1rem;
+    padding: 0.7rem 1rem;
+    min-height: 44px;
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
     border: 1px solid var(--border-glass);
@@ -1902,6 +1917,10 @@ select:focus:not(:focus-visible) {
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 2px;
 }
 
 .breadcrumb__link:hover {
@@ -2724,12 +2743,17 @@ select:focus:not(:focus-visible) {
     font-size: 0.85rem;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: color var(--transition-fast), background var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
 }
 
 .card-index-link:hover {
     color: var(--accent-primary);
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 /* --- Legal / Prose pages (/privacy-policy, /terms, /disclosure) --- */
@@ -3864,7 +3888,8 @@ select:focus:not(:focus-visible) {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.3125rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+    min-height: 44px;
     border-radius: 999px;
     border: 1px solid var(--border-color, #2d3561);
     background: var(--card-bg, #1e2340);
