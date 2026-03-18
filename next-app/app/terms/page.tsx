@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Terms of Service | Sweepbase',
   description:

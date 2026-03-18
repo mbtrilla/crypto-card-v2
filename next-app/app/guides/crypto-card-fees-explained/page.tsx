@@ -5,6 +5,8 @@ import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import { generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/schemas';
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Crypto Card Fees Explained — Complete Breakdown 2026 | Sweepbase',
   description:

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import { generateBreadcrumbSchema } from '@/lib/schemas';
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Crypto Card Guides & Resources 2026 | Sweepbase',
   description:

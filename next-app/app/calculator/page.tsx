@@ -3,6 +3,8 @@ import Breadcrumb from '@/components/Breadcrumb';
 import CostCalculator from './CostCalculator';
 import { generateBreadcrumbSchema } from '@/lib/schemas';
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Crypto Card Cost Calculator 2026 — Find the Cheapest Card | Sweepbase',
   description:

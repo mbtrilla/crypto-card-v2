@@ -80,30 +80,30 @@ export default function CostCalculator() {
 
               <div className="calc-fields">
                 <div className="calc-field">
-                  <label>Annual fee</label>
+                  <label htmlFor={`annual-fee-${idx}`}>Annual fee</label>
                   <div className="calc-input-wrap">
                     <span>$</span>
-                    <input type="number" min={0} value={card.annualFee} onChange={e => updateCard(idx, 'annualFee', e.target.value)} />
+                    <input id={`annual-fee-${idx}`} type="number" min={0} value={card.annualFee} onChange={e => updateCard(idx, 'annualFee', e.target.value)} />
                   </div>
                 </div>
                 <div className="calc-field">
-                  <label>FX fee</label>
+                  <label htmlFor={`fx-fee-${idx}`}>FX fee</label>
                   <div className="calc-input-wrap">
-                    <input type="number" min={0} max={10} step={0.1} value={card.fxFeePercent} onChange={e => updateCard(idx, 'fxFeePercent', e.target.value)} />
+                    <input id={`fx-fee-${idx}`} type="number" min={0} max={10} step={0.1} value={card.fxFeePercent} onChange={e => updateCard(idx, 'fxFeePercent', e.target.value)} />
                     <span>%</span>
                   </div>
                 </div>
                 <div className="calc-field">
-                  <label>Spread</label>
+                  <label htmlFor={`spread-${idx}`}>Spread</label>
                   <div className="calc-input-wrap">
-                    <input type="number" min={0} max={10} step={0.1} value={card.spreadPercent} onChange={e => updateCard(idx, 'spreadPercent', e.target.value)} />
+                    <input id={`spread-${idx}`} type="number" min={0} max={10} step={0.1} value={card.spreadPercent} onChange={e => updateCard(idx, 'spreadPercent', e.target.value)} />
                     <span>%</span>
                   </div>
                 </div>
                 <div className="calc-field">
-                  <label>Cashback</label>
+                  <label htmlFor={`cashback-${idx}`}>Cashback</label>
                   <div className="calc-input-wrap">
-                    <input type="number" min={0} max={20} step={0.1} value={card.cashbackPercent} onChange={e => updateCard(idx, 'cashbackPercent', e.target.value)} />
+                    <input id={`cashback-${idx}`} type="number" min={0} max={20} step={0.1} value={card.cashbackPercent} onChange={e => updateCard(idx, 'cashbackPercent', e.target.value)} />
                     <span>%</span>
                   </div>
                 </div>
