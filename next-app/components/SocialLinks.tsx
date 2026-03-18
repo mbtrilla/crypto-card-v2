@@ -45,7 +45,7 @@ export default function SocialLinks() {
           href={href}
           className={`social-link social-link--${modifier}`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           aria-label={label}
           title={label}
         >

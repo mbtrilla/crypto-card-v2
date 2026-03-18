@@ -45,7 +45,7 @@ export default function ShareButtons({ cardName, cardUrl }: ShareButtonsProps) {
         href={tweetHref}
         className="share-btn share-btn--twitter"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label={`Share ${cardName} on X (Twitter)`}
       >
         {/* X (Twitter) logo — inline SVG avoids FA brand dependency */}
@@ -59,7 +59,7 @@ export default function ShareButtons({ cardName, cardUrl }: ShareButtonsProps) {
         href={linkedInHref}
         className="share-btn share-btn--linkedin"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         aria-label={`Share ${cardName} on LinkedIn`}
       >
         <svg className="share-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">

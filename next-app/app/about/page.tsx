@@ -236,7 +236,7 @@ export default function AboutPage() {
                   href={linkedin}
                   className="team-linkedin"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   aria-label={`${name} on LinkedIn`}
                 >
                   <i className="fa-brands fa-linkedin"></i> LinkedIn
