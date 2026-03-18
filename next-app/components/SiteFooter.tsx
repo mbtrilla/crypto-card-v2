@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import SocialLinks from '@/components/SocialLinks';
+import logoImg from '@/public/logo.png';
 
 const BROWSE_LINKS = [
   { href: '/cards',                            label: 'All Crypto Cards' },
@@ -41,7 +42,7 @@ export default function SiteFooter() {
           {/* Brand column */}
           <div className="footer-brand">
             <Image
-              src="/logo.png"
+              src={logoImg}
               alt="Sweepbase Logo"
               className="brand-logo footer-logo-img"
               width={140}

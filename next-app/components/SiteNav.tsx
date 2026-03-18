@@ -5,6 +5,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import NavDropdown from './NavDropdown';
+import logoImg from '@/public/logo.png';
 
 export default function SiteNav() {
   return (
@@ -12,12 +13,13 @@ export default function SiteNav() {
       <div className="container nav-content">
         <Link href="/" className="logo">
           <Image
-            src="/logo.png"
+            src={logoImg}
             alt="Sweepbase Logo"
             className="brand-logo"
             width={160}
             height={40}
             priority
+            placeholder="blur"
           />
         </Link>
 
