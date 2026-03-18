@@ -133,6 +133,16 @@ export default async function Home() {
       "https://twitter.com/sweepbase",
       "https://www.linkedin.com/company/sweepbase",
       "https://t.me/sweepbase"
+    ],
+    "knowsAbout": [
+      "crypto debit cards",
+      "crypto credit cards",
+      "cryptocurrency",
+      "Bitcoin payments",
+      "crypto rewards",
+      "self-custody wallets",
+      "Visa crypto cards",
+      "Mastercard crypto cards"
     ]
   };
 
@@ -346,6 +356,67 @@ export default async function Home() {
             Use our free <a href="/compare">comparison tool</a> to evaluate up to 4 cards at once, or
             explore our <a href="/guides">guides</a> for in-depth advice on choosing your first crypto
             card, understanding fee structures, and navigating custody options.
+          </p>
+        </div>
+      </section>
+
+      <section className="seo-content-section seo-content-section--alt">
+        <div className="container seo-content">
+          <h2>Crypto Card Comparison: What to Look For in 2026</h2>
+
+          <h3>Fees and Hidden Costs</h3>
+          <p>
+            The true cost of a crypto card goes far beyond the issuance fee. While many cards
+            advertise zero upfront cost, recurring charges like monthly maintenance fees ($0–$15),
+            foreign exchange markups (0.5%–3%), and ATM withdrawal fees can add up quickly. The most
+            overlooked cost is the crypto-to-fiat conversion spread — the difference between the
+            mid-market exchange rate and the rate the card actually gives you. Even &quot;fee-free&quot;
+            cards often embed a 0.5%–2% markup in this spread. To find the cheapest option, calculate
+            the total annual cost based on your expected spending pattern. Our{' '}
+            <a href="/calculator">cost calculator</a> and{' '}
+            <a href="/guides/crypto-card-fees-explained">fees guide</a> can help you compare
+            the real cost across cards, and our <a href="/crypto-cards-no-fees">no-fee cards</a>{' '}
+            category filters for zero issuance and zero annual fee options.
+          </p>
+
+          <h3>Cashback and Rewards Programs</h3>
+          <p>
+            Crypto card cashback ranges from 0.5% to 8%, but the headline rate rarely tells the full
+            story. Most high-cashback cards require staking the issuer&apos;s native token — locking
+            up $400–$40,000 in a potentially volatile asset to unlock premium reward tiers. The
+            cashback currency matters too: Bitcoin and stablecoin rewards hold their value, while
+            obscure platform tokens can depreciate significantly. Monthly cashback caps, category
+            restrictions, and clawback clauses further reduce effective returns. The best approach is
+            to calculate net rewards after all fees and compare cards at your actual spending level.
+            Browse our <a href="/crypto-cards-with-cashback">cashback cards</a> category to see
+            verified reward rates, staking requirements, and cap structures side by side.
+          </p>
+
+          <h3>Self-Custody vs Custodial: Security Trade-offs</h3>
+          <p>
+            Custodial cards from exchanges like <a href="/cards/binance-card">Binance</a> and{' '}
+            <a href="/cards/cryptocom-visa-card">Crypto.com</a> hold your funds on their platform —
+            simple to use, but your crypto is at risk if the platform becomes insolvent. Self-custody
+            cards like <a href="/cards/metamask-card">MetaMask Card</a> and{' '}
+            <a href="/cards/gnosis-pay-card">Gnosis Pay</a> keep your private keys under your
+            control until the moment of purchase, eliminating counterparty risk but adding UX
+            complexity and gas fees per transaction. Hybrid solutions are emerging that blend both
+            approaches. For a detailed comparison, read our{' '}
+            <a href="/guides/self-custody-vs-custodial-crypto-cards">custody guide</a> or browse{' '}
+            <a href="/self-custody-crypto-cards">self-custody cards</a> directly.
+          </p>
+
+          <h3>Visa vs Mastercard: Network Differences for Crypto</h3>
+          <p>
+            Both Visa and Mastercard offer near-universal merchant acceptance, but there are subtle
+            differences for crypto card users. <a href="/visa-crypto-cards">Visa crypto cards</a>{' '}
+            dominate the US market with broader ATM network access and Apple Pay compatibility, while{' '}
+            <a href="/mastercard-crypto-cards">Mastercard crypto cards</a> are more prevalent among
+            European and UK issuers, often qualifying for World or World Elite tiers with travel perks.
+            Contactless payment limits, FX rate markup timing (weekend rates can differ), and
+            chargeback policies also vary between networks. For most users, the issuing platform and
+            fee structure matter more than the network — but if you travel frequently or need specific
+            ATM coverage, the network choice can make a measurable difference.
           </p>
         </div>
       </section>

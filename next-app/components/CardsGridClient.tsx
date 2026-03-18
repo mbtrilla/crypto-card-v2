@@ -175,7 +175,7 @@ export default function CardsGridClient({ initialCards }: Props) {
       <section className="results-section">
         <div className="container">
           <div className="results-header">
-            <h2 className="results-title">Available Cards <span className="badge">{filteredCards.length}</span></h2>
+            <h2 className="results-title">Compare All Crypto Debit &amp; Credit Cards <span className="badge">{filteredCards.length}</span></h2>
           </div>
 
           {filteredCards.length === 0 ? (

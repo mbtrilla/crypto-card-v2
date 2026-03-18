@@ -727,12 +727,14 @@ select:focus:not(:focus-visible) {
     background-color: #3b82f6 !important;
     color: #ffffff !important;
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    text-transform: uppercase;
 }
 
 .badge-network {
     background-color: #8b5cf6 !important;
     color: #ffffff !important;
     box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+    text-transform: uppercase;
 }
 
 .card-meta-tags .badge {
@@ -755,6 +757,7 @@ select:focus:not(:focus-visible) {
     color: #ffffff;
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
+    text-transform: uppercase;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     min-height: 4.5rem;
     /* Forces 2/3 lines to align things perfectly */
@@ -772,6 +775,7 @@ select:focus:not(:focus-visible) {
     border-radius: 9999px;
     padding: 0.6rem 1rem;
     font-size: 0.7rem;
+    text-transform: uppercase;
     font-weight: 600;
     text-align: center;
     width: 100%;
@@ -2293,6 +2297,19 @@ select:focus:not(:focus-visible) {
 
 .seo-content a:hover {
     text-decoration: underline;
+}
+
+.seo-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.seo-content-section--alt {
+    padding: 2rem 0 4rem;
 }
 
 .about-section {

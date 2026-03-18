@@ -38,15 +38,15 @@ export default function CardItem({ card, onCompare, isCompared, priority = false
         
         <div className="card-content-bottom">
           <div className="card-meta-tags">
-            <span className="badge badge-custody">{custody.toUpperCase()}</span>
-            {network && <span className="badge badge-network">{network.toUpperCase()}</span>}
+            <span className="badge badge-custody">{custody}</span>
+            {network && <span className="badge badge-network">{network}</span>}
           </div>
 
-          <h3 className="card-title-large">{name.toUpperCase()}</h3>
+          <h3 className="card-title-large">{name}</h3>
 
-          <div className="outline-pill" title={cardType}>{cardType.split(',')[0].toUpperCase()}</div>
-          <div className="outline-pill">CASHBACK: {cashback.toUpperCase()}</div>
-          <div className="outline-pill">REGION: {regions.toUpperCase()}</div>
+          <div className="outline-pill" title={cardType}>{cardType.split(',')[0]}</div>
+          <div className="outline-pill">Cashback: {cashback}</div>
+          <div className="outline-pill">Region: {regions}</div>
 
           <div style={{ marginTop: 'auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <button className="get-card-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('#', '_blank'); }}>Get Card</button>
