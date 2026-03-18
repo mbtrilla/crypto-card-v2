@@ -25,6 +25,7 @@ export default function SiteNav() {
           <Link href="/#discover">Discover</Link>
           {/* NavDropdown is the only interactive part of the nav — client component */}
           <NavDropdown />
+          <Link href="/guides">Guides</Link>
           <Link href="/about">About</Link>
         </nav>
       </div>

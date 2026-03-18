@@ -114,8 +114,7 @@ export default async function Home() {
       />
       <section className="hero-section">
         <div className="container hero-content">
-          <h1 className="sr-only">Best Crypto Debit &amp; Credit Cards — Compare &amp; Find Your Perfect Card</h1>
-          <p className="hero-title" aria-hidden="true">Unlock Your Crypto <span className="text-gradient">Spending Power</span></p>
+          <h1 className="hero-title">Unlock Your Crypto <span className="text-gradient">Spending Power</span></h1>
           <p className="hero-subtitle">
             Compare the world&apos;s best crypto debit and credit cards. Find the top Bitcoin, Ethereum and USDT cards by cashback rate, fees, network (Visa/Mastercard) and country availability.
           </p>
@@ -136,7 +135,7 @@ export default async function Home() {
           <div className="browse-categories-grid">
             <a href="/best-crypto-cards-usa" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-flag-usa"></i>
+                <i className="fa-solid fa-flag-usa" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in the USA</span>
@@ -145,7 +144,7 @@ export default async function Home() {
             </a>
             <a href="/best-crypto-cards-europe" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-earth-europe"></i>
+                <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in Europe</span>
@@ -154,7 +153,7 @@ export default async function Home() {
             </a>
             <a href="/visa-crypto-cards" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-credit-card"></i>
+                <i className="fa-solid fa-credit-card" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Visa Crypto Cards</span>
@@ -163,7 +162,7 @@ export default async function Home() {
             </a>
             <a href="/mastercard-crypto-cards" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-circle-dot"></i>
+                <i className="fa-solid fa-circle-dot" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Mastercard Crypto Cards</span>
@@ -172,7 +171,7 @@ export default async function Home() {
             </a>
             <a href="/self-custody-crypto-cards" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-key"></i>
+                <i className="fa-solid fa-key" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Self-Custody Cards</span>
@@ -181,11 +180,38 @@ export default async function Home() {
             </a>
             <a href="/crypto-cards-with-cashback" className="browse-category-tile">
               <div className="browse-category-icon">
-                <i className="fa-solid fa-percent"></i>
+                <i className="fa-solid fa-percent" aria-hidden="true"></i>
               </div>
               <div className="browse-category-info">
                 <span className="browse-category-name">Cards With Cashback</span>
                 <span className="browse-category-desc">Earn BTC, tokens, or stablecoins</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-uk" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-sterling-sign" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in the UK</span>
+                <span className="browse-category-desc">FCA-regulated cards for UK residents</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-canada" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-leaf" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in Canada</span>
+                <span className="browse-category-desc">Cards for Canadian residents</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-latin-america" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-earth-americas" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Cards in Latin America</span>
+                <span className="browse-category-desc">MX, BR, AR, CO &amp; more</span>
               </div>
             </a>
           </div>
@@ -205,21 +231,21 @@ export default async function Home() {
             <div className="about-features">
               <div className="about-feature-card">
                 <div className="about-feature-icon">
-                  <i className="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                 </div>
                 <h3>Discover</h3>
                 <p>Browse a curated database of crypto cards updated regularly. Filter by network, custody type, region, and more.</p>
               </div>
               <div className="about-feature-card">
                 <div className="about-feature-icon">
-                  <i className="fa-solid fa-scale-balanced"></i>
+                  <i className="fa-solid fa-scale-balanced" aria-hidden="true"></i>
                 </div>
                 <h3>Compare</h3>
                 <p>Select up to 4 cards side-by-side to compare fees, limits, cashback rewards, and accepted top-up methods.</p>
               </div>
               <div className="about-feature-card">
                 <div className="about-feature-icon">
-                  <i className="fa-solid fa-shield-halved"></i>
+                  <i className="fa-solid fa-shield-halved" aria-hidden="true"></i>
                 </div>
                 <h3>Trusted Data</h3>
                 <p>All card details are sourced directly from issuers and kept current. No hidden affiliate bias in our listings.</p>

@@ -1,9 +1,10 @@
 import { getAllCards, toCardListItem } from '@/lib/data';
 import { isMastercardCard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
-import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema, generateFAQPageSchema } from '@/lib/schemas';
 import Breadcrumb from '@/components/Breadcrumb';
 import CardSkeleton from '@/components/CardSkeleton';
+import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
@@ -20,6 +21,29 @@ const CategoryCardsGrid = dynamic(() => import('@/components/CategoryCardsGrid')
 });
 
 export const revalidate = 3600;
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    q: 'What is the difference between Visa and Mastercard crypto cards?',
+    a: 'Both networks offer nearly identical global acceptance and consumer protections. The main practical differences are issuer availability by region (Mastercard issuers dominate the UK and EEA; Visa is more prevalent in North America and Asia-Pacific), and some premium Mastercard tiers (World, World Elite) include travel benefits not typically found on standard Visa products.',
+  },
+  {
+    q: 'Which Mastercard crypto card is best for European users?',
+    a: 'For European users, Mastercard crypto cards from 1inch, Binance, Bybit, and Nexo are popular due to their EEA availability, SEPA top-up support, and competitive cashback. The 1inch Card offers up to 2% cashback with zero issuance fee. Nexo Card provides up to 2% in BTC or NEXO with no annual fee. Use the filter above to narrow by network and region.',
+  },
+  {
+    q: 'Do Mastercard crypto cards work in the United States?',
+    a: 'Some Mastercard crypto cards are available in the US, but US coverage is less common than for Visa products due to Mastercard\'s issuer landscape in North America. Cards from Crypto.com (Visa) and Coinbase (Visa) are the dominant US choices. Check each Mastercard card\'s detail page for US state availability.',
+  },
+  {
+    q: 'Are there any crypto Mastercard cards with no annual fee?',
+    a: 'Yes. Several Mastercard crypto cards have zero issuance fee and no annual charge, including the 1inch Card, Bybit Card, and Gate Card on their standard tiers. Premium tiers with higher cashback may require staking the issuer\'s native token. All fees are listed on each card\'s comparison page.',
+  },
+  {
+    q: 'Can I earn cashback with a Mastercard crypto card?',
+    a: 'Yes. Cashback programmes on Mastercard crypto cards range from 0.5% flat to 5%+ on premium staking tiers. Rewards are typically paid in the issuer\'s native token (e.g., BXX for 1inch, NEXO for Nexo) or in Bitcoin. Some cards offer cash rewards or stablecoin cashback for users who prefer not to hold volatile assets.',
+  },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const allCards = await getAllCards();
@@ -66,6 +90,8 @@ export default async function MastercardCryptoCards() {
     'Best Mastercard Crypto Cards 2026',
   );
 
+  const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+
   return (
     <main className="category-page">
       <script
@@ -75,6 +101,10 @@ export default async function MastercardCryptoCards() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="container">
@@ -101,9 +131,31 @@ export default async function MastercardCryptoCards() {
             find the best card for your region and spending habits.
           </p>
         </section>
+
+        <section className="category-why">
+          <h2 className="category-why__title">Why These Cards?</h2>
+          <ul className="category-why__list">
+            <li className="category-why__item">
+              <strong>European &amp; UK regulatory coverage</strong> — Mastercard is the dominant network for EEA and UK crypto card issuers, with many holding FCA or Bank of Lithuania e-money licences providing strong consumer protections.
+            </li>
+            <li className="category-why__item">
+              <strong>Premium tier benefits available</strong> — select Mastercard products qualify for World or World Elite status, unlocking airport lounge access, travel insurance, and enhanced ATM withdrawal limits not typically available on standard cards.
+            </li>
+            <li className="category-why__item">
+              <strong>Zero-fee entry options</strong> — several listed cards have no issuance fee and no annual charge on the base tier, making it easy to get started with crypto spending without upfront cost.
+            </li>
+          </ul>
+        </section>
       </div>
 
       <CategoryCardsGrid cards={cards.map(toCardListItem)} />
+
+      <div className="container">
+        <section className="category-faq">
+          <h2 className="category-faq__title">Frequently Asked Questions</h2>
+          <FAQAccordion items={FAQ_ITEMS} ns="mastercard-faq" />
+        </section>
+      </div>
     </main>
   );
 }

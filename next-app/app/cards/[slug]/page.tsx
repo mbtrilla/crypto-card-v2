@@ -427,6 +427,22 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
       "bestRating": "5",
       "worstRating": "1",
     },
+    "review": {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Sweepbase Editorial Team",
+        "url": "https://sweepbase.com/about",
+      },
+      "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
+      "datePublished": "2026-03-16",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": ratingValue.toFixed(1),
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+    },
     "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
     "dateModified": "2026-03-16",
     "offers": {
@@ -513,7 +529,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               href="/cards"
               className="btn-get-card btn-gradient"
             >
-              Get This Card <i className="fa-solid fa-external-link"></i>
+              Get {card.name} <i className="fa-solid fa-external-link" aria-hidden="true"></i>
             </a>
           </div>
         </div>

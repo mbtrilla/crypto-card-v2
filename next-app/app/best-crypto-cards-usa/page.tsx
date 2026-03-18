@@ -1,9 +1,10 @@
 import { getAllCards, toCardListItem } from '@/lib/data';
 import { isUSACard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
-import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema, generateFAQPageSchema } from '@/lib/schemas';
 import Breadcrumb from '@/components/Breadcrumb';
 import CardSkeleton from '@/components/CardSkeleton';
+import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
@@ -20,6 +21,29 @@ const CategoryCardsGrid = dynamic(() => import('@/components/CategoryCardsGrid')
 });
 
 export const revalidate = 3600;
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    q: 'Are crypto debit cards legal in the United States?',
+    a: 'Yes. Crypto debit cards are legal in the US when issued by a licensed money-services business or bank. Most cards are issued under FinCEN registration and state money-transmitter licences. Some issuers voluntarily restrict certain states — notably New York — due to the BitLicense requirement, so always verify state-by-state availability before applying.',
+  },
+  {
+    q: 'Which states have the most crypto card options?',
+    a: 'California, Texas, Florida, and most other states have broad coverage. New York and Hawaii have the fewest options due to stricter licensing requirements. Cards like the Coinbase Card, Crypto.com Visa, and Nexo Card cover the majority of US states.',
+  },
+  {
+    q: 'Do I need to pay taxes on crypto cashback earned in the US?',
+    a: 'The IRS treats crypto rewards as ordinary income at the fair market value on the date received, similar to cash-back rebates being considered a purchase discount. You should report crypto cashback on your tax return; consult a tax professional for your specific situation.',
+  },
+  {
+    q: 'Can I use a crypto card with Apple Pay or Google Pay in the US?',
+    a: 'Many US-issued crypto cards support Apple Pay and Google Pay for tap-to-pay at NFC-enabled terminals. Check the individual card listing for wallet compatibility before applying — not all physical or virtual cards support mobile wallets.',
+  },
+  {
+    q: 'What is the best crypto card for US residents in 2026?',
+    a: 'The best card depends on your priorities. For highest cashback, look at cards with native-token staking tiers. For simplicity and wide state coverage, the Coinbase Card and Crypto.com Visa are popular choices. Use the compare tool on this page to filter by cashback rate, fee structure, and state availability.',
+  },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const allCards = await getAllCards();
@@ -66,6 +90,8 @@ export default async function BestCryptoCardsUSA() {
     'Best Crypto Cards in the USA 2026',
   );
 
+  const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+
   return (
     <main className="category-page">
       <script
@@ -75,6 +101,10 @@ export default async function BestCryptoCardsUSA() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="container">
@@ -102,24 +132,50 @@ export default async function BestCryptoCardsUSA() {
           </p>
         </section>
 
+        <section className="category-why">
+          <h2 className="category-why__title">Why These Cards?</h2>
+          <ul className="category-why__list">
+            <li className="category-why__item">
+              <strong>State compliance verified</strong> — every card listed covers at least the majority of US states; state restrictions are noted in each card&apos;s detail page.
+            </li>
+            <li className="category-why__item">
+              <strong>US-friendly funding</strong> — all listed cards support ACH bank transfer, US debit card top-up, or wire funding so you can load dollars without extra friction.
+            </li>
+            <li className="category-why__item">
+              <strong>Dollar liquidity</strong> — cards settle in USD or USDC, minimising FX slippage when spending domestically and keeping conversions transparent.
+            </li>
+          </ul>
+        </section>
+
         <div className="category-also-see">
           <span className="category-also-see__label">Also see:</span>
           <a href="/best-crypto-cards-europe" className="category-also-see__chip">
             <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
             Best Cards in Europe
           </a>
-          <a href="/best-crypto-cards-asia" className="category-also-see__chip">
-            <i className="fa-solid fa-earth-asia" aria-hidden="true"></i>
-            Best Cards in Asia
+          <a href="/best-crypto-cards-uk" className="category-also-see__chip">
+            <i className="fa-solid fa-sterling-sign" aria-hidden="true"></i>
+            Best Cards in the UK
           </a>
-          <a href="/best-crypto-cards-australia" className="category-also-see__chip">
-            <i className="fa-solid fa-earth-oceania" aria-hidden="true"></i>
-            Best Cards in Australia
+          <a href="/best-crypto-cards-canada" className="category-also-see__chip">
+            <i className="fa-solid fa-leaf" aria-hidden="true"></i>
+            Best Cards in Canada
+          </a>
+          <a href="/best-crypto-cards-latin-america" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-americas" aria-hidden="true"></i>
+            Best Cards in Latin America
           </a>
         </div>
       </div>
 
       <CategoryCardsGrid cards={cards.map(toCardListItem)} />
+
+      <div className="container">
+        <section className="category-faq">
+          <h2 className="category-faq__title">Frequently Asked Questions</h2>
+          <FAQAccordion items={FAQ_ITEMS} ns="usa-faq" />
+        </section>
+      </div>
     </main>
   );
 }

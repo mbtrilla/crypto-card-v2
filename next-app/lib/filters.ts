@@ -133,6 +133,61 @@ export function isAustraliaCard(card: Card): boolean {
   );
 }
 
+// ─── Additional regional filters ────────────────────────────────────────────
+
+const LATAM_COUNTRIES = [
+  'mexico', 'brazil', 'argentina', 'colombia', 'chile', 'peru', 'ecuador',
+  'venezuela', 'uruguay', 'paraguay', 'bolivia', 'costa rica', 'panama',
+  'guatemala', 'dominican republic', 'el salvador', 'honduras', 'nicaragua',
+  'cuba', 'jamaica', 'trinidad', 'bahamas', 'barbados', 'belize', 'guyana',
+  'suriname', 'cayman islands',
+];
+
+/** Returns true if the card is available in the United Kingdom. */
+export function isUKCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+
+  return (
+    c.includes('united kingdom') ||
+    c.includes('uk') ||
+    r.includes(' uk') ||
+    r.includes('uk ') ||
+    r.includes('uk,') ||
+    r.includes('uk)') ||
+    r.includes('(uk') ||
+    r.includes('uk only') ||
+    r.includes('united kingdom')
+  );
+}
+
+/** Returns true if the card is available in Canada. */
+export function isCanadaCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+
+  return (
+    c.includes('canada') ||
+    r.includes('canada') ||
+    r.includes('north america')
+  );
+}
+
+/**
+ * Returns true if the card is available in at least one Latin American country.
+ * Checks the regions string for "latin america", "latam", or "caribbean",
+ * then falls back to scanning the countries list.
+ */
+export function isLatAmCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+
+  if (r.includes('latin america') || r.includes('latam') || r.includes('caribbean'))
+    return true;
+
+  return LATAM_COUNTRIES.some(country => c.includes(country));
+}
+
 // ─── Generic category dispatcher ────────────────────────────────────────────
 
 /**
@@ -157,6 +212,9 @@ export function filterCardsByCategory(cards: Card[], category: string): Card[] {
     case 'cashback':     return cards.filter(hasCashback);
     case 'asia':         return cards.filter(isAsiaCard);
     case 'australia':    return cards.filter(isAustraliaCard);
+    case 'uk':           return cards.filter(isUKCard);
+    case 'canada':       return cards.filter(isCanadaCard);
+    case 'latam':        return cards.filter(isLatAmCard);
     default:             return cards;
   }
 }

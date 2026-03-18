@@ -1,9 +1,10 @@
 import { getAllCards, toCardListItem } from '@/lib/data';
 import { isEuropeCard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
-import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema, generateFAQPageSchema } from '@/lib/schemas';
 import Breadcrumb from '@/components/Breadcrumb';
 import CardSkeleton from '@/components/CardSkeleton';
+import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
@@ -20,6 +21,29 @@ const CategoryCardsGrid = dynamic(() => import('@/components/CategoryCardsGrid')
 });
 
 export const revalidate = 3600;
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    q: 'Are crypto cards available across the European Union?',
+    a: 'Yes. Most crypto cards listed here are available in all 27 EU member states plus Norway, Iceland, and Liechtenstein (the broader EEA). Some issuers also cover Switzerland and the UK separately. Check each card\'s detail page to confirm availability in your specific country.',
+  },
+  {
+    q: 'What regulations govern crypto cards in Europe?',
+    a: 'European crypto cards are issued under the EU\'s Payment Services Directive 2 (PSD2) and Electronic Money Directive (EMD2). Issuers must hold an e-money licence from a national competent authority — commonly the Bank of Lithuania, FCA (UK), or De Nederlandsche Bank. AML/KYC requirements follow AMLD5/AMLD6.',
+  },
+  {
+    q: 'Which European crypto card has the highest cashback?',
+    a: 'Premium staking-tier cards from Crypto.com (up to 5% CRO), Nexo (up to 2% in NEXO), and Plutus (up to 9% PLU for subscribers) offer the highest rates in Europe. However, cashback in native tokens introduces price risk — compare the actual USD equivalent when evaluating headline rates.',
+  },
+  {
+    q: 'Do European crypto cards work outside the EU?',
+    a: 'Yes. Visa and Mastercard cards issued in Europe work globally wherever those networks are accepted. Foreign transaction fees (typically 0–2.5%) and ATM withdrawal fees vary by issuer. Cards with Mastercard World or Visa Infinite status often include fee waivers on FX transactions.',
+  },
+  {
+    q: 'Can UK residents still use EU crypto cards after Brexit?',
+    a: 'Most EU-issued cards continue to work in the UK. However, some issuers segregate EU and UK products due to regulatory requirements. Several issuers — including Revolut and Wirex — hold both FCA (UK) and EU e-money licences, providing seamless service to customers in both regions.',
+  },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const allCards = await getAllCards();
@@ -66,16 +90,13 @@ export default async function BestCryptoCardsEurope() {
     'Best Crypto Cards in Europe 2026',
   );
 
+  const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+
   return (
     <main className="category-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <div className="container">
         <Breadcrumb items={[
@@ -102,8 +123,27 @@ export default async function BestCryptoCardsEurope() {
           </p>
         </section>
 
+        <section className="category-why">
+          <h2 className="category-why__title">Why These Cards?</h2>
+          <ul className="category-why__list">
+            <li className="category-why__item">
+              <strong>Regulated issuers only</strong> — all cards are issued under FCA, Bank of Lithuania, or equivalent EEA national competent authority licences, ensuring consumer protection and deposit safeguarding.
+            </li>
+            <li className="category-why__item">
+              <strong>SEPA-compatible funding</strong> — every listed card supports SEPA Credit Transfer or SEPA Instant top-ups for low-cost euro deposits directly from your bank account.
+            </li>
+            <li className="category-why__item">
+              <strong>Multi-currency flexibility</strong> — selected cards handle EUR, GBP, CHF, and PLN spending without punitive conversion fees, ideal for users travelling across eurozone borders.
+            </li>
+          </ul>
+        </section>
+
         <div className="category-also-see">
           <span className="category-also-see__label">Also see:</span>
+          <a href="/best-crypto-cards-uk" className="category-also-see__chip">
+            <i className="fa-solid fa-sterling-sign" aria-hidden="true"></i>
+            Best Cards in the UK
+          </a>
           <a href="/best-crypto-cards-usa" className="category-also-see__chip">
             <i className="fa-solid fa-flag-usa" aria-hidden="true"></i>
             Best Cards in the USA
@@ -112,14 +152,21 @@ export default async function BestCryptoCardsEurope() {
             <i className="fa-solid fa-earth-asia" aria-hidden="true"></i>
             Best Cards in Asia
           </a>
-          <a href="/best-crypto-cards-australia" className="category-also-see__chip">
-            <i className="fa-solid fa-earth-oceania" aria-hidden="true"></i>
-            Best Cards in Australia
+          <a href="/best-crypto-cards-canada" className="category-also-see__chip">
+            <i className="fa-solid fa-leaf" aria-hidden="true"></i>
+            Best Cards in Canada
           </a>
         </div>
       </div>
 
       <CategoryCardsGrid cards={cards.map(toCardListItem)} />
+
+      <div className="container">
+        <section className="category-faq">
+          <h2 className="category-faq__title">Frequently Asked Questions</h2>
+          <FAQAccordion items={FAQ_ITEMS} ns="europe-faq" />
+        </section>
+      </div>
     </main>
   );
 }

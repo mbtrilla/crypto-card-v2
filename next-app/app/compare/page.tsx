@@ -7,28 +7,36 @@ import Breadcrumb from '@/components/Breadcrumb';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Compare Crypto Cards Side by Side 2026 | Sweepbase',
-  description:
-    'Compare up to 4 crypto debit and credit cards side by side. Evaluate fees, cashback rates, supported networks, and regional availability in one view.',
-  alternates: { canonical: 'https://sweepbase.com/compare' },
-  openGraph: {
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { ids?: string };
+}): Promise<Metadata> {
+  const hasIds = Boolean(searchParams.ids);
+  return {
     title: 'Compare Crypto Cards Side by Side 2026 | Sweepbase',
     description:
       'Compare up to 4 crypto debit and credit cards side by side. Evaluate fees, cashback rates, supported networks, and regional availability in one view.',
-    url: 'https://sweepbase.com/compare',
-    type: 'website',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Compare Crypto Cards Side by Side 2026 | Sweepbase',
-    description:
-      'Compare up to 4 crypto debit and credit cards side by side. Evaluate fees, cashback rates, supported networks, and regional availability in one view.',
-    images: ['https://sweepbase.com/og-image.png'],
-  },
-  robots: { index: true, follow: true },
-};
+    alternates: { canonical: 'https://sweepbase.com/compare' },
+    openGraph: {
+      title: 'Compare Crypto Cards Side by Side 2026 | Sweepbase',
+      description:
+        'Compare up to 4 crypto debit and credit cards side by side. Evaluate fees, cashback rates, supported networks, and regional availability in one view.',
+      url: 'https://sweepbase.com/compare',
+      type: 'website',
+      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Compare Crypto Cards Side by Side 2026 | Sweepbase',
+      description:
+        'Compare up to 4 crypto debit and credit cards side by side. Evaluate fees, cashback rates, supported networks, and regional availability in one view.',
+      images: ['https://sweepbase.com/og-image.png'],
+    },
+    // noindex comparison URLs with query params to avoid thin/duplicate content
+    robots: hasIds ? { index: false, follow: true } : { index: true, follow: true },
+  };
+}
 
 const webPageJsonLd = {
   '@context': 'https://schema.org',
@@ -116,9 +124,9 @@ export default async function ComparePage({
             <table className="compare-table">
               <thead>
                 <tr>
-                  <th className="sticky-col">Features</th>
+                  <th scope="col" className="sticky-col">Features</th>
                   {selectedCards.map(card => (
-                    <th key={card.slug}>
+                    <th scope="col" key={card.slug}>
                       <div className="compare-card-header">
                         <Image src={card.logo} alt={card.name} width={80} height={50} priority />
                         <h3>{card.name}</h3>
@@ -140,7 +148,7 @@ export default async function ComparePage({
                   <td className="sticky-col"></td>
                   {selectedCards.map(card => (
                     <td key={`${card.slug}-cta`}>
-                      <button className="get-card-btn" style={{ fontSize: '0.9rem' }}>Get Card</button>
+                      <button className="get-card-btn" style={{ fontSize: '0.9rem' }}>Get {card.name}</button>
                     </td>
                   ))}
                 </tr>

@@ -1,9 +1,10 @@
 import { getAllCards, toCardListItem } from '@/lib/data';
 import { isAsiaCard } from '@/lib/filters';
 import { generateCategoryMetaDescription } from '@/lib/meta';
-import { generateCategoryItemListSchema, generateCategoryWebPageSchema } from '@/lib/schemas';
+import { generateCategoryItemListSchema, generateCategoryWebPageSchema, generateFAQPageSchema } from '@/lib/schemas';
 import Breadcrumb from '@/components/Breadcrumb';
 import CardSkeleton from '@/components/CardSkeleton';
+import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
@@ -20,6 +21,29 @@ const CategoryCardsGrid = dynamic(() => import('@/components/CategoryCardsGrid')
 });
 
 export const revalidate = 3600;
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    q: 'Which Asian countries have the best crypto card options?',
+    a: 'Singapore, Japan, and Hong Kong have the broadest selection of regulated crypto card products. Singapore benefits from MAS licensing, Japan from FSA oversight, and Hong Kong from SFC registration. India, South Korea, the Philippines, and Vietnam also have growing coverage from global issuers.',
+  },
+  {
+    q: 'Is using a crypto card legal in Japan and Singapore?',
+    a: 'Yes. Japan regulates virtual currency exchanges and payment services under the Payment Services Act (PSA), and FSA-licensed issuers can offer crypto cards to Japanese residents. Singapore\'s MAS licenses digital payment token service providers under the Payment Services Act 2019, with several MAS-regulated crypto card issuers active in the market.',
+  },
+  {
+    q: 'How do I top up a crypto card in India?',
+    a: 'Most India-available cards accept UPI, IMPS, or NEFT bank transfers. You typically deposit INR to the issuer\'s platform, convert to a stablecoin or the card\'s settlement currency, and the balance becomes available for spending. Some global cards also support international wire transfers in USD or EUR.',
+  },
+  {
+    q: 'Are crypto cards available in China?',
+    a: 'Mainland China restricts crypto trading and most crypto card services. However, residents of Hong Kong can access a wider range of products under the SFC licensing framework. Users travelling through or residing in other Asian jurisdictions should verify their specific country\'s regulations before applying.',
+  },
+  {
+    q: 'What currencies do Asia-available crypto cards support?',
+    a: 'Most cards settle in USD or a major stablecoin (USDC/USDT) and apply a real-time FX conversion when you spend in local currency. Some cards offer JPY, SGD, or HKD settlement for lower conversion costs. Bitcoin, Ethereum, BNB, and SOL are the most commonly supported top-up assets for Asia-region cards.',
+  },
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const allCards = await getAllCards();
@@ -66,6 +90,8 @@ export default async function BestCryptoCardsAsia() {
     'Best Crypto Cards in Asia 2026',
   );
 
+  const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+
   return (
     <main className="category-page">
       <script
@@ -75,6 +101,10 @@ export default async function BestCryptoCardsAsia() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="container">
@@ -103,24 +133,50 @@ export default async function BestCryptoCardsAsia() {
           </p>
         </section>
 
+        <section className="category-why">
+          <h2 className="category-why__title">Why These Cards?</h2>
+          <ul className="category-why__list">
+            <li className="category-why__item">
+              <strong>APAC-licensed issuers</strong> — cards are filtered to include providers regulated by MAS (Singapore), FSA (Japan), SFC (Hong Kong), or equivalent APAC authorities, ensuring legal compliance in key Asian markets.
+            </li>
+            <li className="category-why__item">
+              <strong>Local payment method support</strong> — selected cards accept UPI, PayNow, PromptPay, or local bank transfers for fast, low-cost top-ups in your home currency without international wire fees.
+            </li>
+            <li className="category-why__item">
+              <strong>Broad crypto support</strong> — all listed cards accept at least Bitcoin and Ethereum; many also support BNB, SOL, XRP, and region-popular tokens for maximum flexibility in Asia&apos;s diverse crypto ecosystem.
+            </li>
+          </ul>
+        </section>
+
         <div className="category-also-see">
           <span className="category-also-see__label">Also see:</span>
+          <a href="/best-crypto-cards-australia" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-oceania" aria-hidden="true"></i>
+            Best Cards in Australia
+          </a>
           <a href="/best-crypto-cards-europe" className="category-also-see__chip">
             <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
             Best Cards in Europe
+          </a>
+          <a href="/best-crypto-cards-latin-america" className="category-also-see__chip">
+            <i className="fa-solid fa-earth-americas" aria-hidden="true"></i>
+            Best Cards in Latin America
           </a>
           <a href="/best-crypto-cards-usa" className="category-also-see__chip">
             <i className="fa-solid fa-flag-usa" aria-hidden="true"></i>
             Best Cards in the USA
           </a>
-          <a href="/best-crypto-cards-australia" className="category-also-see__chip">
-            <i className="fa-solid fa-earth-oceania" aria-hidden="true"></i>
-            Best Cards in Australia
-          </a>
         </div>
       </div>
 
       <CategoryCardsGrid cards={cards.map(toCardListItem)} />
+
+      <div className="container">
+        <section className="category-faq">
+          <h2 className="category-faq__title">Frequently Asked Questions</h2>
+          <FAQAccordion items={FAQ_ITEMS} ns="asia-faq" />
+        </section>
+      </div>
     </main>
   );
 }

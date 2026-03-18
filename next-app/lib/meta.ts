@@ -147,6 +147,18 @@ const CATEGORY_FACTS: Record<string, { label: string; tagline: string }> = {
     label: 'crypto cards available in Australia',
     tagline: 'Filtered for Australian resident eligibility',
   },
+  'best-crypto-cards-uk': {
+    label: 'crypto cards available in the UK',
+    tagline: 'Filtered for UK resident eligibility',
+  },
+  'best-crypto-cards-canada': {
+    label: 'crypto cards available in Canada',
+    tagline: 'Filtered for Canadian resident eligibility',
+  },
+  'best-crypto-cards-latin-america': {
+    label: 'crypto cards in Latin America',
+    tagline: 'Covers MX, BR, AR, CO, CL & more',
+  },
 };
 
 /**

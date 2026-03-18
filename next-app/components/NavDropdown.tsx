@@ -4,14 +4,17 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 const BROWSE_LINKS = [
-  { href: '/best-crypto-cards-usa',        label: 'Best Cards in the USA',       icon: 'fa-flag-usa' },
-  { href: '/best-crypto-cards-europe',     label: 'Best Cards in Europe',        icon: 'fa-earth-europe' },
-  { href: '/best-crypto-cards-asia',       label: 'Best Cards in Asia',          icon: 'fa-earth-asia' },
-  { href: '/best-crypto-cards-australia',  label: 'Best Cards in Australia',     icon: 'fa-earth-oceania' },
-  { href: '/visa-crypto-cards',            label: 'Visa Crypto Cards',           icon: 'fa-credit-card' },
-  { href: '/mastercard-crypto-cards',      label: 'Mastercard Crypto Cards',     icon: 'fa-circle-dot' },
-  { href: '/self-custody-crypto-cards',    label: 'Self-Custody Cards',          icon: 'fa-key' },
-  { href: '/crypto-cards-with-cashback',   label: 'Cards With Cashback',         icon: 'fa-percent' },
+  { href: '/best-crypto-cards-usa',            label: 'Best Cards in the USA',         icon: 'fa-flag-usa' },
+  { href: '/best-crypto-cards-europe',         label: 'Best Cards in Europe',          icon: 'fa-earth-europe' },
+  { href: '/best-crypto-cards-uk',             label: 'Best Cards in the UK',          icon: 'fa-sterling-sign' },
+  { href: '/best-crypto-cards-canada',         label: 'Best Cards in Canada',          icon: 'fa-leaf' },
+  { href: '/best-crypto-cards-latin-america',  label: 'Best Cards in Latin America',   icon: 'fa-earth-americas' },
+  { href: '/best-crypto-cards-asia',           label: 'Best Cards in Asia',            icon: 'fa-earth-asia' },
+  { href: '/best-crypto-cards-australia',      label: 'Best Cards in Australia',       icon: 'fa-earth-oceania' },
+  { href: '/visa-crypto-cards',                label: 'Visa Crypto Cards',             icon: 'fa-credit-card' },
+  { href: '/mastercard-crypto-cards',          label: 'Mastercard Crypto Cards',       icon: 'fa-circle-dot' },
+  { href: '/self-custody-crypto-cards',        label: 'Self-Custody Cards',            icon: 'fa-key' },
+  { href: '/crypto-cards-with-cashback',       label: 'Cards With Cashback',           icon: 'fa-percent' },
 ];
 
 /**
@@ -53,7 +56,7 @@ export default function NavDropdown() {
         onClick={() => setOpen(o => !o)}
       >
         Browse
-        <i className="fa-solid fa-chevron-down"></i>
+        <i className="fa-solid fa-chevron-down" aria-hidden="true"></i>
       </button>
 
       {open && (
@@ -65,7 +68,7 @@ export default function NavDropdown() {
               role="menuitem"
               onClick={() => setOpen(false)}
             >
-              <i className={`fa-solid ${icon}`}></i>
+              <i className={`fa-solid ${icon}`} aria-hidden="true"></i>
               {label}
             </Link>
           ))}
