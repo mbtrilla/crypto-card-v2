@@ -146,45 +146,22 @@ export function generateCategoryWebPageSchema(
  * @param cards - Full card array returned by `getAllCards()`.
  */
 export function generateHomeItemListSchema(cards: Card[]) {
-  const TOP_N = 50;
+  // Keep lightweight — 20 items, no ratings, short descriptions (~100 chars)
+  const TOP_N = 20;
   const topCards = cards.filter(c => !isThinCard(c)).slice(0, TOP_N);
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Best Crypto Debit & Credit Cards 2026',
-    description: `Top ${topCards.length} crypto debit and credit cards as curated by Sweepbase editors.`,
+    description: `Top ${topCards.length} crypto debit and credit cards curated by Sweepbase.`,
     url: BASE_URL,
     numberOfItems: topCards.length,
-    itemListElement: topCards.map((card, index) => {
-      const ratingValue = calculateCardRating(card);
-      const reviewCount = getReviewCount(card.slug);
-      const img = cardImageUrl(card);
-      const desc = truncate(card.description);
-
-      const product: Record<string, unknown> = {
-        '@type': 'FinancialProduct',
-        name: card.name,
-        url: `${BASE_URL}/cards/${card.slug}`,
-      };
-
-      if (desc) product.description = desc;
-      if (img) product.image = img;
-      if (ratingValue) {
-        product.aggregateRating = {
-          '@type': 'AggregateRating',
-          ratingValue,
-          reviewCount,
-          bestRating: 5,
-          worstRating: 1,
-        };
-      }
-
-      return {
-        '@type': 'ListItem',
-        position: index + 1,
-        item: product,
-      };
-    }),
+    itemListElement: topCards.map((card, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: card.name,
+      url: `${BASE_URL}/cards/${card.slug}`,
+    })),
   };
 }
 

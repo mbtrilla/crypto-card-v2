@@ -2674,12 +2674,39 @@ select:focus:not(:focus-visible) {
     border-top: 1px solid var(--border-glass);
 }
 
+.card-index-details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.card-index-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.card-index-details[open] .card-index-heading::after {
+    transform: rotate(180deg);
+}
+
 .card-index-heading {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-index-heading::after {
+    content: '';
+    border: solid var(--text-muted);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform var(--transition-fast);
+    flex-shrink: 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -2688,8 +2715,8 @@ select:focus:not(:focus-visible) {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
+    columns: 3;
+    column-gap: 1.5rem;
     gap: 0.5rem 1rem;
 }
 
