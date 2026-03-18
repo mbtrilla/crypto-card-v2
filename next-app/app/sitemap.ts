@@ -1,10 +1,12 @@
 import { MetadataRoute } from 'next';
 import { getAllCards } from '@/lib/data';
+import { isThinCard } from '@/lib/thin-cards';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cards = await getAllCards();
-  
-  const cardEntries: MetadataRoute.Sitemap = cards.map((card) => ({
+
+  // Exclude thin-content cards from sitemap to avoid indexing low-quality pages
+  const cardEntries: MetadataRoute.Sitemap = cards.filter(c => !isThinCard(c)).map((card) => ({
     url: `https://sweepbase.com/cards/${card.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',

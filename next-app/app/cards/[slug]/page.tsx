@@ -1,5 +1,6 @@
 import { getAllCards } from "@/lib/data";
 import { isUSACard, isEuropeCard, isUKCard, isAsiaCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback as hasCashbackFilter } from "@/lib/filters";
+import { isThinCard } from "@/lib/thin-cards";
 import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
@@ -43,10 +44,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!card) return {};
   const title = `${card.name} Review 2026 — Fees, Cashback & Availability | Sweepbase`;
   const description = generateCardMetaDescription(card);
+  const thin = isThinCard(card);
   return {
     title,
     description,
-    robots: { index: true, follow: true },
+    robots: thin ? { index: false, follow: true } : { index: true, follow: true },
     alternates: { canonical: `https://sweepbase.com/cards/${card.slug}` },
     openGraph: {
       title: `${card.name} Review 2026`,
@@ -515,6 +517,14 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
         <div className="back-link-container">
           <a href="/" className="back-link"><i className="fa-solid fa-arrow-left"></i> Back to all cards</a>
         </div>
+
+        {isThinCard(card) && (
+          <div className="thin-card-banner" role="alert">
+            <i className="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            Limited information available. This card&apos;s details have not been fully verified.
+            Data may be incomplete or outdated.
+          </div>
+        )}
 
         <Breadcrumb items={[
           { label: 'Home', href: '/' },

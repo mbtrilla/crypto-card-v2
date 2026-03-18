@@ -10,6 +10,7 @@
 import type { Card } from '@/lib/data';
 import type { FAQItem } from '@/components/FAQAccordion';
 import { calculateCardRating, getReviewCount } from '@/lib/ratings';
+import { isThinCard } from '@/lib/thin-cards';
 
 const BASE_URL = 'https://sweepbase.com';
 
@@ -146,7 +147,7 @@ export function generateCategoryWebPageSchema(
  */
 export function generateHomeItemListSchema(cards: Card[]) {
   const TOP_N = 50;
-  const topCards = cards.slice(0, TOP_N);
+  const topCards = cards.filter(c => !isThinCard(c)).slice(0, TOP_N);
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',

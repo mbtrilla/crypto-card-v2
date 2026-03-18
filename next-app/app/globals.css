@@ -1522,6 +1522,27 @@ select:focus:not(:focus-visible) {
     text-decoration: underline;
 }
 
+/* ── Thin card warning banner ── */
+.thin-card-banner {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--warning);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    line-height: 1.5;
+}
+
+.thin-card-banner i,
+.thin-card-banner svg {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
 .static-grid {
     display: grid;
     grid-template-columns: 1fr;
