@@ -106,13 +106,15 @@ export function generateCategoryWebPageSchema(
   pageName: string,
   pageUrl: string,
   breadcrumbs: Array<{ name: string; item: string }>,
+  description?: string,
 ) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
+    '@type': ['CollectionPage', 'WebPage'],
     name: pageName,
     url: pageUrl,
-    dateModified: '2026-03-16',
+    ...(description ? { description } : {}),
+    dateModified: '2026-03-18',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: breadcrumbs.map((crumb, i) => ({
@@ -121,6 +123,11 @@ export function generateCategoryWebPageSchema(
         name: crumb.name,
         item: crumb.item,
       })),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Sweepbase',
+      url: BASE_URL,
     },
   };
 }
@@ -138,13 +145,13 @@ export function generateCategoryWebPageSchema(
  * @param cards - Full card array returned by `getAllCards()`.
  */
 export function generateHomeItemListSchema(cards: Card[]) {
-  const TOP_N = 12;
+  const TOP_N = 50;
   const topCards = cards.slice(0, TOP_N);
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Best Crypto Debit & Credit Cards 2026',
-    description: 'Top 12 crypto debit and credit cards as curated by Sweepbase editors.',
+    description: `Top ${topCards.length} crypto debit and credit cards as curated by Sweepbase editors.`,
     url: BASE_URL,
     numberOfItems: topCards.length,
     itemListElement: topCards.map((card, index) => {

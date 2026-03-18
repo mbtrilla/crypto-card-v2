@@ -146,6 +146,21 @@ export default async function Home() {
     ]
   };
 
+  const siteNavJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Main Navigation",
+    "url": "https://sweepbase.com",
+    "hasPart": [
+      { "@type": "SiteNavigationElement", "name": "Discover", "url": "https://sweepbase.com/#discover" },
+      { "@type": "SiteNavigationElement", "name": "All Cards", "url": "https://sweepbase.com/cards" },
+      { "@type": "SiteNavigationElement", "name": "Compare", "url": "https://sweepbase.com/compare" },
+      { "@type": "SiteNavigationElement", "name": "Calculator", "url": "https://sweepbase.com/calculator" },
+      { "@type": "SiteNavigationElement", "name": "Guides", "url": "https://sweepbase.com/guides" },
+      { "@type": "SiteNavigationElement", "name": "About", "url": "https://sweepbase.com/about" },
+    ],
+  };
+
   return (
     <main>
       <script
@@ -167,6 +182,10 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavJsonLd) }}
       />
       <section className="hero-section">
         <div className="container hero-content">

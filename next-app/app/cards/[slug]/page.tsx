@@ -417,12 +417,28 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
   const relatedCats    = getRelatedCategories(card);
 
   // ── JSON-LD ──
-  const productJsonLd = {
+  // Determine Visa/Mastercard brand for schema
+  const networkLower = card.network.toLowerCase();
+  const networkBrand = networkLower.includes('visa') ? 'Visa'
+    : networkLower.includes('mastercard') ? 'Mastercard'
+    : card.network || cardIssuer;
+
+  // Build fees specification text
+  const feesSpec = [
+    card.issuanceFee !== 'N/A' ? `Issuance: ${card.issuanceFee}` : null,
+    card.annualFee !== 'N/A' ? `Annual: ${card.annualFee}` : null,
+    card.fxFee !== 'N/A' ? `FX: ${card.fxFee}` : null,
+  ].filter(Boolean).join('; ') || 'See card details';
+
+  const productJsonLd: Record<string, unknown> = {
     "@context": "https://schema.org/",
-    "@type": "Product",
+    "@type": "FinancialProduct",
     "name": card.name,
     "description": card.description,
-    "brand": { "@type": "Brand", "name": cardIssuer },
+    "brand": { "@type": "Brand", "name": networkBrand },
+    "provider": { "@type": "Organization", "name": cardIssuer },
+    "feesAndCommissionsSpecification": feesSpec,
+    "category": "Crypto Debit Card",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": ratingValue.toFixed(1),
@@ -450,11 +466,12 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
     "dateModified": "2026-03-18",
     "offers": {
       "@type": "Offer",
-      "url": `https://sweepbase.com/cards/${card.slug}`,
+      "url": card.affiliateUrl || `https://sweepbase.com/cards/${card.slug}`,
       "price": "0",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
     },
+    "areaServed": card.regions || undefined,
   };
 
   const breadcrumbJsonLd = {
