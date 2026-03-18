@@ -133,17 +133,38 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
     path.join(process.cwd(), 'data.csv'),             // fallback: cwd == next-app
     path.join(process.cwd(), 'next-app', 'data.csv'), // fallback: cwd == parent dir
   ];
-  const filePath = candidates.find(p => fs.existsSync(p)) ?? candidates[candidates.length - 1];
-  const csvFile = fs.readFileSync(filePath, 'utf8');
-  
-  const { data } = Papa.parse(csvFile, {
+  const filePath = candidates.find(p => fs.existsSync(p));
+
+  if (!filePath) {
+    console.error(`[data] CSV not found. Searched: ${candidates.join(', ')}`);
+    return [];
+  }
+
+  let csvFile: string;
+  try {
+    csvFile = fs.readFileSync(filePath, 'utf8');
+  } catch (err) {
+    console.error(`[data] Failed to read ${filePath}:`, err);
+    return [];
+  }
+
+  const { data, errors } = Papa.parse(csvFile, {
     header: true,
     skipEmptyLines: true,
   });
 
-  return (data as any[])
+  if (errors.length > 0) {
+    console.warn(`[data] CSV parse warnings:`, errors.slice(0, 3));
+  }
+
+  if (!data || data.length === 0) {
+    console.error('[data] CSV parsed but contains no rows');
+    return [];
+  }
+
+  return (data as Record<string, string>[])
     .filter(item => item[FIELDS.name] && item[FIELDS.name].trim() !== '')
-    .map((item: any) => {
+    .map((item: Record<string, string>) => {
       const name = item[FIELDS.name];
       const rawLogo = item[FIELDS.logo] || '';
       const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=18181b&color=fff&size=400`;

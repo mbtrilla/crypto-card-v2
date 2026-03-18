@@ -12,7 +12,7 @@ import type { FAQItem } from '@/components/FAQAccordion';
 import { calculateCardRating, getReviewCount } from '@/lib/ratings';
 import { isThinCard } from '@/lib/thin-cards';
 
-const BASE_URL = 'https://sweepbase.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://sweepbase.com';
 
 // ---------------------------------------------------------------------------
 // Internal helpers
