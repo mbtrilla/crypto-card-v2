@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardListItem } from '@/lib/data';
+import { trackCardClick } from '@/lib/analytics';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -23,7 +24,7 @@ export default function CardItem({ card, onCompare, isCompared, priority = false
 
   return (
     <div className="crypto-card">
-      <Link href={`/cards/${card.slug}`} className="card-link-overlay">
+      <Link href={`/cards/${card.slug}`} className="card-link-overlay" onClick={() => trackCardClick(name, 'view')}>
         <div className="card-image-wrapper">
           <Image
               src={logo}
@@ -49,10 +50,10 @@ export default function CardItem({ card, onCompare, isCompared, priority = false
           <div className="outline-pill">Region: {regions}</div>
 
           <div style={{ marginTop: 'auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <button className="get-card-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('#', '_blank'); }}>Get Card</button>
+            <button className="get-card-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); trackCardClick(name, 'get_card'); window.open('#', '_blank'); }}>Get Card</button>
             <button 
               className={`compare-btn ${isCompared ? 'active' : ''}`} 
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); onCompare(); }}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); trackCardClick(name, 'compare'); onCompare(); }}
             >
               <i className={`fa-solid ${isCompared ? 'fa-check' : 'fa-plus'}`}></i> {isCompared ? 'Added to Compare' : 'Add to Compare'}
             </button>

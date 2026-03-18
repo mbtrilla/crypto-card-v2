@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
+import Script from "next/script";
 import "@/lib/icons"; // FA tree-shaken icon library (replaces CDN)
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +53,9 @@ export const metadata: Metadata = {
   alternates: {
     languages: { "en": "https://sweepbase.com" },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_ID || "",
+  },
 };
 
 export default function RootLayout({
@@ -59,8 +65,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <head />
+      <head>
+        {/* Preconnect for analytics — resolve DNS+TLS early */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      </head>
       <body>
+        {/* GA4 — loads only when NEXT_PUBLIC_GA_ID env var is set */}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  page_title: document.title,
+                  send_page_view: true
+                });
+              `}
+            </Script>
+          </>
+        )}
+
         <a href="#main-content" className="skip-nav">Skip to main content</a>
 
         <div className="background-globes">
