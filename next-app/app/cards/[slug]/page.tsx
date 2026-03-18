@@ -529,8 +529,12 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               </div>
             </div>
             <a
-              href="/cards"
+              href={card.affiliateUrl || '/cards'}
               className="btn-get-card btn-gradient"
+              {...(card.affiliateUrl ? {
+                target: '_blank',
+                rel: 'nofollow sponsored noopener noreferrer',
+              } : {})}
             >
               Get {card.name} <i className="fa-solid fa-external-link" aria-hidden="true"></i>
             </a>

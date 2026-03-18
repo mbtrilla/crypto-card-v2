@@ -148,7 +148,19 @@ export default async function ComparePage({
                   <td className="sticky-col"></td>
                   {selectedCards.map(card => (
                     <td key={`${card.slug}-cta`}>
-                      <button className="get-card-btn" style={{ fontSize: '0.9rem' }}>Get {card.name}</button>
+                      {card.affiliateUrl ? (
+                        <a
+                          href={card.affiliateUrl}
+                          className="get-card-btn"
+                          style={{ fontSize: '0.9rem', display: 'inline-block', textAlign: 'center' }}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                        >
+                          Get {card.name}
+                        </a>
+                      ) : (
+                        <button className="get-card-btn" style={{ fontSize: '0.9rem' }}>Get {card.name}</button>
+                      )}
                     </td>
                   ))}
                 </tr>

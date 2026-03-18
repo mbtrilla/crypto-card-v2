@@ -25,6 +25,8 @@ export interface Card {
   countries: string;
   /** Review month displayed on card detail pages, e.g. "March 2026" */
   lastReviewed: string;
+  /** External affiliate/issuer URL. Null if not set. */
+  affiliateUrl: string | null;
 }
 
 /**
@@ -89,7 +91,8 @@ export const FIELDS = {
   cons: 'Cons',
   description: 'Marketing Description',
   mainPageCashback: 'Main Page Cashback',
-  countries: ['P Countries Available', 'Counties Available', 'Countries Available']
+  countries: ['P Countries Available', 'Counties Available', 'Countries Available'],
+  affiliateUrl: 'Affiliate URL',
 };
 
 export const getSlug = (text: string) => {
@@ -193,6 +196,9 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
         countries: countriesRaw,
         // Static review date — update this string when the database is next audited
         lastReviewed: 'March 2026',
+        affiliateUrl: (item[FIELDS.affiliateUrl] || '').trim().startsWith('http')
+          ? (item[FIELDS.affiliateUrl] || '').trim()
+          : null,
       };
     });
 }); // end cache()
