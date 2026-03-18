@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    locale: "en_US",
+    siteName: "Sweepbase",
+  },
   alternates: {
     languages: { "en": "https://sweepbase.com" },
   },

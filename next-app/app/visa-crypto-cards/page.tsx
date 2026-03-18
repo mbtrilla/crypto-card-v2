@@ -135,6 +135,21 @@ export default async function VisaCryptoCards() {
             </li>
           </ul>
         </section>
+        <div className="category-also-see">
+          <span className="category-also-see__label">Also see:</span>
+          <a href="/mastercard-crypto-cards" className="category-also-see__chip">
+            <i className="fa-solid fa-circle-dot" aria-hidden="true"></i>
+            Mastercard Crypto Cards
+          </a>
+          <a href="/crypto-cards-with-cashback" className="category-also-see__chip">
+            <i className="fa-solid fa-percent" aria-hidden="true"></i>
+            Cards With Cashback
+          </a>
+          <a href="/self-custody-crypto-cards" className="category-also-see__chip">
+            <i className="fa-solid fa-key" aria-hidden="true"></i>
+            Self-Custody Cards
+          </a>
+        </div>
       </div>
 
       <CategoryCardsGrid cards={cards.map(toCardListItem)} />
