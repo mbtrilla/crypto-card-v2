@@ -16,7 +16,11 @@ export const metadata: Metadata = {
       'Step-by-step guide to choosing the best crypto debit or credit card. Compare fees, rewards, custody models, and regional availability.',
     url: 'https://sweepbase.com/guides/how-to-choose-a-crypto-card',
     type: 'article',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    publishedTime: '2026-03-16T00:00:00Z',
+    modifiedTime: '2026-03-18T00:00:00Z',
+    authors: ['Sweepbase Editorial Team'],
+    section: 'Guides',
+    images: [{ url: `https://sweepbase.com/api/og?title=${encodeURIComponent('How to Choose a Crypto Card in 2026')}&subtitle=Guide`, width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },
 };

@@ -16,7 +16,11 @@ export const metadata: Metadata = {
       'Understand every fee on a crypto debit card: issuance, annual, FX markup, ATM charges, and hidden spreads.',
     url: 'https://sweepbase.com/guides/crypto-card-fees-explained',
     type: 'article',
-    images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+    publishedTime: '2026-03-16T00:00:00Z',
+    modifiedTime: '2026-03-18T00:00:00Z',
+    authors: ['Sweepbase Editorial Team'],
+    section: 'Guides',
+    images: [{ url: `https://sweepbase.com/api/og?title=${encodeURIComponent('Crypto Card Fees Explained')}&subtitle=Guide`, width: 1200, height: 630 }],
   },
   robots: { index: true, follow: true },
 };
