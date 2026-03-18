@@ -108,6 +108,14 @@ export default async function Home() {
 
   const homeFaqJsonLd = generateFAQPageSchema(HOME_FAQ_ITEMS);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sweepbase.com" },
+    ],
+  };
+
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -145,6 +153,10 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <section className="hero-section">
         <div className="container hero-content">
@@ -249,6 +261,51 @@ export default async function Home() {
               <div className="browse-category-info">
                 <span className="browse-category-name">Cards in Latin America</span>
                 <span className="browse-category-desc">MX, BR, AR, CO &amp; more</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-africa" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-earth-africa" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in Africa</span>
+                <span className="browse-category-desc">NG, ZA, KE, GH &amp; more</span>
+              </div>
+            </a>
+            <a href="/best-crypto-cards-middle-east" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-mosque" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Best Cards in Middle East</span>
+                <span className="browse-category-desc">UAE, SA, BH, QA &amp; more</span>
+              </div>
+            </a>
+            <a href="/virtual-crypto-cards" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-mobile-screen" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Virtual Crypto Cards</span>
+                <span className="browse-category-desc">Instant issue, no physical card</span>
+              </div>
+            </a>
+            <a href="/physical-crypto-cards" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-id-card" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Physical Crypto Cards</span>
+                <span className="browse-category-desc">Tap-to-pay &amp; ATM access</span>
+              </div>
+            </a>
+            <a href="/crypto-cards-no-fees" className="browse-category-tile">
+              <div className="browse-category-icon">
+                <i className="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
+              </div>
+              <div className="browse-category-info">
+                <span className="browse-category-name">Free Cards (No Fees)</span>
+                <span className="browse-category-desc">Zero issuance &amp; annual fee</span>
               </div>
             </a>
           </div>

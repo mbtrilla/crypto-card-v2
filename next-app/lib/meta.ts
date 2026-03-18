@@ -159,6 +159,30 @@ const CATEGORY_FACTS: Record<string, { label: string; tagline: string }> = {
     label: 'crypto cards in Latin America',
     tagline: 'Covers MX, BR, AR, CO, CL & more',
   },
+  'best-crypto-cards-africa': {
+    label: 'crypto cards available in Africa',
+    tagline: 'Covers NG, ZA, KE, GH, EG & more',
+  },
+  'best-crypto-cards-middle-east': {
+    label: 'crypto cards in the Middle East',
+    tagline: 'Covers UAE, SA, BH, QA, KW & more',
+  },
+  'virtual-crypto-cards': {
+    label: 'virtual-only crypto cards',
+    tagline: 'Instant issue, no physical card needed',
+  },
+  'physical-crypto-cards': {
+    label: 'physical crypto cards',
+    tagline: 'Tap-to-pay Visa & Mastercard shipped to you',
+  },
+  'no-kyc-crypto-cards': {
+    label: 'crypto cards without KYC',
+    tagline: 'Minimal or no identity verification',
+  },
+  'crypto-cards-no-fees': {
+    label: 'free crypto cards with no fees',
+    tagline: 'Zero issuance & zero annual fee',
+  },
 };
 
 /**

@@ -188,6 +188,67 @@ export function isLatAmCard(card: Card): boolean {
   return LATAM_COUNTRIES.some(country => c.includes(country));
 }
 
+// ─── Africa & Middle East ───────────────────────────────────────────────────
+
+const AFRICA_COUNTRIES = [
+  'nigeria', 'south africa', 'kenya', 'ghana', 'egypt', 'morocco', 'tanzania',
+  'uganda', 'ethiopia', 'cameroon', 'senegal', 'rwanda', 'zambia',
+  "côte d'ivoire", "cote d'ivoire", 'algeria', 'tunisia', 'mozambique',
+  'zimbabwe', 'botswana', 'mauritius', 'namibia', 'madagascar',
+];
+
+const MIDDLE_EAST_COUNTRIES = [
+  'uae', 'united arab emirates', 'saudi arabia', 'bahrain', 'qatar', 'kuwait',
+  'oman', 'jordan', 'lebanon', 'israel', 'turkey', 'türkiye', 'iraq', 'iran',
+];
+
+export function isAfricaCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+  if (r.includes('africa')) return true;
+  return AFRICA_COUNTRIES.some(country => c.includes(country));
+}
+
+export function isMiddleEastCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const c = card.countries.toLowerCase();
+  if (r.includes('middle east') || r.includes('mena')) return true;
+  return MIDDLE_EAST_COUNTRIES.some(country => c.includes(country));
+}
+
+// ─── Card type / fee filters ────────────────────────────────────────────────
+
+/** Returns true if the card offers a virtual-only product. */
+export function isVirtualCard(card: Card): boolean {
+  const t = card.cardType.toLowerCase();
+  return t.includes('virtual') && !t.includes('physical');
+}
+
+/** Returns true if the card offers a physical product. */
+export function isPhysicalCard(card: Card): boolean {
+  return card.cardType.toLowerCase().includes('physical');
+}
+
+/** Returns true if both issuance and annual fees are free / zero. */
+export function isNoFeeCard(card: Card): boolean {
+  const FREE = /^(free|\$0|€0|0|0\.00|zero|none|no\s+fee|n\/a)$/i;
+  return FREE.test(card.issuanceFee.trim()) && FREE.test(card.annualFee.trim());
+}
+
+/** Returns true if KYC appears optional or not required. */
+export function isNoKycCard(card: Card): boolean {
+  const r = card.regions.toLowerCase();
+  const desc = card.description.toLowerCase();
+  return (
+    r.includes('no kyc') ||
+    r.includes('without kyc') ||
+    desc.includes('no kyc') ||
+    desc.includes('without kyc') ||
+    desc.includes('kyc-free') ||
+    desc.includes('kyc optional')
+  );
+}
+
 // ─── Generic category dispatcher ────────────────────────────────────────────
 
 /**
@@ -215,6 +276,12 @@ export function filterCardsByCategory(cards: Card[], category: string): Card[] {
     case 'uk':           return cards.filter(isUKCard);
     case 'canada':       return cards.filter(isCanadaCard);
     case 'latam':        return cards.filter(isLatAmCard);
+    case 'africa':       return cards.filter(isAfricaCard);
+    case 'middle-east':  return cards.filter(isMiddleEastCard);
+    case 'virtual':      return cards.filter(isVirtualCard);
+    case 'physical':     return cards.filter(isPhysicalCard);
+    case 'no-fees':      return cards.filter(isNoFeeCard);
+    case 'no-kyc':       return cards.filter(isNoKycCard);
     default:             return cards;
   }
 }

@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { CardListItem } from '@/lib/data';
+import { normalizeCountry, normalizeCountryList } from '@/lib/country-normalize';
 import CardItem from './CardItem';
 
 // CompareBar is only shown after the user adds a card to compare — defer it
@@ -53,7 +54,7 @@ export default function CardsGridClient({ initialCards }: Props) {
       let matchesNetwork = filters.network === 'all' || card.network.toLowerCase().includes(filters.network.toLowerCase());
       let matchesType = filters.type === 'all' || card.cardType.toLowerCase().includes(filters.type.toLowerCase());
       let matchesRegion = filters.region === 'all' || card.regions.toLowerCase().includes(filters.region.toLowerCase());
-      let matchesCountry = filters.country === 'all' || card.countries.toLowerCase().includes(filters.country.toLowerCase());
+      let matchesCountry = filters.country === 'all' || normalizeCountryList(card.countries).some(c => c === filters.country);
 
       return matchesSearch && matchesCustody && matchesNetwork && matchesType && matchesRegion && matchesCountry;
     });
@@ -81,15 +82,12 @@ export default function CardsGridClient({ initialCards }: Props) {
     });
   };
 
-  // Unique countries for filter
+  // Unique countries for filter (normalized to canonical names)
   const countries = useMemo(() => {
     const set = new Set<string>();
     initialCards.forEach(card => {
       if (card.countries) {
-        card.countries.split(',').forEach(c => {
-          const trim = c.trim();
-          if (trim) set.add(trim);
-        });
+        normalizeCountryList(card.countries).forEach(c => set.add(c));
       }
     });
     return Array.from(set).sort();

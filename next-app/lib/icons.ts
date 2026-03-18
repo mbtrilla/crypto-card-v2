@@ -55,6 +55,11 @@ import {
   faEnvelope,
   faEnvelopeOpenText,
   faCalculator,
+  faEarthAfrica,
+  faMosque,
+  faMobileScreen,
+  faIdCard,
+  faHandHoldingDollar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -103,5 +108,10 @@ library.add(
   faEnvelope,
   faEnvelopeOpenText,
   faCalculator,
+  faEarthAfrica,
+  faMosque,
+  faMobileScreen,
+  faIdCard,
+  faHandHoldingDollar,
   faLinkedin,
 );

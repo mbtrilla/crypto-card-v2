@@ -23,6 +23,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'mastercard-crypto-cards',
     'self-custody-crypto-cards',
     'crypto-cards-with-cashback',
+    'best-crypto-cards-africa',
+    'best-crypto-cards-middle-east',
+    'virtual-crypto-cards',
+    'physical-crypto-cards',
+    'no-kyc-crypto-cards',
+    'crypto-cards-no-fees',
   ].map((slug) => ({
     url: `https://sweepbase.com/${slug}`,
     lastModified: new Date(),

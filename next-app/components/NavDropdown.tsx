@@ -20,6 +20,11 @@ const BROWSE_LINKS = [
   { href: '/mastercard-crypto-cards',          label: 'Mastercard Crypto Cards',       icon: 'fa-circle-dot' },
   { href: '/self-custody-crypto-cards',        label: 'Self-Custody Cards',            icon: 'fa-key' },
   { href: '/crypto-cards-with-cashback',       label: 'Cards With Cashback',           icon: 'fa-percent' },
+  { href: '/best-crypto-cards-africa',         label: 'Best Cards in Africa',          icon: 'fa-earth-africa' },
+  { href: '/best-crypto-cards-middle-east',    label: 'Best Cards in Middle East',     icon: 'fa-mosque' },
+  { href: '/virtual-crypto-cards',             label: 'Virtual Cards',                 icon: 'fa-mobile-screen' },
+  { href: '/physical-crypto-cards',            label: 'Physical Cards',                icon: 'fa-id-card' },
+  { href: '/crypto-cards-no-fees',             label: 'Free Cards (No Fees)',          icon: 'fa-hand-holding-dollar' },
 ];
 
 /**
