@@ -374,9 +374,12 @@ export default async function Home() {
             changes and new card launches in 2026.
           </p>
           <p>
-            Use our free <a href="/compare">comparison tool</a> to evaluate up to 4 cards at once, or
-            explore our <a href="/guides">guides</a> for in-depth advice on choosing your first crypto
-            card, understanding fee structures, and navigating custody options.
+            Use our free <a href="/compare">comparison tool</a> to evaluate up to 4 cards at once.
+            New to crypto cards? Start with our{' '}
+            <a href="/guides/how-to-choose-a-crypto-card">guide to choosing a crypto card</a>, learn
+            about <a href="/guides/crypto-card-fees-explained">fee structures</a>, or read our{' '}
+            <a href="/guides/best-crypto-cards-for-beginners">beginner&apos;s guide</a> for
+            the simplest options to get started.
           </p>
         </div>
       </section>
