@@ -311,12 +311,19 @@ select {
     color: var(--text-primary);
 }
 
-.nav-dropdown-panel a i {
+.nav-dropdown-panel a i,
+.nav-dropdown-panel a svg {
     width: 1rem;
     text-align: center;
     color: var(--accent-primary);
     font-size: 0.85em;
     flex-shrink: 0;
+}
+
+.nav-dropdown-divider {
+    border: none;
+    border-top: 1px solid var(--border-glass);
+    margin: 0.3rem 0.5rem;
 }
 
 /* --- Typography Utilities --- */
@@ -345,6 +352,17 @@ select {
     line-height: 1.2;
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    max-width: 640px;
+    margin-inline: auto;
+    letter-spacing: -0.01em;
 }
 
 .hero-subtitle {
@@ -2115,8 +2133,51 @@ select {
 }
 
 /* --- About Section --- */
+/* ── SEO content block ── */
+.seo-content-section {
+    padding: 4rem 0 3rem;
+}
+
+.seo-content {
+    max-width: 800px;
+}
+
+.seo-content h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+}
+
+.seo-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.seo-content a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+.seo-content a:hover {
+    text-decoration: underline;
+}
+
 .about-section {
     padding: 5rem 0 6rem;
+}
+
+.home-faq-section {
+    padding: 3rem 0 4rem;
+}
+
+.home-faq-section .category-faq__title {
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
 }
 
 .about-panel {

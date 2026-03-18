@@ -3,6 +3,8 @@ import SocialLinks from '@/components/SocialLinks';
 
 const BROWSE_LINKS = [
   { href: '/cards',                            label: 'All Crypto Cards' },
+  { href: '/compare',                          label: 'Compare Cards' },
+  { href: '/calculator',                       label: 'Cost Calculator' },
   { href: '/best-crypto-cards-usa',            label: 'Best Cards in the USA' },
   { href: '/best-crypto-cards-europe',         label: 'Best Cards in Europe' },
   { href: '/best-crypto-cards-uk',             label: 'Best Cards in the UK' },

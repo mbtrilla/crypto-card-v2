@@ -1,7 +1,8 @@
 import { getAllCards, toCardListItem } from "@/lib/data";
 import { generateHomeMetaDescription } from "@/lib/meta";
-import { generateHomeItemListSchema } from "@/lib/schemas";
+import { generateHomeItemListSchema, generateFAQPageSchema } from "@/lib/schemas";
 import CardSkeleton from "@/components/CardSkeleton";
+import FAQAccordion, { type FAQItem } from "@/components/FAQAccordion";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 
@@ -78,6 +79,35 @@ export default async function Home() {
     }
   };
 
+  const HOME_FAQ_ITEMS: FAQItem[] = [
+    {
+      q: 'What is a crypto debit card?',
+      a: 'A crypto debit card lets you spend cryptocurrency at any merchant that accepts Visa or Mastercard. When you make a purchase, your crypto (Bitcoin, USDT, ETH, etc.) is automatically converted to local fiat currency at the point of sale. Most cards work with Apple Pay and Google Pay.',
+    },
+    {
+      q: 'How do I choose the best crypto card?',
+      a: 'Consider five key factors: fees (issuance, monthly, FX markup), cashback rewards, supported cryptocurrencies, regional availability, and whether you prefer custodial or self-custody. Use our comparison tool to filter cards by these criteria.',
+    },
+    {
+      q: 'Are crypto debit cards safe?',
+      a: 'Licensed crypto card issuers are regulated by financial authorities (FCA, FinCEN, etc.) and cards are issued through Visa/Mastercard networks with standard consumer protections. Self-custody cards add an extra layer of security by letting you keep control of your private keys.',
+    },
+    {
+      q: 'Do crypto cards charge fees?',
+      a: 'Most crypto cards charge some combination of: issuance fee ($0\u2013$50), monthly fee ($0\u2013$15), ATM withdrawal fees, and foreign exchange markup (0%\u20133%). Several cards like Binance and Crypto.com offer zero-fee options for verified users.',
+    },
+    {
+      q: 'Which countries support crypto cards?',
+      a: `Availability varies by issuer. Most cards serve the US, EU/EEA, and UK. Sweepbase tracks ${allCards.length} cards across 200+ countries \u2014 use our region filter to find cards available in your country.`,
+    },
+    {
+      q: 'Can I get cashback with a crypto card?',
+      a: 'Yes. Many crypto cards offer 1%\u20138% cashback in crypto (BTC, BNB, CRO) or stablecoins. The cashback rate often depends on your staking tier or account level. Compare cashback rates across all cards on Sweepbase.',
+    },
+  ];
+
+  const homeFaqJsonLd = generateFAQPageSchema(HOME_FAQ_ITEMS);
+
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -112,11 +142,18 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd) }}
+      />
       <section className="hero-section">
         <div className="container hero-content">
-          <h1 className="hero-title">Unlock Your Crypto <span className="text-gradient">Spending Power</span></h1>
+          <h1 className="hero-title"><span className="text-gradient">Best</span> Crypto Debit &amp; Credit Cards <span className="text-gradient">2026</span></h1>
+          <p className="hero-tagline">
+            Compare {allCards.length} cards by fees, cashback, custody, and regional availability. Updated daily.
+          </p>
           <p className="hero-subtitle">
-            Compare the world&apos;s best crypto debit and credit cards. Find the top Bitcoin, Ethereum and USDT cards by cashback rate, fees, network (Visa/Mastercard) and country availability.
+            Find the top Bitcoin, Ethereum and USDT cards by cashback rate, fees, network (Visa/Mastercard) and country availability.
           </p>
         </div>
       </section>
@@ -218,6 +255,43 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="seo-content-section">
+        <div className="container seo-content">
+          <h2>How Sweepbase Helps You Find the Right Crypto Card</h2>
+          <p>
+            Sweepbase is the most comprehensive crypto card comparison platform, tracking{' '}
+            {allCards.length} debit and credit cards from issuers worldwide. Whether you&apos;re looking
+            for a <a href="/cards">Bitcoin debit card</a> with high cashback, a{' '}
+            <a href="/self-custody-crypto-cards">self-custody</a> Visa card, or the cheapest option
+            for international spending &mdash; our real-time database makes it easy to compare fees,
+            rewards, and availability side by side.
+          </p>
+          <p>
+            Every card listing includes verified data on issuance fees, monthly charges, ATM limits,
+            supported cryptocurrencies, cashback rates, and regional restrictions. We categorize cards
+            by custody model (custodial, self-custody, and hybrid) so you can choose the level of
+            control that matches your security preferences.
+          </p>
+          <p>
+            Our regional filters cover the{' '}
+            <a href="/best-crypto-cards-usa">USA</a>,{' '}
+            <a href="/best-crypto-cards-europe">Europe</a>,{' '}
+            <a href="/best-crypto-cards-uk">UK</a>,{' '}
+            <a href="/best-crypto-cards-canada">Canada</a>,{' '}
+            <a href="/best-crypto-cards-latin-america">Latin America</a>,{' '}
+            <a href="/best-crypto-cards-asia">Asia</a>, and{' '}
+            <a href="/best-crypto-cards-australia">Australia</a>.
+            Card data is sourced directly from issuers and updated regularly to reflect the latest fee
+            changes and new card launches in 2026.
+          </p>
+          <p>
+            Use our free <a href="/compare">comparison tool</a> to evaluate up to 4 cards at once, or
+            explore our <a href="/guides">guides</a> for in-depth advice on choosing your first crypto
+            card, understanding fee structures, and navigating custody options.
+          </p>
+        </div>
+      </section>
+
       <section id="about" className="about-section">
         <div className="container">
           <div className="about-panel">
@@ -252,6 +326,13 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="home-faq-section">
+        <div className="container">
+          <h2 className="category-faq__title">Frequently Asked Questions About Crypto Cards</h2>
+          <FAQAccordion items={HOME_FAQ_ITEMS} ns="home-faq" />
         </div>
       </section>
 

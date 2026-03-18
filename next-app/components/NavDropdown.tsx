@@ -3,6 +3,11 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
+const TOOL_LINKS = [
+  { href: '/compare',    label: 'Compare Cards',   icon: 'fa-scale-balanced' },
+  { href: '/calculator', label: 'Cost Calculator',  icon: 'fa-calculator' },
+];
+
 const BROWSE_LINKS = [
   { href: '/best-crypto-cards-usa',            label: 'Best Cards in the USA',         icon: 'fa-flag-usa' },
   { href: '/best-crypto-cards-europe',         label: 'Best Cards in Europe',          icon: 'fa-earth-europe' },
@@ -61,6 +66,18 @@ export default function NavDropdown() {
 
       {open && (
         <div className="nav-dropdown-panel" role="menu">
+          {TOOL_LINKS.map(({ href, label, icon }) => (
+            <Link
+              key={href}
+              href={href}
+              role="menuitem"
+              onClick={() => setOpen(false)}
+            >
+              <i className={`fa-solid ${icon}`} aria-hidden="true"></i>
+              {label}
+            </Link>
+          ))}
+          <hr className="nav-dropdown-divider" />
           {BROWSE_LINKS.map(({ href, label, icon }) => (
             <Link
               key={href}
