@@ -7,9 +7,11 @@ interface Props {
   card: CardListItem;
   onCompare: () => void;
   isCompared: boolean;
+  /** Set true for above-the-fold cards to use loading="eager" */
+  priority?: boolean;
 }
 
-export default function CardItem({ card, onCompare, isCompared }: Props) {
+export default function CardItem({ card, onCompare, isCompared, priority = false }: Props) {
   const name = card.name;
   const logo = card.logo; // In real app, handle gdrive transformation if needed
   
@@ -30,6 +32,7 @@ export default function CardItem({ card, onCompare, isCompared }: Props) {
               width={400}
               height={250}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={priority}
             />
         </div>
         

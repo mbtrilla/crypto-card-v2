@@ -188,12 +188,13 @@ export default function CardsGridClient({ initialCards }: Props) {
           ) : (
             <>
               <div className="cards-grid">
-                {filteredCards.slice(0, visibleCount).map(card => (
-                  <CardItem 
-                    key={card.slug} 
-                    card={card} 
-                    onCompare={() => toggleCompare(card)} 
-                    isCompared={compareList.some(c => c.slug === card.slug)} 
+                {filteredCards.slice(0, visibleCount).map((card, idx) => (
+                  <CardItem
+                    key={card.slug}
+                    card={card}
+                    onCompare={() => toggleCompare(card)}
+                    isCompared={compareList.some(c => c.slug === card.slug)}
+                    priority={idx < 4}
                   />
                 ))}
               </div>
