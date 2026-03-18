@@ -26,6 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sweepbase.com"),
   title: "Sweepbase | Find Your Perfect Crypto Card",
   description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
   authors: [{ name: "Sweepbase", url: "https://sweepbase.com" }],

@@ -31,7 +31,7 @@ const ShareButtons = dynamic(() => import("@/components/ShareButtons"), {
   loading: () => null,
 });
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 24h — card data changes infrequently
 
 export async function generateStaticParams() {
   const cards = await getAllCards();

@@ -7,6 +7,7 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   compress: true,
   poweredByHeader: false,
   images: {
@@ -14,27 +15,49 @@ const nextConfig = {
     minimumCacheTTL: 86400,
   },
   experimental: {
-    // Inline critical CSS and defer the rest — improves FCP by removing
-    // render-blocking stylesheet requests on the initial page load.
     optimizeCss: true,
-    // Tree-shake package imports that ship large barrel files (e.g. icon libraries).
-    // Add any future heavy packages here so only used exports are bundled.
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', '@fortawesome/free-solid-svg-icons'],
+  },
+  async headers() {
+    return [
+      // Immutable cache for hashed static assets
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      // Card images — cache 24h with stale-while-revalidate for 7 days
+      {
+        source: '/images/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      // Security headers on all routes
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+        ],
+      },
+    ];
   },
   async redirects() {
     return [
-      // Slug was generated from a Cyrillic "С" in the original card name,
-      // producing "kripi-ard". Fixed to "kripi-card" (Latin C).
       {
         source: '/cards/kripi-ard',
         destination: '/cards/kripi-card',
-        permanent: true, // 301
+        permanent: true,
       },
-      // Card was named "Plutus" (no suffix). Renamed to "Plutus Card".
       {
         source: '/cards/plutus',
         destination: '/cards/plutus-card',
-        permanent: true, // 301
+        permanent: true,
       },
     ];
   },
