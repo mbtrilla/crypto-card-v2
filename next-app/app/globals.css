@@ -3867,6 +3867,14 @@ select:focus:not(:focus-visible) {
     outline: none;
 }
 
+.share-btn--linkedin:hover,
+.share-btn--linkedin:focus-visible {
+    color: #0A66C2;
+    border-color: #0A66C2;
+    background: rgba(10, 102, 194, 0.08);
+    outline: none;
+}
+
 /* Copy link hover */
 .share-btn--copy:hover,
 .share-btn--copy:focus-visible {

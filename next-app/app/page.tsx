@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "https://sweepbase.com/og-image.png",
+          url: `https://sweepbase.com/api/og?title=${encodeURIComponent('Best Crypto Debit & Credit Cards 2026')}&count=${count}&subtitle=Compare+fees%2C+cashback+%26+availability`,
           width: 1200,
           height: 630,
         },
@@ -50,9 +50,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
+      site: "@sweepbase",
+      creator: "@sweepbase",
       title,
       description,
-      images: ["https://sweepbase.com/og-image.png"],
+      images: [`https://sweepbase.com/api/og?title=${encodeURIComponent('Best Crypto Debit & Credit Cards 2026')}&count=${count}&subtitle=Compare+fees%2C+cashback+%26+availability`],
     },
     robots: { index: true, follow: true },
   };
