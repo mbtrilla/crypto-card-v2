@@ -64,6 +64,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       creator: '@sweepbase',
       // twitter:image is also auto-generated from opengraph-image.tsx
     },
+    other: {
+      'article:modified_time': '2026-03-18T00:00:00Z',
+    },
   };
 }
 

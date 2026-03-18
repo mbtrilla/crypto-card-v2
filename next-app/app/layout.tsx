@@ -28,8 +28,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Sweepbase | Find Your Perfect Crypto Card",
   description: "Compare the world's best crypto debit and credit cards with Sweepbase. Maximize rewards and spend digital assets anywhere.",
+  authors: [{ name: "Sweepbase", url: "https://sweepbase.com" }],
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
