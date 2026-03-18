@@ -1508,6 +1508,20 @@ select:focus:not(:focus-visible) {
     max-width: 800px;
 }
 
+.static-desc--links {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.static-desc--links a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+.static-desc--links a:hover {
+    text-decoration: underline;
+}
+
 .static-grid {
     display: grid;
     grid-template-columns: 1fr;

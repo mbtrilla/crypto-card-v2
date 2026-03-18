@@ -88,6 +88,19 @@ export default function SiteFooter() {
             </ul>
           </div>
 
+          {/* Top Comparisons column */}
+          <div className="footer-col">
+            <p className="footer-col-heading">Top Comparisons</p>
+            <ul className="footer-col-links">
+              <li><a href="/compare?ids=binance-card,cryptocom-visa-card">Binance vs Crypto.com</a></li>
+              <li><a href="/compare?ids=metamask-card,ledger-card">MetaMask vs Ledger Card</a></li>
+              <li><a href="/compare?ids=coinbase-card,bybit-card">Coinbase vs Bybit</a></li>
+              <li><a href="/compare?ids=nexo-card,fold-card">Nexo vs Fold Card</a></li>
+              <li><a href="/crypto-cards-with-cashback">Best Cashback Cards</a></li>
+              <li><a href="/crypto-cards-no-fees">Free Cards (No Fees)</a></li>
+            </ul>
+          </div>
+
           {/* Legal column */}
           <div className="footer-col">
             <p className="footer-col-heading">Legal</p>

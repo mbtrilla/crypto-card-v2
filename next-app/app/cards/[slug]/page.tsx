@@ -1,5 +1,5 @@
 import { getAllCards } from "@/lib/data";
-import { isUSACard, isEuropeCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback as hasCashbackFilter } from "@/lib/filters";
+import { isUSACard, isEuropeCard, isUKCard, isAsiaCard, isVisaCard, isMastercardCard, isSelfCustodyCard, hasCashback as hasCashbackFilter } from "@/lib/filters";
 import { getCardRatingData } from "@/lib/ratings";
 import { generateCardMetaDescription } from "@/lib/meta";
 import StarRating from "@/components/StarRating";
@@ -385,7 +385,13 @@ function getRelatedCategories(card: Card): Array<{ href: string; label: string; 
   if (hasCashbackFilter(card)) categories.push({ href: '/crypto-cards-with-cashback', label: 'Cards With Cashback',     icon: 'fa-percent' });
   if (isUSACard(card))         categories.push({ href: '/best-crypto-cards-usa',      label: 'Best Cards in the USA',   icon: 'fa-flag-usa' });
   if (isEuropeCard(card))      categories.push({ href: '/best-crypto-cards-europe',   label: 'Best Cards in Europe',    icon: 'fa-earth-europe' });
-  return categories.slice(0, 3);
+  if (isUKCard(card))          categories.push({ href: '/best-crypto-cards-uk',       label: 'Best Cards in the UK',    icon: 'fa-sterling-sign' });
+  if (isAsiaCard(card))        categories.push({ href: '/best-crypto-cards-asia',     label: 'Best Cards in Asia',      icon: 'fa-earth-asia' });
+  if (card.cardType.toLowerCase().includes('virtual') && !card.cardType.toLowerCase().includes('physical'))
+    categories.push({ href: '/virtual-crypto-cards', label: 'Virtual Crypto Cards', icon: 'fa-mobile-screen' });
+  if (card.cardType.toLowerCase().includes('physical'))
+    categories.push({ href: '/physical-crypto-cards', label: 'Physical Crypto Cards', icon: 'fa-id-card' });
+  return categories.slice(0, 5);
 }
 
 // ─── Page component ────────────────────────────────────────────────────────────
@@ -396,7 +402,12 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
   if (!card) notFound();
 
   const others = cards.filter(c => c.slug !== card.slug);
-  const similar = others.sort(() => 0.5 - Math.random()).slice(0, 3);
+  // Prefer cards with same network/custody, then fill randomly up to 6
+  const sameNetwork = others.filter(c => c.network === card.network);
+  const sameCustody = others.filter(c => c.custody === card.custody && c.network !== card.network);
+  const pool = [...sameNetwork, ...sameCustody, ...others];
+  const seen = new Set<string>();
+  const similar = pool.filter(c => { if (seen.has(c.slug)) return false; seen.add(c.slug); return true; }).slice(0, 6);
 
   const cardIssuer = card.name
     .replace(/\s+(debit\s+|credit\s+|prepaid\s+)?(visa\s+|mastercard\s+)?card\s*$/i, '')
@@ -564,6 +575,16 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
           <div className="detail-section-intro">
             <h2>Card Overview</h2>
             <p className="static-desc">{card.description}</p>
+            {/* Contextual internal links based on card properties */}
+            <p className="static-desc static-desc--links">
+              {isVisaCard(card) && <>This is a <a href="/visa-crypto-cards">Visa crypto card</a>. </>}
+              {isMastercardCard(card) && <>This is a <a href="/mastercard-crypto-cards">Mastercard crypto card</a>. </>}
+              {isSelfCustodyCard(card) && <>It uses a <a href="/self-custody-crypto-cards">self-custody</a> model. </>}
+              {hasCashbackFilter(card) && <>It offers <a href="/crypto-cards-with-cashback">cashback rewards</a>. </>}
+              {isUSACard(card) && <>Available to <a href="/best-crypto-cards-usa">US residents</a>. </>}
+              {isEuropeCard(card) && <>Available in <a href="/best-crypto-cards-europe">Europe</a>. </>}
+              {isUKCard(card) && <>Available in the <a href="/best-crypto-cards-uk">UK</a>. </>}
+            </p>
           </div>
 
           {/* ── Fees & Features grid ── */}
@@ -809,13 +830,13 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
             <h2>Similar Cards You Might Like</h2>
             <div className="similar-cards-grid">
               {similar.map(s => (
-                <a key={s.slug} href={`/cards/${s.slug}`} className="similar-card-tile" aria-label={`Compare ${s.name}`}>
+                <a key={s.slug} href={`/cards/${s.slug}`} className="similar-card-tile" aria-label={`Compare ${card.name} with ${s.name}`}>
                   <div className="similar-tile-img">
                     <Image src={s.logo} alt={s.name} width={80} height={50} />
                   </div>
                   <div className="similar-tile-info">
-                    <span className="similar-tile-name">Compare {s.name} →</span>
-                    <span className="similar-tile-network">{s.network}</span>
+                    <span className="similar-tile-name">Compare {card.name} with {s.name} →</span>
+                    <span className="similar-tile-network">{s.network} · {s.custody}</span>
                   </div>
                 </a>
               ))}
