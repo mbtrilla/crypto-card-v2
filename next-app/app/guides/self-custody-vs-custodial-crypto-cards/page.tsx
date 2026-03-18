@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
-import { generateFAQPageSchema } from '@/lib/schemas';
+import { generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
   title: 'Self-Custody vs Custodial Crypto Cards — Which Is Better? | Sweepbase',
@@ -60,11 +60,17 @@ const articleJsonLd = {
 
 export default function CustodyGuide() {
   const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://sweepbase.com' },
+    { name: 'Guides', url: 'https://sweepbase.com/guides' },
+    { name: 'Self-Custody vs Custodial', url: 'https://sweepbase.com/guides/self-custody-vs-custodial-crypto-cards' },
+  ]);
 
   return (
     <main className="guide-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="container guide-container">
         <Breadcrumb items={[

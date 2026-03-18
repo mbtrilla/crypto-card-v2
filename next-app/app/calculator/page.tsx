@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import CostCalculator from './CostCalculator';
+import { generateBreadcrumbSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
   title: 'Crypto Card Cost Calculator 2026 — Find the Cheapest Card | Sweepbase',
@@ -40,12 +41,18 @@ const toolJsonLd = {
 };
 
 export default function CalculatorPage() {
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://sweepbase.com' },
+    { name: 'Cost Calculator', url: 'https://sweepbase.com/calculator' },
+  ]);
+
   return (
     <main className="category-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
         <Breadcrumb items={[

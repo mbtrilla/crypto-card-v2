@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import { generateBreadcrumbSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
   title: 'Crypto Card Guides & Resources 2026 | Sweepbase',
@@ -55,12 +56,18 @@ const guidesJsonLd = {
 };
 
 export default function GuidesIndex() {
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://sweepbase.com' },
+    { name: 'Guides', url: 'https://sweepbase.com/guides' },
+  ]);
+
   return (
     <main className="category-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(guidesJsonLd) }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="container">
         <Breadcrumb items={[

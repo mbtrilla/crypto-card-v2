@@ -189,6 +189,29 @@ export function generateHomeItemListSchema(cards: Card[]) {
 }
 
 // ---------------------------------------------------------------------------
+// Standalone BreadcrumbList schema
+// ---------------------------------------------------------------------------
+
+/**
+ * Generates a standalone `BreadcrumbList` JSON-LD schema.
+ * Use on pages that don't already embed breadcrumbs in a WebPage schema.
+ *
+ * @param items - Array of { name, url } in order from root to current page.
+ */
+export function generateBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+// ---------------------------------------------------------------------------
 // FAQPage schema
 // ---------------------------------------------------------------------------
 

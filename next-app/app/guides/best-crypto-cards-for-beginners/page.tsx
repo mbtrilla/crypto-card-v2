@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
-import { generateFAQPageSchema } from '@/lib/schemas';
+import { generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/schemas';
 
 export const metadata: Metadata = {
   title: 'Best Crypto Cards for Beginners 2026 — Start Here | Sweepbase',
@@ -60,11 +60,17 @@ const articleJsonLd = {
 
 export default function BeginnersGuide() {
   const faqJsonLd = generateFAQPageSchema(FAQ_ITEMS);
+  const breadcrumbJsonLd = generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://sweepbase.com' },
+    { name: 'Guides', url: 'https://sweepbase.com/guides' },
+    { name: 'Best Cards for Beginners', url: 'https://sweepbase.com/guides/best-crypto-cards-for-beginners' },
+  ]);
 
   return (
     <main className="guide-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="container guide-container">
         <Breadcrumb items={[
