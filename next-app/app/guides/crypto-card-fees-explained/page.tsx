@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import { generateFAQPageSchema } from '@/lib/schemas';
 
@@ -184,6 +185,17 @@ export default function FeesGuide() {
               side by side for up to 4 cards.
             </p>
           </section>
+
+          <TopCards
+            title="Low-Fee Cards to Consider"
+            cards={[
+              { slug: 'binance-card', name: 'Binance Card', detail: 'No issuance fee, no annual fee' },
+              { slug: 'cryptocom-visa-card', name: 'Crypto.com Visa', detail: 'Zero annual fee on base tier' },
+              { slug: 'bybit-card', name: 'Bybit Card', detail: 'No FX markup, free virtual card' },
+              { slug: 'nexo-card', name: 'Nexo Card', detail: '0% FX fee, no monthly charge' },
+              { slug: 'redotpay-card', name: 'RedotPay Card', detail: 'Low issuance, global availability' },
+            ]}
+          />
 
           <section className="guide-cta-section">
             <h2>Start Comparing Fees</h2>

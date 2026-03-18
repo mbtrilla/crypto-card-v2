@@ -759,6 +759,27 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
             <FAQAccordion items={faqItems} ns={card.slug} />
           </div>
 
+          {/* ── Related Guides ── */}
+          <div className="related-guides">
+            <h3 className="related-guides__title">Learn More About Crypto Cards</h3>
+            <div className="related-guides__list">
+              <a href="/guides/how-to-choose-a-crypto-card" className="related-guides__link">
+                How to Choose a Crypto Card <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a href="/guides/crypto-card-fees-explained" className="related-guides__link">
+                Crypto Card Fees Explained <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              {card.custody.toLowerCase().includes('self') && (
+                <a href="/guides/self-custody-vs-custodial-crypto-cards" className="related-guides__link">
+                  Self-Custody vs Custodial Cards <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              )}
+              <a href="/guides/best-crypto-cards-for-beginners" className="related-guides__link">
+                Best Cards for Beginners <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
           {/* ── Similar Cards ── */}
           <div className="static-similar redesign">
             <h2>Similar Cards You Might Like</h2>

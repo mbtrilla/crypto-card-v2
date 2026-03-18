@@ -1,4 +1,29 @@
 /* --- Accessibility utilities --- */
+.skip-nav {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-sm, 0.375rem) 0;
+}
+
+.skip-nav:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Global focus-visible outline for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -92,8 +117,14 @@ input,
 select {
     font-family: inherit;
     border: none;
-    outline: none;
     background: none;
+}
+
+/* Remove outline only for mouse/touch clicks, keep for keyboard */
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .container {
@@ -1668,6 +1699,104 @@ select {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
     margin: 1rem 0 3rem;
+}
+
+/* ── Related Guides (card detail) ── */
+.related-guides {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-glass);
+}
+
+.related-guides__title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.related-guides__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.related-guides__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.related-guides__link:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.related-guides__link i,
+.related-guides__link svg {
+    font-size: 0.75em;
+}
+
+/* ── Top Cards (guide pages) ── */
+.top-cards-section {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.top-cards-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.top-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.top-cards-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.875rem;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+    text-decoration: none;
+    color: inherit;
+}
+
+.top-cards-item:hover {
+    background: var(--bg-glass-hover);
+}
+
+.top-cards-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.top-cards-detail {
+    flex: 1;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.top-cards-item i,
+.top-cards-item svg {
+    color: var(--accent-primary);
+    font-size: 0.8em;
+    flex-shrink: 0;
 }
 
 .static-similar {

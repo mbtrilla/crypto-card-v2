@@ -138,13 +138,16 @@ export function generateCategoryWebPageSchema(
  * @param cards - Full card array returned by `getAllCards()`.
  */
 export function generateHomeItemListSchema(cards: Card[]) {
+  const TOP_N = 12;
+  const topCards = cards.slice(0, TOP_N);
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Best Crypto Debit & Credit Cards 2026',
+    description: 'Top 12 crypto debit and credit cards as curated by Sweepbase editors.',
     url: BASE_URL,
-    numberOfItems: cards.length,
-    itemListElement: cards.map((card, index) => {
+    numberOfItems: topCards.length,
+    itemListElement: topCards.map((card, index) => {
       const ratingValue = calculateCardRating(card);
       const reviewCount = getReviewCount(card.slug);
       const img = cardImageUrl(card);

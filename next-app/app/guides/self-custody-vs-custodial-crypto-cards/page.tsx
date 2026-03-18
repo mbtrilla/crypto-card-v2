@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import { generateFAQPageSchema } from '@/lib/schemas';
 
@@ -169,6 +170,16 @@ export default function CustodyGuide() {
               <li>Minimising counterparty risk is your top priority</li>
             </ul>
           </section>
+
+          <TopCards
+            title="Top Self-Custody Cards"
+            cards={[
+              { slug: 'metamask-card', name: 'MetaMask Card', detail: 'Spend from MetaMask wallet, Mastercard' },
+              { slug: 'gnosis-pay-card', name: 'Gnosis Pay', detail: 'Gnosis Safe wallet, Visa, EEA' },
+              { slug: 'ledger-card', name: 'Ledger Card', detail: 'Hardware wallet backed, Visa' },
+              { slug: 'holyheld-card', name: 'Holyheld Card', detail: 'DeFi-native, multi-chain' },
+            ]}
+          />
 
           <section className="guide-cta-section">
             <h2>Browse by Custody Type</h2>

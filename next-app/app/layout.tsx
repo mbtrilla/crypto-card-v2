@@ -40,6 +40,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Sweepbase",
   },
+  twitter: {
+    site: "@sweepbase",
+    creator: "@sweepbase",
+  },
   alternates: {
     languages: { "en": "https://sweepbase.com" },
   },
@@ -54,6 +58,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head />
       <body>
+        <a href="#main-content" className="skip-nav">Skip to main content</a>
+
         <div className="background-globes">
           <div className="globe globe-1"></div>
           <div className="globe globe-2"></div>
@@ -61,7 +67,7 @@ export default function RootLayout({
 
         <SiteNav />
 
-        {children}
+        <div id="main-content">{children}</div>
 
         <SiteFooter />
       </body>

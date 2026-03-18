@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import { generateFAQPageSchema } from '@/lib/schemas';
 
@@ -161,6 +162,17 @@ export default function BeginnersGuide() {
               <li><strong>Track your transactions.</strong> Export CSV from the app for tax purposes.</li>
             </ol>
           </section>
+
+          <TopCards
+            title="Best Cards for Beginners"
+            cards={[
+              { slug: 'coinbase-card', name: 'Coinbase Card', detail: 'Simple UX, broad US coverage' },
+              { slug: 'binance-card', name: 'Binance Card', detail: 'Zero fees to get started' },
+              { slug: 'bybit-card', name: 'Bybit Card', detail: 'Free virtual card, easy setup' },
+              { slug: 'cryptocom-visa-card', name: 'Crypto.com Visa', detail: 'Popular worldwide, no annual fee' },
+              { slug: 'revolut-card', name: 'Revolut Card', detail: 'Fiat + crypto in one app' },
+            ]}
+          />
 
           <section className="guide-cta-section">
             <h2>Find Your First Crypto Card</h2>

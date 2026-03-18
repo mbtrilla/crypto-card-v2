@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import TopCards from '@/components/TopCards';
 import FAQAccordion, { type FAQItem } from '@/components/FAQAccordion';
 import { generateFAQPageSchema } from '@/lib/schemas';
 
@@ -204,6 +205,17 @@ export default function HowToChooseGuide() {
               <Link href="/mastercard-crypto-cards">Mastercard cards</Link>
             </p>
           </section>
+
+          <TopCards
+            title="Popular Cards to Start With"
+            cards={[
+              { slug: 'coinbase-card', name: 'Coinbase Card', detail: 'Easy setup, wide US coverage' },
+              { slug: 'cryptocom-visa-card', name: 'Crypto.com Visa', detail: 'Up to 5% cashback, global' },
+              { slug: 'binance-card', name: 'Binance Card', detail: 'Zero fees, 8% cashback tier' },
+              { slug: 'metamask-card', name: 'MetaMask Card', detail: 'Self-custody, DeFi-native' },
+              { slug: 'gnosis-pay-card', name: 'Gnosis Pay', detail: 'Self-custody Visa, EEA' },
+            ]}
+          />
 
           <section className="guide-cta-section">
             <h2>Ready to Compare?</h2>

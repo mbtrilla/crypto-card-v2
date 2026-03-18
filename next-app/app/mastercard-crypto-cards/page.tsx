@@ -50,6 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const cards = allCards.filter(isMastercardCard);
   const title = 'Best Mastercard Crypto Cards 2026 | Sweepbase';
   const description = generateCategoryMetaDescription('mastercard-crypto-cards', cards.length);
+  const ogImage = `https://sweepbase.com/api/og?title=${encodeURIComponent('Best Mastercard Crypto Cards 2026')}&count=${cards.length}&subtitle=Network+Filter`;
   return {
     title,
     description,
@@ -59,13 +60,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       url: 'https://sweepbase.com/mastercard-crypto-cards',
       type: 'website',
-      images: [{ url: 'https://sweepbase.com/og-image.png', width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://sweepbase.com/og-image.png'],
+      images: [ogImage],
     },
     robots: { index: true, follow: true },
   };
