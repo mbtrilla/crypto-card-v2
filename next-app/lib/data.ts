@@ -115,14 +115,22 @@ const transformGDriveUrl = (url: string) => {
 };
 
 export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
-  // When launched from a parent directory (e.g. `next dev next-app`), process.cwd()
-  // points to the parent, so data.csv lives at <cwd>/next-app/data.csv.
-  // When launched from within next-app/ directly, it lives at <cwd>/data.csv.
+  // At runtime __dirname == next-app/.next/server/app (webpack output).
+  // Walk up until we find next.config.mjs to locate the true project root,
+  // then read data.csv from there — reliable regardless of cwd or launch method.
+  let projectRoot = __dirname;
+  for (let i = 0; i < 8; i++) {
+    if (fs.existsSync(path.join(projectRoot, 'next.config.mjs')) || fs.existsSync(path.join(projectRoot, 'next.config.js'))) break;
+    const parent = path.dirname(projectRoot);
+    if (parent === projectRoot) { projectRoot = process.cwd(); break; }
+    projectRoot = parent;
+  }
   const candidates = [
-    path.join(process.cwd(), 'next-app', 'data.csv'),
-    path.join(process.cwd(), 'data.csv'),
+    path.join(projectRoot, 'data.csv'),               // primary: found via next.config.mjs
+    path.join(process.cwd(), 'data.csv'),             // fallback: cwd == next-app
+    path.join(process.cwd(), 'next-app', 'data.csv'), // fallback: cwd == parent dir
   ];
-  const filePath = candidates.find(p => fs.existsSync(p)) ?? candidates[1];
+  const filePath = candidates.find(p => fs.existsSync(p)) ?? candidates[candidates.length - 1];
   const csvFile = fs.readFileSync(filePath, 'utf8');
   
   const { data } = Papa.parse(csvFile, {
@@ -150,9 +158,11 @@ export const getAllCards = cache(async function getAllCards(): Promise<Card[]> {
         logo = fallbackImage;
       }
 
-      const countriesRaw = FIELDS.countries
+      const countriesRaw = (FIELDS.countries
         .map(field => item[field])
-        .find(val => val && val !== '#NAME?') || '';
+        .find(val => val && val !== '#NAME?') || '')
+        .replace(/\*\*[^*]*\*\*/g, '')  // strip **markdown bold** labels
+        .replace(/\*\*/g, '');
 
       return {
         name: name,

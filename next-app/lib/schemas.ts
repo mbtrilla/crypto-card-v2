@@ -8,6 +8,7 @@
  */
 
 import type { Card } from '@/lib/data';
+import type { FAQItem } from '@/components/FAQAccordion';
 import { calculateCardRating, getReviewCount } from '@/lib/ratings';
 
 const BASE_URL = 'https://sweepbase.com';
@@ -129,25 +130,21 @@ export function generateCategoryWebPageSchema(
 // ---------------------------------------------------------------------------
 
 /**
- * Generates an enriched `ItemList` schema for the homepage covering the
- * first `limit` cards (i.e. those visible without clicking "Load More").
+ * Generates an enriched `ItemList` schema for the homepage covering ALL cards.
  *
  * Each `ListItem.item` is a `FinancialProduct` with an `AggregateRating`
  * computed from Sweepbase's editorial scoring model.
  *
  * @param cards - Full card array returned by `getAllCards()`.
- * @param limit - How many cards to include; default 12 (initial grid view).
  */
-export function generateHomeItemListSchema(cards: Card[], limit = 12) {
-  const top = cards.slice(0, limit);
-
+export function generateHomeItemListSchema(cards: Card[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Best Crypto Debit & Credit Cards 2026',
     url: BASE_URL,
-    numberOfItems: top.length,
-    itemListElement: top.map((card, index) => {
+    numberOfItems: cards.length,
+    itemListElement: cards.map((card, index) => {
       const ratingValue = calculateCardRating(card);
       const reviewCount = getReviewCount(card.slug);
       const img = cardImageUrl(card);
@@ -157,17 +154,19 @@ export function generateHomeItemListSchema(cards: Card[], limit = 12) {
         '@type': 'FinancialProduct',
         name: card.name,
         url: `${BASE_URL}/cards/${card.slug}`,
-        aggregateRating: {
+      };
+
+      if (desc) product.description = desc;
+      if (img) product.image = img;
+      if (ratingValue) {
+        product.aggregateRating = {
           '@type': 'AggregateRating',
           ratingValue,
           reviewCount,
           bestRating: 5,
           worstRating: 1,
-        },
-      };
-
-      if (desc) product.description = desc;
-      if (img) product.image = img;
+        };
+      }
 
       return {
         '@type': 'ListItem',
@@ -175,5 +174,31 @@ export function generateHomeItemListSchema(cards: Card[], limit = 12) {
         item: product,
       };
     }),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// FAQPage schema
+// ---------------------------------------------------------------------------
+
+/**
+ * Generates a `FAQPage` JSON-LD schema from an array of FAQ items.
+ * Use alongside the `FAQAccordion` component so structured data
+ * matches the visible content (required by Google's guidelines).
+ *
+ * @param items - Array of `{ q, a }` objects — same array passed to FAQAccordion.
+ */
+export function generateFAQPageSchema(items: FAQItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: a.replace(/<[^>]+>/g, ''), // strip any inline HTML for schema text
+      },
+    })),
   };
 }
