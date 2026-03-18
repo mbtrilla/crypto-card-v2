@@ -107,6 +107,7 @@ export default async function BestCryptoCardsEurope() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards for European Users</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             European crypto card users benefit from robust consumer protections under the EU&apos;s
             Payment Services Directive and access to SEPA instant transfers, making crypto-to-EUR

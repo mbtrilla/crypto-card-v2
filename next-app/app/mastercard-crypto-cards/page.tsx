@@ -116,6 +116,7 @@ export default async function MastercardCryptoCards() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Mastercard Crypto Debit Cards</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Mastercard crypto cards are accepted at over 100 million locations worldwide and are the
             network of choice for many crypto card issuers targeting European and UK users.

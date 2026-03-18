@@ -116,6 +116,7 @@ export default async function BestCryptoCardsUK() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in the UK</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             The United Kingdom is one of Europe&apos;s most active crypto markets, with a growing range
             of FCA-compliant debit and credit cards that let you spend Bitcoin, Ethereum, and stablecoins

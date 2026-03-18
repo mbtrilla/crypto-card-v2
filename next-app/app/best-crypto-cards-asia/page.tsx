@@ -116,6 +116,7 @@ export default async function BestCryptoCardsAsia() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in Asia</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Asia is home to some of the world&apos;s most active crypto markets, with Japan, South Korea,
             Singapore, Hong Kong, and India collectively accounting for a significant share of global

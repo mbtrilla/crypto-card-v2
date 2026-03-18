@@ -162,7 +162,8 @@ export default async function Home() {
         <div className="container hero-content">
           <h1 className="hero-title"><span className="text-gradient">Best</span> Crypto Debit &amp; Credit Cards <span className="text-gradient">2026</span></h1>
           <p className="hero-tagline">
-            Compare {allCards.length} cards by fees, cashback, custody, and regional availability. Updated daily.
+            Compare {allCards.length} cards by fees, cashback, custody, and regional availability.
+            Last updated: <time dateTime="2026-03-18">March 18, 2026</time>.
           </p>
           <p className="hero-subtitle">
             Find the top Bitcoin, Ethereum and USDT cards by cashback rate, fees, network (Visa/Mastercard) and country availability.

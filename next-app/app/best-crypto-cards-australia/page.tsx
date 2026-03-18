@@ -116,6 +116,7 @@ export default async function BestCryptoCardsAustralia() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards for Australians</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Australia has one of the highest rates of crypto ownership per capita globally, and the
             local regulatory environment — overseen by AUSTRAC and ASIC — has matured significantly

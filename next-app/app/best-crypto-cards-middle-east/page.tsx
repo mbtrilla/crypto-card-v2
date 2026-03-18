@@ -112,6 +112,7 @@ export default async function BestCryptoCardsMiddleEast() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in the Middle East</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             The Middle East is emerging as a major hub for crypto adoption, with the UAE, Saudi
             Arabia, and Bahrain leading regulatory clarity. Sweepbase has identified{' '}

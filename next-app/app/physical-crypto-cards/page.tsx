@@ -108,6 +108,7 @@ export default async function PhysicalCryptoCards() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Physical Crypto Cards 2026</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Physical crypto cards let you tap-to-pay at terminals, withdraw cash from ATMs, and use
             your crypto everywhere Visa or Mastercard is accepted. Sweepbase tracks{' '}

@@ -72,6 +72,7 @@ export default async function AllCardsPage() {
 
         <section className="category-hero">
           <h1 className="category-h1">All Crypto Debit &amp; Credit Cards</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             The complete Sweepbase database — <strong>{cards.length} crypto cards</strong> from
             issuers worldwide, covering Visa and Mastercard products that let you spend Bitcoin,

@@ -444,7 +444,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
       },
     },
     "publisher": { "@type": "Organization", "name": "Sweepbase", "url": "https://sweepbase.com" },
-    "dateModified": "2026-03-16",
+    "dateModified": "2026-03-18",
     "offers": {
       "@type": "Offer",
       "url": `https://sweepbase.com/cards/${card.slug}`,
@@ -504,7 +504,7 @@ export default async function CardDetailPage({ params }: { params: { slug: strin
               cardUrl={`https://sweepbase.com/cards/${card.slug}`}
             />
             <p className="detail-last-updated">
-              <i className="fa-regular fa-clock"></i> Last reviewed: {card.lastReviewed} by the{' '}
+              <i className="fa-regular fa-clock"></i> Last updated: <time dateTime="2026-03-18">{card.lastReviewed || 'March 2026'}</time> by the{' '}
               <a href="/about" className="detail-reviewed-by">Sweepbase Editorial Team</a>
             </p>
             <div className="detail-meta-grid">

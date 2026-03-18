@@ -112,6 +112,7 @@ export default async function BestCryptoCardsAfrica() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in Africa</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Africa is one of the fastest-growing crypto markets, with crypto cards enabling financial
             inclusion and dollar-denominated spending across the continent. Sweepbase has identified{' '}

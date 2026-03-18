@@ -116,6 +116,7 @@ export default async function BestCryptoCardsLatAm() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in Latin America</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Latin America is one of the fastest-growing regions for crypto adoption, with crypto debit
             cards providing a bridge between digital assets and everyday spending. Sweepbase has

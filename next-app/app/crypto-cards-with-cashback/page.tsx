@@ -116,6 +116,7 @@ export default async function CryptoCardsWithCashback() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Cards With Cashback Rewards</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Crypto cashback cards let you earn digital asset rewards on every purchase — whether
             that means Bitcoin, stablecoins, or platform-native tokens deposited directly to your

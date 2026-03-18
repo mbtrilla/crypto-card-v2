@@ -107,6 +107,7 @@ export default async function VisaCryptoCards() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Visa Crypto Debit &amp; Credit Cards</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Visa crypto cards are accepted at over 150 million merchants in more than 200 countries,
             making them the widest-reaching option for everyday crypto spending. Sweepbase has

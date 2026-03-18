@@ -75,6 +75,7 @@ export default function HowToChooseGuide() {
 
         <article className="guide-article">
           <h1>How to Choose a Crypto Card in 2026</h1>
+          <p className="guide-meta">By Sweepbase Editorial Team · Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="guide-lead">
             With over 100 crypto debit and credit cards on the market, finding the right one can be
             overwhelming. This guide walks you through the key factors to consider so you can make a

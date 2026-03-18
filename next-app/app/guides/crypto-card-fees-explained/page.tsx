@@ -75,6 +75,7 @@ export default function FeesGuide() {
 
         <article className="guide-article">
           <h1>Crypto Card Fees Explained</h1>
+          <p className="guide-meta">By Sweepbase Editorial Team · Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="guide-lead">
             Crypto card fees can be confusing — some are visible, others are hidden in conversion rates.
             This guide breaks down every type of fee so you can calculate the true cost of any card.

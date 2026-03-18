@@ -108,6 +108,7 @@ export default async function VirtualCryptoCards() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Virtual Crypto Cards 2026</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Virtual crypto cards are issued instantly and ready for online purchases and mobile
             wallet payments within minutes. No waiting for physical delivery — add to Apple Pay or

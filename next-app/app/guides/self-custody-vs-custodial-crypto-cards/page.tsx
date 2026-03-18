@@ -75,6 +75,7 @@ export default function CustodyGuide() {
 
         <article className="guide-article">
           <h1>Self-Custody vs Custodial Crypto Cards</h1>
+          <p className="guide-meta">By Sweepbase Editorial Team · Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="guide-lead">
             The custody model is one of the most important decisions when choosing a crypto card. It
             determines who controls your private keys, how your funds are protected, and what happens

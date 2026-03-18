@@ -108,6 +108,7 @@ export default async function CryptoCardsNoFees() {
 
         <section className="category-hero">
           <h1 className="category-h1">Free Crypto Cards With No Issuance or Annual Fees</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Looking for a crypto card that costs nothing to get started? Sweepbase has identified{' '}
             <strong>{cards.length} cards</strong> with zero issuance fee AND zero annual fee. While

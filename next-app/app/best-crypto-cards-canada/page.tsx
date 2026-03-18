@@ -116,6 +116,7 @@ export default async function BestCryptoCardsCanada() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Crypto Debit &amp; Credit Cards in Canada</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Canada has emerged as a progressive market for crypto financial products, with a growing
             number of debit and credit cards that let you spend Bitcoin, Ethereum, and stablecoins

@@ -116,6 +116,7 @@ export default async function SelfCustodyCryptoCards() {
 
         <section className="category-hero">
           <h1 className="category-h1">Best Self-Custody Crypto Cards</h1>
+          <p className="category-updated">Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="category-intro">
             Self-custody crypto cards let you maintain full control of your private keys right up
             until the moment you make a purchase — unlike custodial exchange cards where the

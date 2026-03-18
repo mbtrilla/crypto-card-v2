@@ -75,6 +75,7 @@ export default function BeginnersGuide() {
 
         <article className="guide-article">
           <h1>Best Crypto Cards for Beginners in 2026</h1>
+          <p className="guide-meta">By Sweepbase Editorial Team · Last updated: <time dateTime="2026-03-18">March 18, 2026</time></p>
           <p className="guide-lead">
             Getting your first crypto card doesn&apos;t have to be complicated. This guide helps
             you understand what to look for, avoid common mistakes, and choose a card that matches

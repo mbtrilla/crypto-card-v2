@@ -2299,6 +2299,28 @@ select:focus:not(:focus-visible) {
     padding: 5rem 0 6rem;
 }
 
+.category-updated {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.category-updated time {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.guide-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.guide-meta time {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
 .home-faq-section {
     padding: 3rem 0 4rem;
 }
