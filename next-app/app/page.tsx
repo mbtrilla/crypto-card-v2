@@ -196,9 +196,6 @@ export default async function Home() {
             Compare {allCards.length} cards by fees, cashback, custody, and regional availability.
             Last updated: <time dateTime="2026-03-18">March 18, 2026</time>.
           </p>
-          <p className="hero-subtitle">
-            Find the top Bitcoin, Ethereum and USDT cards by cashback rate, fees, network (Visa/Mastercard) and country availability.
-          </p>
         </div>
       </section>
 
