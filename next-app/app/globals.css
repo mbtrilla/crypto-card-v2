@@ -872,7 +872,7 @@ select:focus:not(:focus-visible) {
     width: 100%;
     padding: 0.8rem 1rem;
     min-height: 44px;
-    background: linear-gradient(135deg, #3b82f6 0%, #9333ea 90%, #d8b4fe 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
     color: #ffffff;
     font-weight: 700;
     font-size: 1rem;
@@ -884,9 +884,9 @@ select:focus:not(:focus-visible) {
 }
 
 .get-card-btn:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #7e22ce 90%, #d8b4fe 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(147, 51, 234, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
 }
 
 /* Include these tags for the detailed modal since we removed them above */
@@ -1292,12 +1292,12 @@ select:focus:not(:focus-visible) {
 }
 
 .load-more-btn {
-    background: transparent;
-    color: #d8b257;
-    border: 2px solid rgba(216, 178, 87, 0.5);
-    padding: 0.8rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    padding: 0.875rem 3rem;
+    font-size: 1rem;
+    font-weight: 600;
     font-family: var(--font-main);
     border-radius: 9999px;
     cursor: pointer;
@@ -1308,21 +1308,21 @@ select:focus:not(:focus-visible) {
 }
 
 .load-more-btn:hover {
-    background: rgba(216, 178, 87, 0.1);
-    border-color: #d8b257;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(216, 178, 87, 0.2);
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--accent-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
 }
 
 /* --- Card Compare Button --- */
 .compare-btn {
-    margin-top: 1rem;
+    margin-top: 0;
     width: 100%;
     padding: 0.7rem 1rem;
     min-height: 44px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--text-secondary);
-    border: 1px solid var(--border-glass);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 9999px;
     font-size: 0.85rem;
     font-weight: 500;
