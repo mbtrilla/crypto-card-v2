@@ -45,9 +45,9 @@ export default function CardItem({ card, onCompare, isCompared, priority = false
 
           <h3 className="card-title-large">{name}</h3>
 
-          <div className="outline-pill" title={cardType}>{cardType.split(',')[0]}</div>
-          <div className="outline-pill">Cashback: {cashback}</div>
-          <div className="outline-pill">Region: {regions}</div>
+          <div className="card-cashback">{cashback !== 'None' && cashback !== 'N/A' ? `${cashback} cashback` : 'No cashback'}</div>
+          <div className="card-region">{regions}</div>
+          <div className="card-type">{cardType.split(',')[0]}</div>
 
           <div className="card-actions">
             <button className="get-card-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); trackCardClick(name, 'get_card'); window.open('#', '_blank'); }}>Get Card</button>

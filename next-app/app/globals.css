@@ -749,6 +749,31 @@ select:focus:not(:focus-visible) {
     width: 100%;
 }
 
+/* Card info hierarchy: cashback (dominant) → region (medium) → type (subtle) */
+.card-cashback {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #d8b257;
+    text-align: center;
+}
+
+.card-region {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.card-type {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-align: center;
+    opacity: 0.7;
+}
+
 .card-actions {
     margin-top: auto;
     width: 100%;
