@@ -2354,7 +2354,7 @@ select:focus:not(:focus-visible) {
 /* --- About Section --- */
 /* ── SEO content block ── */
 .seo-content-section {
-    padding: 4rem 0 3rem;
+    padding: 3rem 0 2rem;
 }
 
 .seo-content {
@@ -2362,34 +2362,37 @@ select:focus:not(:focus-visible) {
 }
 
 .seo-content h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-muted);
 }
 
 .seo-content p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 1rem;
+    color: #4a5568;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
     max-width: 68ch;
     margin-inline: auto;
 }
 
 .seo-content a {
-    color: var(--accent-primary);
+    color: #6b8acd;
     text-decoration: none;
 }
 
 .seo-content a:hover {
     text-decoration: underline;
+    color: var(--accent-primary);
 }
 
 .seo-content h3 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-top: 1.75rem;
-    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    margin-top: 1.25rem;
+    margin-bottom: 0.4rem;
 }
 
 .seo-content-section--alt {
@@ -2417,10 +2420,10 @@ select:focus:not(:focus-visible) {
 .seo-collapse__summary::after {
     content: 'Read more';
     display: block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--accent-primary);
-    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #6b8acd;
+    margin-top: 0.4rem;
 }
 
 .seo-collapse[open] .seo-collapse__summary::after {
@@ -2428,9 +2431,9 @@ select:focus:not(:focus-visible) {
 }
 
 .seo-collapse__preview {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.75;
+    color: #4a5568;
+    font-size: 0.875rem;
+    line-height: 1.7;
     max-width: 68ch;
     margin-inline: auto;
 }
@@ -2482,17 +2485,18 @@ select:focus:not(:focus-visible) {
 }
 
 .about-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
 }
 
 .about-lead {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    color: #4a5568;
     max-width: 68ch;
-    margin: 0 auto 3rem;
-    line-height: 1.8;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
 }
 
 .about-features {
