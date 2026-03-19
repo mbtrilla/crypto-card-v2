@@ -798,17 +798,19 @@ select:focus:not(:focus-visible) {
 }
 
 .badge-custody {
-    background-color: #3b82f6 !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #93b4f6 !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    box-shadow: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .badge-network {
-    background-color: #8b5cf6 !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+    background-color: transparent !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid rgba(148, 163, 184, 0.3) !important;
+    box-shadow: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -846,8 +848,8 @@ select:focus:not(:focus-visible) {
 
 .outline-pill {
     background: rgba(30, 30, 30, 0.5);
-    color: #d8b257;
-    border: 1px solid rgba(216, 178, 87, 0.4);
+    color: var(--text-secondary);
+    border: 1px solid rgba(148, 163, 184, 0.25);
     border-radius: 9999px;
     padding: 0.6rem 1rem;
     font-size: 0.7rem;
@@ -862,7 +864,7 @@ select:focus:not(:focus-visible) {
 }
 
 .crypto-card:hover .outline-pill {
-    border-color: rgba(216, 178, 87, 0.8);
+    border-color: rgba(148, 163, 184, 0.4);
 }
 
 .get-card-btn {
