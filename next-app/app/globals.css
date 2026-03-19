@@ -777,7 +777,7 @@ select:focus:not(:focus-visible) {
 
 .card-meta-tags .badge {
     font-size: 0.6rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0.35rem 0.65rem;
     border-radius: 9999px;
     text-transform: uppercase;
@@ -1287,7 +1287,7 @@ select:focus:not(:focus-visible) {
     border: 1px solid var(--border-glass);
     border-radius: 9999px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
