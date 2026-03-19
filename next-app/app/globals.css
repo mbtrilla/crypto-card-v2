@@ -2396,6 +2396,45 @@ select:focus:not(:focus-visible) {
     padding: 2rem 0 4rem;
 }
 
+/* ── Collapsible SEO text sections ── */
+.seo-collapse {
+    border: none;
+}
+
+.seo-collapse summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.seo-collapse summary::-webkit-details-marker {
+    display: none;
+}
+
+.seo-collapse__summary {
+    position: relative;
+}
+
+.seo-collapse__summary::after {
+    content: 'Read more';
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin-top: 0.5rem;
+}
+
+.seo-collapse[open] .seo-collapse__summary::after {
+    content: 'Show less';
+}
+
+.seo-collapse__preview {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 68ch;
+    margin-inline: auto;
+}
+
 .about-section {
     padding: 5rem 0 6rem;
 }

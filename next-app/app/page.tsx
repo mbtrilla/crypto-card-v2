@@ -346,10 +346,16 @@ export default async function Home() {
 
       <section className="seo-content-section">
         <div className="container seo-content">
-          <h2>How Sweepbase Helps You Find the Right Crypto Card</h2>
+          <details className="seo-collapse">
+            <summary className="seo-collapse__summary">
+              <h2>How Sweepbase Helps You Find the Right Crypto Card</h2>
+              <p className="seo-collapse__preview">
+                Sweepbase is the most comprehensive crypto card comparison platform, tracking{' '}
+                {allCards.length} debit and credit cards from issuers worldwide.
+              </p>
+            </summary>
           <p>
-            Sweepbase is the most comprehensive crypto card comparison platform, tracking{' '}
-            {allCards.length} debit and credit cards from issuers worldwide. Whether you&apos;re looking
+            Whether you&apos;re looking
             for a <a href="/cards">Bitcoin debit card</a> with high cashback, a{' '}
             <a href="/self-custody-crypto-cards">self-custody</a> Visa card, or the cheapest option
             for international spending &mdash; our real-time database makes it easy to compare fees,
@@ -381,12 +387,19 @@ export default async function Home() {
             <a href="/guides/best-crypto-cards-for-beginners">beginner&apos;s guide</a> for
             the simplest options to get started.
           </p>
+          </details>
         </div>
       </section>
 
       <section className="seo-content-section seo-content-section--alt">
         <div className="container seo-content">
-          <h2>Crypto Card Comparison: What to Look For in 2026</h2>
+          <details className="seo-collapse">
+            <summary className="seo-collapse__summary">
+              <h2>Crypto Card Comparison: What to Look For in 2026</h2>
+              <p className="seo-collapse__preview">
+                Compare fees, cashback, custody models, and Visa vs Mastercard networks to find the right crypto card.
+              </p>
+            </summary>
 
           <h3>Fees and Hidden Costs</h3>
           <p>
@@ -442,6 +455,7 @@ export default async function Home() {
             fee structure matter more than the network — but if you travel frequently or need specific
             ATM coverage, the network choice can make a measurable difference.
           </p>
+          </details>
         </div>
       </section>
 
