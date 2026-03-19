@@ -735,6 +735,8 @@ select:focus:not(:focus-visible) {
     text-align: center;
     flex-grow: 1;
     min-height: 0;
+    padding: 1rem 1.25rem 0;
+    gap: 0.625rem;
 }
 
 .card-meta-tags {
@@ -743,8 +745,17 @@ select:focus:not(:focus-visible) {
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     width: 100%;
+}
+
+.card-actions {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
 }
 
 .blue-pill {
@@ -796,7 +807,7 @@ select:focus:not(:focus-visible) {
     font-weight: 600;
     color: #ffffff;
     line-height: 1.35;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     min-height: 4.5rem;

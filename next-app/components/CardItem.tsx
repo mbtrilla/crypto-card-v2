@@ -49,7 +49,7 @@ export default function CardItem({ card, onCompare, isCompared, priority = false
           <div className="outline-pill">Cashback: {cashback}</div>
           <div className="outline-pill">Region: {regions}</div>
 
-          <div style={{ marginTop: 'auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div className="card-actions">
             <button className="get-card-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); trackCardClick(name, 'get_card'); window.open('#', '_blank'); }}>Get Card</button>
             <button 
               className={`compare-btn ${isCompared ? 'active' : ''}`} 
