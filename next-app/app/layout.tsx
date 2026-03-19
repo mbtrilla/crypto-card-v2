@@ -10,7 +10,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-inter",
 });

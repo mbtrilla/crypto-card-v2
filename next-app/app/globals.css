@@ -451,20 +451,17 @@ select:focus:not(:focus-visible) {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 8px !important;
     padding: 0.8rem 1rem;
+    padding-right: 2.5rem;
     min-height: 44px;
     color: #ffffff;
     font-size: 0.9rem;
     transition: all 0.2s ease;
+    appearance: none;
+    cursor: pointer;
 }
 
 .search-box input {
     padding-left: 2.5rem;
-}
-
-.custom-select select {
-    appearance: none;
-    padding-right: 2.5rem;
-    cursor: pointer;
 }
 
 .custom-select select:focus {
