@@ -14,9 +14,9 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,
   },
-  serverExternalPackages: ['papaparse', 'sharp'],
   experimental: {
     optimizeCss: true,
+    serverComponentsExternalPackages: ['papaparse', 'sharp'],
     optimizePackageImports: ['lucide-react', '@fortawesome/free-solid-svg-icons', '@fortawesome/fontawesome-svg-core', '@fortawesome/react-fontawesome'],
   },
   async headers() {
