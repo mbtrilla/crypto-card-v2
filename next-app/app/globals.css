@@ -2340,6 +2340,8 @@ select:focus:not(:focus-visible) {
     font-size: 1rem;
     line-height: 1.75;
     margin-bottom: 1rem;
+    max-width: 68ch;
+    margin-inline: auto;
 }
 
 .seo-content a {
@@ -2422,7 +2424,7 @@ select:focus:not(:focus-visible) {
 .about-lead {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    max-width: 720px;
+    max-width: 68ch;
     margin: 0 auto 3rem;
     line-height: 1.8;
 }
@@ -2505,7 +2507,8 @@ select:focus:not(:focus-visible) {
     font-size: 1.05rem;
     color: var(--text-secondary);
     line-height: 1.85;
-    max-width: 720px;
+    max-width: 68ch;
+    margin-inline: auto;
 }
 
 .category-intro strong {
@@ -2590,6 +2593,8 @@ select:focus:not(:focus-visible) {
     text-align: center;
     font-size: 1rem;
     margin-bottom: 2.5rem;
+    max-width: 68ch;
+    margin-inline: auto;
 }
 
 .browse-categories-grid {
