@@ -212,126 +212,98 @@ export default async function Home() {
           </p>
           <div className="browse-categories-grid">
             <a href="/best-crypto-cards-usa" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-flag-usa" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F1FA;&#x1F1F8;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in the USA</span>
                 <span className="browse-category-desc">Cards available to US residents</span>
               </div>
             </a>
             <a href="/best-crypto-cards-europe" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F1EA;&#x1F1FA;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in Europe</span>
                 <span className="browse-category-desc">EEA &amp; EU-available cards</span>
               </div>
             </a>
             <a href="/visa-crypto-cards" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-credit-card" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F4B3;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Visa Crypto Cards</span>
                 <span className="browse-category-desc">All Visa network cards compared</span>
               </div>
             </a>
             <a href="/mastercard-crypto-cards" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-circle-dot" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F4B3;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Mastercard Crypto Cards</span>
                 <span className="browse-category-desc">All Mastercard network cards compared</span>
               </div>
             </a>
             <a href="/self-custody-crypto-cards" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-key" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F512;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Self-Custody Cards</span>
                 <span className="browse-category-desc">Keep control of your private keys</span>
               </div>
             </a>
             <a href="/crypto-cards-with-cashback" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-percent" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F4B0;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Cards With Cashback</span>
                 <span className="browse-category-desc">Earn BTC, tokens, or stablecoins</span>
               </div>
             </a>
             <a href="/best-crypto-cards-uk" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-sterling-sign" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F1EC;&#x1F1E7;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in the UK</span>
                 <span className="browse-category-desc">FCA-regulated cards for UK residents</span>
               </div>
             </a>
             <a href="/best-crypto-cards-canada" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-leaf" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F1E8;&#x1F1E6;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in Canada</span>
                 <span className="browse-category-desc">Cards for Canadian residents</span>
               </div>
             </a>
             <a href="/best-crypto-cards-latin-america" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-earth-americas" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F30E;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Cards in Latin America</span>
                 <span className="browse-category-desc">MX, BR, AR, CO &amp; more</span>
               </div>
             </a>
             <a href="/best-crypto-cards-africa" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-earth-africa" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F30D;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in Africa</span>
                 <span className="browse-category-desc">NG, ZA, KE, GH &amp; more</span>
               </div>
             </a>
             <a href="/best-crypto-cards-middle-east" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-mosque" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F54C;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Best Cards in Middle East</span>
                 <span className="browse-category-desc">UAE, SA, BH, QA &amp; more</span>
               </div>
             </a>
             <a href="/virtual-crypto-cards" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-mobile-screen" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F4F1;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Virtual Crypto Cards</span>
                 <span className="browse-category-desc">Instant issue, no physical card</span>
               </div>
             </a>
             <a href="/physical-crypto-cards" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-id-card" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F4B3;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Physical Crypto Cards</span>
                 <span className="browse-category-desc">Tap-to-pay &amp; ATM access</span>
               </div>
             </a>
             <a href="/crypto-cards-no-fees" className="browse-category-tile">
-              <div className="browse-category-icon">
-                <i className="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
-              </div>
+              <span className="browse-category-emoji" aria-hidden="true">&#x1F195;</span>
               <div className="browse-category-info">
                 <span className="browse-category-name">Free Cards (No Fees)</span>
                 <span className="browse-category-desc">Zero issuance &amp; annual fee</span>
