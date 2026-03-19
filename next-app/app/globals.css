@@ -766,6 +766,7 @@ select:focus:not(:focus-visible) {
     color: #ffffff !important;
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .badge-network {
@@ -773,6 +774,7 @@ select:focus:not(:focus-visible) {
     color: #ffffff !important;
     box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .card-meta-tags .badge {
@@ -795,8 +797,7 @@ select:focus:not(:focus-visible) {
     color: #ffffff;
     line-height: 1.35;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     min-height: 4.5rem;
     /* Forces 2/3 lines to align things perfectly */
@@ -815,6 +816,7 @@ select:focus:not(:focus-visible) {
     padding: 0.6rem 1rem;
     font-size: 0.7rem;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     font-weight: 600;
     text-align: center;
     width: 100%;
