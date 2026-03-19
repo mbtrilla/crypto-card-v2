@@ -93,7 +93,7 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-base);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
@@ -761,6 +761,7 @@ select:focus:not(:focus-visible) {
     font-size: 1.35rem;
     font-weight: 900;
     color: #ffffff;
+    line-height: 1.35;
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
     text-transform: uppercase;
