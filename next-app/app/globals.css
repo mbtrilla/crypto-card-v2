@@ -3497,6 +3497,10 @@ select:focus:not(:focus-visible) {
 }
 
 /* Matches .card-image-wrapper / .card-full-image aspect ratio (400×250) */
+.skeleton-card {
+    pointer-events: none;
+}
+
 .skeleton-image {
     width: 100%;
     aspect-ratio: 400 / 250;
@@ -3516,16 +3520,39 @@ select:focus:not(:focus-visible) {
     margin-top: 0.25rem;
 }
 
-.skeleton-pill {
-    width: 100%;
-    height: 30px;
-    border-radius: 99px;
+.skeleton-cashback {
+    width: 60%;
+    height: 22px;
+    border-radius: 4px;
+    margin-inline: auto;
+}
+
+.skeleton-region {
+    width: 80%;
+    height: 16px;
+    border-radius: 4px;
+    margin-inline: auto;
+}
+
+.skeleton-type {
+    width: 40%;
+    height: 14px;
+    border-radius: 4px;
+    margin-inline: auto;
 }
 
 .skeleton-btn {
     width: 100%;
-    height: 40px;
+    height: 44px;
     border-radius: 99px;
+}
+
+.skeleton-btn-ghost {
+    width: 100%;
+    height: 44px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Prevent pointer-events on skeleton cards */

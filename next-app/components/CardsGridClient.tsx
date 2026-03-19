@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { CardListItem } from '@/lib/data';
 import { normalizeCountry, normalizeCountryList } from '@/lib/country-normalize';
 import CardItem from './CardItem';
+import CardSkeleton from './CardSkeleton';
 
 // CompareBar is only shown after the user adds a card to compare — defer it
 // so its JS never blocks the initial page render.
@@ -29,7 +30,17 @@ export default function CardsGridClient({ initialCards }: Props) {
     country: 'all',
   });
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [compareList, setCompareList] = useState<CardListItem[]>([]);
+
+  const handleLoadMore = useCallback(() => {
+    setIsLoadingMore(true);
+    // Brief delay to show skeleton feedback
+    setTimeout(() => {
+      setVisibleCount(v => v + CARDS_PER_PAGE);
+      setIsLoadingMore(false);
+    }, 300);
+  }, []);
 
   // Filtering Logic
   const filteredCards = useMemo(() => {
@@ -199,11 +210,18 @@ export default function CardsGridClient({ initialCards }: Props) {
                 ))}
               </div>
               {visibleCount < filteredCards.length && (
-                <div className="load-more-container">
-                  <button className="load-more-btn" onClick={() => setVisibleCount(v => v + CARDS_PER_PAGE)}>
-                    Load More <i className="fa-solid fa-chevron-down"></i>
-                  </button>
-                </div>
+                <>
+                  {isLoadingMore && (
+                    <div className="cards-grid" style={{ marginTop: '1.5rem' }}>
+                      {Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={`skel-${i}`} />)}
+                    </div>
+                  )}
+                  <div className="load-more-container">
+                    <button className="load-more-btn" onClick={handleLoadMore} disabled={isLoadingMore}>
+                      {isLoadingMore ? 'Loading...' : 'Load More'} {!isLoadingMore && <i className="fa-solid fa-chevron-down"></i>}
+                    </button>
+                  </div>
+                </>
               )}
             </>
           )}

@@ -21,15 +21,19 @@ export default function CardSkeleton() {
         {/* Title */}
         <div className="skeleton-block skeleton-title" />
 
-        {/* Three outline pills */}
-        <div className="skeleton-block skeleton-pill" />
-        <div className="skeleton-block skeleton-pill" />
-        <div className="skeleton-block skeleton-pill" />
+        {/* Cashback (wide, tall) */}
+        <div className="skeleton-block skeleton-cashback" />
+
+        {/* Region */}
+        <div className="skeleton-block skeleton-region" />
+
+        {/* Type (short) */}
+        <div className="skeleton-block skeleton-type" />
 
         {/* Action buttons */}
-        <div style={{ marginTop: 'auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div className="card-actions">
           <div className="skeleton-block skeleton-btn" />
-          <div className="skeleton-block skeleton-btn" />
+          <div className="skeleton-block skeleton-btn-ghost" />
         </div>
       </div>
     </div>
