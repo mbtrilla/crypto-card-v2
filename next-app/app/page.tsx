@@ -191,7 +191,7 @@ export default async function Home() {
       />
       <section className="hero-section">
         <div className="container hero-content">
-          <h1 className="hero-title"><span className="text-gradient">Best</span> Crypto Debit &amp; Credit Cards <span className="text-gradient">2026</span></h1>
+          <h1 className="hero-title">Find Your <span className="text-gradient">Crypto Card</span></h1>
           <p className="hero-tagline">
             Compare {allCards.length} cards by fees, cashback, custody, and regional availability.
             Last updated: <time dateTime="2026-03-18">March 18, 2026</time>.
@@ -348,7 +348,7 @@ export default async function Home() {
         <div className="container seo-content">
           <details className="seo-collapse">
             <summary className="seo-collapse__summary">
-              <h2>How Sweepbase Helps You Find the Right Crypto Card</h2>
+              <h2>How It Works</h2>
               <p className="seo-collapse__preview">
                 Sweepbase is the most comprehensive crypto card comparison platform, tracking{' '}
                 {allCards.length} debit and credit cards from issuers worldwide.
